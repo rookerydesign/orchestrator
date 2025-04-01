@@ -1,0 +1,37 @@
+{
+  "max_loras": 6,
+  "preferred_lora_count": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "preferred_lora_weights": [
+    2,
+    15,
+    30,
+    30,
+    15,
+    2
+  ],
+  "weights": {
+    "detailer": 100,
+    "artist": 90,
+    "general": 80,
+    "people": 30,
+    "fx": 30,
+    "character": 10,
+    "nsfw": 10
+  },
+  "categories": {
+    "Detailers": "detailer",
+    "People Styles": "people",
+    "Artist Styles": "artist",
+    "General Styles": "general",
+    "Textures & Looks": "fx",
+    "NSFW Styles": "nsfw",
+    "Characters": "character"
+  }
+}
