@@ -1,0 +1,19 @@
+# .gitignore
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv/
+.vscode/
+.idea/
+.DS_Store
+*.safetensors
+*.ckpt
+*.png
+*.jpg
+logs/
+outputs/
+temp/
+*.jsonl
+config.yaml
