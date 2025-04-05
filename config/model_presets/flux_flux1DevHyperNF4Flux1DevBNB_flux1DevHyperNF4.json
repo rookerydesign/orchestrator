@@ -1,0 +1,12 @@
+{
+  "steps": 10,
+  "cfg_scale": 4.0,
+  "sampler": "Euler",
+  "hires_fix": true,
+  "denoising_strength": 0.4,
+  "hr_scale": 1.43,
+  "upscaler": "4x-AnimeSharp",
+  "scheduler": "Beta",
+  "width": 1216,
+  "height": 832
+}

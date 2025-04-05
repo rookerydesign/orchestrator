@@ -1,0 +1,82 @@
+[
+  {
+    "prompt": "A fantasy pastel portrait illustration of creature with the body of a cat but wings made of fire, soaring through a darkened sky who is a brawler, dressed in A long flowing cape in shades of blue and green, who appears to be Looking down, head bowed in a  scene. The colour theme of the Melancholic, Mystical image is mostly Black and burgundy. , <lora:detailed_notrigger:0.97>, <lora:Fantasy_art_XL_V1:0.68> Art by Frank Frazetta, <lora:Invincible (TV series):0.64> cartoon , animated , <lora:1r1d3sc3nc3XL:0.6> 1r1d3sc3nc3",
+    "model": "SDXL/realvisxlV50_v50LightningBakedvae",
+    "base_model": "sdxl",
+    "loras": [
+      {
+        "name": "SDXL/Detailers/detailed_notrigger",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\Detailers\\detailed_notrigger.safetensors",
+        "activation": null,
+        "weight": 0.97
+      },
+      {
+        "name": "SDXL/Artist Styles/Fantasy_art_XL_V1",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\Artist Styles\\Fantasy_art_XL_V1.safetensors",
+        "activation": "Art by Frank Frazetta",
+        "weight": 0.68
+      },
+      {
+        "name": "SDXL/General Styles/Invincible (TV series)",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\General Styles\\Invincible (TV series).safetensors",
+        "activation": "cartoon , animated ",
+        "weight": 0.64
+      },
+      {
+        "name": "SDXL/Textures & Looks/1r1d3sc3nc3XL",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\Textures & Looks\\1r1d3sc3nc3XL.safetensors",
+        "activation": "1r1d3sc3nc3",
+        "weight": 0.6
+      }
+    ],
+    "steps": 8,
+    "cfg_scale": 1.2,
+    "sampler": "DPM++ SDE",
+    "hires_fix": true,
+    "denoising_strength": 0.4,
+    "hr_scale": 1.43,
+    "upscaler": "4x-AnimeSharp",
+    "batch_size": 1,
+    "genre": "fantasy",
+    "template": "Start_here.txt",
+    "use_gpt": true,
+    "smart_matching": false
+  },
+  {
+    "prompt": "A fantasy life drawing sketch of doom slayer,  armor,  helmet,   headgear,  machine who is a sea captain, dressed in Gilded, high-collared coat with tiny potion vials strapped to the waist and shimmering bronze buttons, who appears to be Standing straight, hands interlocked behind in a  scene. The colour theme of the Mystical, Gritty image is mostly Yellow and Gray. , <lora:skin texture style v4:0.99> skin texture style, detailed skin pore, detailed skin, realistic skin, <lora:AmateurStyle_v1_PONY_REALISM:0.63> real life photo, amateur, <lora:sdxl_lora_beksinski-000018:0.65> digital artwork by Beksinski",
+    "model": "SDXL/realvisxlV50_v50LightningBakedvae",
+    "base_model": "sdxl",
+    "loras": [
+      {
+        "name": "SDXL/Detailers/skin texture style v4",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\Detailers\\skin texture style v4.safetensors",
+        "activation": "skin texture style, detailed skin pore, detailed skin, realistic skin",
+        "weight": 0.99
+      },
+      {
+        "name": "Pony/Textures & Looks/AmateurStyle_v1_PONY_REALISM",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\Pony\\Textures & Looks\\AmateurStyle_v1_PONY_REALISM.safetensors",
+        "activation": "real life photo, amateur",
+        "weight": 0.63
+      },
+      {
+        "name": "SDXL/Artist Styles/sdxl_lora_beksinski-000018",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\Artist Styles\\sdxl_lora_beksinski-000018.safetensors",
+        "activation": "digital artwork by Beksinski",
+        "weight": 0.65
+      }
+    ],
+    "steps": 8,
+    "cfg_scale": 1.2,
+    "sampler": "DPM++ SDE",
+    "hires_fix": true,
+    "denoising_strength": 0.4,
+    "hr_scale": 1.43,
+    "upscaler": "4x-AnimeSharp",
+    "batch_size": 1,
+    "genre": "fantasy",
+    "template": "Start_here.txt",
+    "use_gpt": true,
+    "smart_matching": false
+  }
+]

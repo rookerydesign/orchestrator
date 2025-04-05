@@ -11,11 +11,11 @@ defaults:
   batch_size: 5
   model: "Flux1DevHyperNF4"
   sampler: "Euler"
+  scheduler: "Beta"
   steps: 10
-  cfg_scale: 3.5
+  cfg_scale: 4.0
   hires_fix: true
   denoising_strength: 0.4
   hr_scale: 1.43
   upscaler: "4x-AnimeSharp"
 
-theme_presets_file: "./themes/presets.json"

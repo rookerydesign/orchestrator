@@ -13,25 +13,20 @@
     15,
     30,
     30,
-    15,
-    2
+    15
   ],
   "weights": {
     "detailer": 100,
     "artist": 90,
     "general": 80,
     "people": 30,
-    "fx": 30,
-    "character": 10,
-    "nsfw": 10
+    "fx": 30
   },
   "categories": {
     "Detailers": "detailer",
     "People Styles": "people",
     "Artist Styles": "artist",
     "General Styles": "general",
-    "Textures & Looks": "fx",
-    "NSFW Styles": "nsfw",
-    "Characters": "character"
+    "Textures & Looks": "fx"
   }
 }

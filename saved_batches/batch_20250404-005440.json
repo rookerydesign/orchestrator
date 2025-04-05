@@ -1,0 +1,217 @@
+[
+  {
+    "prompt": "A fantasy rough gesture sketch of Mermaid who is a berserker, dressed in Mystic sorceress-inspired crystal crown headpieces, who appears to be Turning to look over shoulder in a  scene. The colour theme of the Gritty, Expressive image is mostly Brown and Black. , <lora:MJ52_v2.0:0.97>, <lora:NudeXL:0.67> girl, realistic, open mouth, tongue out, breasts, photo, ass, pussy, nude, uncensored, <lora:sss-000009:0.6>, <lora:EnvyAnimeOilXL01:0.65> oil painting",
+    "model": "SDXL/albedobaseXL_v31Large",
+    "base_model": "sdxl",
+    "loras": [
+      {
+        "name": "SDXL/Detailers/MJ52_v2.0",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\Detailers\\MJ52_v2.0.safetensors",
+        "activation": null,
+        "weight": 0.97
+      },
+      {
+        "name": "SDXL/NSFW Styles/NudeXL",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\NSFW Styles\\NudeXL.safetensors",
+        "activation": "girl, realistic, open mouth, tongue out, breasts, photo, ass, pussy, nude, uncensored",
+        "weight": 0.67
+      },
+      {
+        "name": "SDXL/Textures & Looks/sss-000009",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\Textures & Looks\\sss-000009.safetensors",
+        "activation": null,
+        "weight": 0.6
+      },
+      {
+        "name": "SDXL/Artist Styles/EnvyAnimeOilXL01",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\Artist Styles\\EnvyAnimeOilXL01.safetensors",
+        "activation": "oil painting",
+        "weight": 0.65
+      }
+    ],
+    "steps": 35,
+    "cfg_scale": 5.0,
+    "sampler": "DPM++ 2M SDE",
+    "hires_fix": true,
+    "denoising_strength": 0.4,
+    "hr_scale": 1.43,
+    "upscaler": "4x-AnimeSharp",
+    "batch_size": 1,
+    "genre": "fantasy",
+    "template": "Start_here.txt",
+    "use_gpt": true,
+    "smart_matching": false
+  },
+  {
+    "prompt": "A fantasy rough gesture sketch of being with feathers made of pure energy, shifting between fire, lightning, and wind who is a horse archer, dressed in Sorceress warrior-inspired high-necked bodysuits with armor accents, who appears to be Raising both arms with fingers spread wide in a  scene. The colour theme of the Mystical, Gritty image is mostly Green and Gray. , <lora:add-detail-xl:0.9>, <lora:Goth_girl_XL-v2:0.56> Goth girl, Goth girl 1girl, <lora:aesthetic_anime_v1s:0.65>, <lora:EpicF4nta5yXL:0.55>, <lora:DnD_Darkest_Fantasy_Party:0.63> ArsMJStyle, dnddarkestfantasy",
+    "model": "SDXL/albedobaseXL_v31Large",
+    "base_model": "sdxl",
+    "loras": [
+      {
+        "name": "SDXL/Detailers/add-detail-xl",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\Detailers\\add-detail-xl.safetensors",
+        "activation": null,
+        "weight": 0.9
+      },
+      {
+        "name": "SDXL/People Styles/Goth_girl_XL-v2",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\People Styles\\Goth_girl_XL-v2.safetensors",
+        "activation": "Goth girl, Goth girl 1girl",
+        "weight": 0.56
+      },
+      {
+        "name": "SDXL/General Styles/aesthetic_anime_v1s",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\General Styles\\aesthetic_anime_v1s.safetensors",
+        "activation": null,
+        "weight": 0.65
+      },
+      {
+        "name": "SDXL/General Styles/EpicF4nta5yXL",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\General Styles\\EpicF4nta5yXL.safetensors",
+        "activation": null,
+        "weight": 0.55
+      },
+      {
+        "name": "SDXL/General Styles/DnD_Darkest_Fantasy_Party",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\General Styles\\DnD_Darkest_Fantasy_Party.safetensors",
+        "activation": "ArsMJStyle, dnddarkestfantasy",
+        "weight": 0.63
+      }
+    ],
+    "steps": 35,
+    "cfg_scale": 5.0,
+    "sampler": "DPM++ 2M SDE",
+    "hires_fix": true,
+    "denoising_strength": 0.4,
+    "hr_scale": 1.43,
+    "upscaler": "4x-AnimeSharp",
+    "batch_size": 1,
+    "genre": "fantasy",
+    "template": "Start_here.txt",
+    "use_gpt": true,
+    "smart_matching": false
+  },
+  {
+    "prompt": "A fantasy smooth airbrushed painting of figure made entirely of ink and parchment, their form constantly rewriting itself with new stories who is a slayer, dressed in She wears a white, sleeveless tunic with a brown leather belt and arm guards, who appears to be Twisting at the waist to face sideways in a  scene. The colour theme of the Gritty, Romantic image is mostly Black and violet. , <lora:MJ52_v2.0:0.94>, <lora:XL_Weapon_Orbstaff_-_By_HailoKnight:0.58> orbstaff, <lora:USNR STYLE_XL_lokr:0.58> usnr",
+    "model": "SDXL/albedobaseXL_v31Large",
+    "base_model": "sdxl",
+    "loras": [
+      {
+        "name": "SDXL/Detailers/MJ52_v2.0",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\Detailers\\MJ52_v2.0.safetensors",
+        "activation": null,
+        "weight": 0.94
+      },
+      {
+        "name": "SDXL/People Styles/XL_Weapon_Orbstaff_-_By_HailoKnight",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\People Styles\\XL_Weapon_Orbstaff_-_By_HailoKnight.safetensors",
+        "activation": "orbstaff",
+        "weight": 0.58
+      },
+      {
+        "name": "SDXL/Artist Styles/USNR STYLE_XL_lokr",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\Artist Styles\\USNR STYLE_XL_lokr.safetensors",
+        "activation": "usnr",
+        "weight": 0.58
+      }
+    ],
+    "steps": 35,
+    "cfg_scale": 5.0,
+    "sampler": "DPM++ 2M SDE",
+    "hires_fix": true,
+    "denoising_strength": 0.4,
+    "hr_scale": 1.43,
+    "upscaler": "4x-AnimeSharp",
+    "batch_size": 1,
+    "genre": "fantasy",
+    "template": "Start_here.txt",
+    "use_gpt": true,
+    "smart_matching": false
+  },
+  {
+    "prompt": "A fantasy flat vector illustration of humanoid with crystalline horns, their body reflecting the colors of the sky above. Normal human face with large glowing crystal horns who is a shadowmancer, dressed in Nymph of the sea-inspired shell-shaped bralettes with flowing skirts, who appears to be Arms outstretched, gazing downward in a  scene. The colour theme of the Ornate, Hyperrealistic image is mostly Pastel blue and mint green. , <lora:skin texture style v4:0.89> skin texture style, detailed skin pore, detailed skin, realistic skin, <lora:abysues:0.65> abysues, abx, <lora:RMSDXL_Creative:0.65>",
+    "model": "SDXL/albedobaseXL_v31Large",
+    "base_model": "sdxl",
+    "loras": [
+      {
+        "name": "SDXL/Detailers/skin texture style v4",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\Detailers\\skin texture style v4.safetensors",
+        "activation": "skin texture style, detailed skin pore, detailed skin, realistic skin",
+        "weight": 0.89
+      },
+      {
+        "name": "SDXL/General Styles/abysues",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\General Styles\\abysues.safetensors",
+        "activation": "abysues, abx",
+        "weight": 0.65
+      },
+      {
+        "name": "SDXL/General Styles/RMSDXL_Creative",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\General Styles\\RMSDXL_Creative.safetensors",
+        "activation": null,
+        "weight": 0.65
+      }
+    ],
+    "steps": 35,
+    "cfg_scale": 5.0,
+    "sampler": "DPM++ 2M SDE",
+    "hires_fix": true,
+    "denoising_strength": 0.4,
+    "hr_scale": 1.43,
+    "upscaler": "4x-AnimeSharp",
+    "batch_size": 1,
+    "genre": "fantasy",
+    "template": "Start_here.txt",
+    "use_gpt": true,
+    "smart_matching": false
+  },
+  {
+    "prompt": "A fantasy realistic oil painting of Sylph who is a priest, dressed in Sheer, gold-trimmed veil over a dark crimson gown, adorned with enchanted sapphires, who appears to be Looking down, head bowed in a  scene. The colour theme of the Dramatic, Grandiose image is mostly Brown and Gray. , <lora:EnvyZoomSliderXL01:0.97>, <lora:Concrete_Style-000010:0.62>, <lora:chuangyi_wm9:0.64> pengkenv, || changjing,  || liancao,, <lora:SDXL - vanta-black_contrast_V3.0:0.57>, <lora:sdxl_lora_beksinski-000018:0.69> digital artwork by Beksinski",
+    "model": "SDXL/albedobaseXL_v31Large",
+    "base_model": "sdxl",
+    "loras": [
+      {
+        "name": "SDXL/Detailers/EnvyZoomSliderXL01",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\Detailers\\EnvyZoomSliderXL01.safetensors",
+        "activation": null,
+        "weight": 0.97
+      },
+      {
+        "name": "SDXL/General Styles/Concrete_Style-000010",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\General Styles\\Concrete_Style-000010.safetensors",
+        "activation": null,
+        "weight": 0.62
+      },
+      {
+        "name": "SDXL/Artist Styles/chuangyi_wm9",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\Artist Styles\\chuangyi_wm9.safetensors",
+        "activation": "pengkenv, || changjing,  || liancao,",
+        "weight": 0.64
+      },
+      {
+        "name": "SDXL/Textures & Looks/SDXL - vanta-black_contrast_V3.0",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\Textures & Looks\\SDXL - vanta-black_contrast_V3.0.safetensors",
+        "activation": null,
+        "weight": 0.57
+      },
+      {
+        "name": "SDXL/Artist Styles/sdxl_lora_beksinski-000018",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\SDXL\\Artist Styles\\sdxl_lora_beksinski-000018.safetensors",
+        "activation": "digital artwork by Beksinski",
+        "weight": 0.69
+      }
+    ],
+    "steps": 35,
+    "cfg_scale": 5.0,
+    "sampler": "DPM++ 2M SDE",
+    "hires_fix": true,
+    "denoising_strength": 0.4,
+    "hr_scale": 1.43,
+    "upscaler": "4x-AnimeSharp",
+    "batch_size": 1,
+    "genre": "fantasy",
+    "template": "Start_here.txt",
+    "use_gpt": true,
+    "smart_matching": false
+  }
+]

@@ -1,0 +1,52 @@
+[
+  {
+    "prompt": "A fantasy cinematic portrait photo of creature with incredibly long hair, their mane of shifting, glowing nebulae encompassing the foreground who is a Forest Sage \u2013 mystical guardian of ancient woods, dressed in Fantasy-themed kimonos with intricate patterns and tassel details, who appears to be Placing hands together in a prayer gesture in a  scene. The colour theme of the Ornate, Glamorous image is mostly Black and blue. , <lora:It's a LoRA for portraits, BUT! actually specialized in backgrounds. v1.0:0.95>, <lora:FLUXTASTIC_V3:0.56>, <lora:gopFLUX:0.61>, <lora:Techno_Digitalis:0.69> In the style of ff-td, <lora:openart_Surreal_Anime_III_20250104_025344:0.6>",
+    "model": "flux/flux1DevHyperNF4Flux1DevBNB_flux1DevHyperNF4",
+    "base_model": "flux",
+    "loras": [
+      {
+        "name": "Flux/Detailers/It's a LoRA for portraits, BUT! actually specialized in backgrounds. v1.0",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\Flux\\Detailers\\It's a LoRA for portraits, BUT! actually specialized in backgrounds. v1.0.safetensors",
+        "activation": null,
+        "weight": 0.95
+      },
+      {
+        "name": "Flux/NSFW Styles/FLUXTASTIC_V3",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\Flux\\NSFW Styles\\FLUXTASTIC_V3.safetensors",
+        "activation": null,
+        "weight": 0.56
+      },
+      {
+        "name": "Flux/General Styles/gopFLUX",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\Flux\\General Styles\\gopFLUX.safetensors",
+        "activation": null,
+        "weight": 0.61
+      },
+      {
+        "name": "Flux/Artist Styles/Techno_Digitalis",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\Flux\\Artist Styles\\Techno_Digitalis.safetensors",
+        "activation": "In the style of ff-td",
+        "weight": 0.69
+      },
+      {
+        "name": "Flux/Artist Styles/openart_Surreal_Anime_III_20250104_025344",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\Flux\\Artist Styles\\openart_Surreal_Anime_III_20250104_025344.safetensors",
+        "activation": null,
+        "weight": 0.6
+      }
+    ],
+    "steps": 10,
+    "cfg_scale": 4.0,
+    "sampler": "Euler",
+    "hires_fix": true,
+    "hr_cfg_scale": 4.0,
+    "denoising_strength": 0.4,
+    "hr_scale": 1.43,
+    "upscaler": "4x-AnimeSharp",
+    "batch_size": 1,
+    "genre": "fantasy",
+    "template": "Start_here.txt",
+    "use_gpt": true,
+    "smart_matching": false
+  }
+]

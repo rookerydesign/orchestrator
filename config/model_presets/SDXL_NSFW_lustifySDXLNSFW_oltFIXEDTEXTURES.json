@@ -1,0 +1,13 @@
+{
+    "steps": 30,
+    "cfg_scale": 2.5,
+    "sampler": "DPM++ 3M SDE",
+    "hires_fix": true,
+    "denoising_strength": 0.4,
+    "hr_scale": 1.43,
+    "upscaler": "4x-AnimeSharp",
+    "scheduler": "Exponential",
+    "width": 1216,
+    "height": 832
+  }
+  

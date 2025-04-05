@@ -1,0 +1,40 @@
+[
+  {
+    "prompt": "A fantasy high-resolution 3D model render of creature with incredibly long hair, their mane of shifting, glowing nebulae encompassing the foreground who is a daemonhost, dressed in radiant, white and gold, holy armor, who appears to be Hands on back of head, leaning sideways in a  scene. The colour theme of the Romantic, Vivid image is mostly Blue and green. , <lora:aidmaImageUprader-FLUX-v0.3:0.91> aidmaimageupgrader, <lora:ck-painterly-fantasy-000017:0.57> in the style of ckpf, <lora:midjourney-dark:0.56>",
+    "model": "flux/flux1DevHyperNF4Flux1DevBNB_flux1DevHyperNF4",
+    "base_model": "flux",
+    "loras": [
+      {
+        "name": "Flux/Detailers/aidmaImageUprader-FLUX-v0.3",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\Flux\\Detailers\\aidmaImageUprader-FLUX-v0.3.safetensors",
+        "activation": "aidmaimageupgrader",
+        "weight": 0.91
+      },
+      {
+        "name": "Flux/Artist Styles/ck-painterly-fantasy-000017",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\Flux\\Artist Styles\\ck-painterly-fantasy-000017.safetensors",
+        "activation": "in the style of ckpf",
+        "weight": 0.57
+      },
+      {
+        "name": "Flux/Artist Styles/midjourney-dark",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\Flux\\Artist Styles\\midjourney-dark.safetensors",
+        "activation": null,
+        "weight": 0.56
+      }
+    ],
+    "steps": 10,
+    "cfg_scale": 4.0,
+    "sampler": "Euler",
+    "hires_fix": true,
+    "hr_cfg_scale": 4.0,
+    "denoising_strength": 0.4,
+    "hr_scale": 1.43,
+    "upscaler": "4x-AnimeSharp",
+    "batch_size": 1,
+    "genre": "fantasy",
+    "template": "Start_here.txt",
+    "use_gpt": true,
+    "smart_matching": false
+  }
+]

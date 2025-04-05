@@ -1,0 +1,46 @@
+[
+  {
+    "prompt": "A fantasy smooth airbrushed painting of Nixie who is a bloodrager, dressed in A long flowing cape in shades of blue and green, who appears to be Reaching arms overhead in a stretch in a  scene. The colour theme of the Transcendent, Elegant image is mostly Pink and Yellow. , <lora:ARTifacts:0.98>, <lora:ck-painterly-fantasy-000017:0.56> in the style of ckpf, <lora:Greg Rutkowski:0.57>, <lora:Techno_Digitalis:0.61> In the style of ff-td",
+    "model": "flux/flux1DevHyperNF4Flux1DevBNB_flux1DevHyperNF4",
+    "base_model": "flux",
+    "loras": [
+      {
+        "name": "Flux/Detailers/ARTifacts",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\Flux\\Detailers\\ARTifacts.safetensors",
+        "activation": null,
+        "weight": 0.98
+      },
+      {
+        "name": "Flux/Artist Styles/ck-painterly-fantasy-000017",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\Flux\\Artist Styles\\ck-painterly-fantasy-000017.safetensors",
+        "activation": "in the style of ckpf",
+        "weight": 0.56
+      },
+      {
+        "name": "Flux/Artist Styles/Greg Rutkowski",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\Flux\\Artist Styles\\Greg Rutkowski.safetensors",
+        "activation": null,
+        "weight": 0.57
+      },
+      {
+        "name": "Flux/Artist Styles/Techno_Digitalis",
+        "file": "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora\\Flux\\Artist Styles\\Techno_Digitalis.safetensors",
+        "activation": "In the style of ff-td",
+        "weight": 0.61
+      }
+    ],
+    "steps": 10,
+    "cfg_scale": 4.0,
+    "sampler": "Euler",
+    "hires_fix": true,
+    "hr_cfg_scale": 4.0,
+    "denoising_strength": 0.4,
+    "hr_scale": 1.43,
+    "upscaler": "4x-AnimeSharp",
+    "batch_size": 1,
+    "genre": "fantasy",
+    "template": "Start_here.txt",
+    "use_gpt": true,
+    "smart_matching": false
+  }
+]
