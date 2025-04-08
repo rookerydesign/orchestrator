@@ -1,0 +1,34 @@
+import requests
+
+url = "http://localhost:1234/v1/chat/completions"
+
+headers = {
+    "Content-Type": "application/json"
+}
+
+payload = {
+    "model": "gryphe.mythomax-l2-13b",
+    "messages": [
+        {
+            "role": "system",
+            "content": "You are a prompt enhancement assistant for an AI image generator. Always respond with a vivid, imaginative prompt using natural language."
+        },
+        {
+            "role": "user",
+            "content": "A futuristic warrior in a neon cityscape. Expand this into a rich, flowing prompt suitable for an image generation model."
+        }
+    ],
+    "temperature": 0.8,
+    "max_tokens": 300,
+    "stream": False
+}
+
+response = requests.post(url, headers=headers, json=payload)
+
+if response.ok:
+    data = response.json()
+    print("🧠 LLM Response:\n")
+    print(data['choices'][0]['message']['content'])
+else:
+    print("❌ Request failed:", response.status_code)
+    print(response.text)

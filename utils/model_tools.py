@@ -1,5 +1,6 @@
 import os
 import json
+import streamlit as st
 
 def sanitize_model_name(name: str) -> str:
     return name.replace("/", "_").replace("\\", "_")

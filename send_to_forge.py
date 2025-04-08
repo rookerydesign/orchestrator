@@ -94,7 +94,8 @@ def build_forge_payload(prompt, config):
 
 
 def send_jobs(jobs, output_dir, ui_config, on_job_progress=None, on_batch_progress=None):
-    os.makedirs(output_dir, exist_ok=True)
+    if output_dir:
+        os.makedirs(output_dir, exist_ok=True)
 
     for idx, job in enumerate(jobs):
         # Respect pause toggle

@@ -10,18 +10,31 @@ from generator import model_loader, lora_selector
 from generator.wildcard_loader import resolve_prompt
 from generator.model_loader import normalize_model_name
 from send_to_forge import send_jobs
-from utils import load_model_preset
+from utils.model_tools import load_model_preset
+from utils.llm_enhance import enhance_prompt_with_llm
+from utils.wildcard_refresher import refresh_wildcards_claude
+from utils.model_tools import load_model_preset, sanitize_model_name
+from utils.wildcard_prompts import get_prompt_template
+from utils.wildcard_cleaner import smart_clean_wildcards
+
 
 # Load config
 with open("config.yaml", "r") as f:
     config = yaml.safe_load(f)
 
+claude_api_key = config.get("api_keys", {}).get("claude")
+openai_api_key = config.get("api_keys", {}).get("openai")
 
 MODEL_DIR = config["paths"]["model_folder"]
 LORA_DIR = config["paths"]["lora_folder"]
 
 FN_INDEX = 465
 SESSION_HASH = "uuhnqx1qqor"  # scrape from UI dynamically later
+
+# Streamlit UI setup
+st.set_page_config(page_title="Orchestrator", layout="wide")
+st.title("🎼 Orchestrator")
+st.caption("Modular Prompt and LORA Batch Engine for SD Forge")
 
 # Load models and LORAs
 raw_models = model_loader.get_available_models(MODEL_DIR)
@@ -36,47 +49,134 @@ for m in raw_models:
 models = list(unique_models.values())
 model_names = [m["name"] for m in models] or ["No models found"]
 
-# Genre and super prompt selection
+# Sidebar settings
+use_gpt = st.sidebar.checkbox("Use GPT Enhancement", value=True, key="use_gpt_logic")
+st.sidebar.header("Prompt Settings")
+genre = st.sidebar.selectbox("🎨 Genre to Prompt for", ["fantasy", "sci-fi", "realism", "horror"])
+reroll_prompt = st.sidebar.button("🎲 Create New Prompt", key="reroll_prompt")
+
+col1, col2 = st.columns([1, 1])
+with col1:
+        st.sidebar.markdown("### 🧠 Wildcard Refresher")
+        category = st.sidebar.selectbox("Wildcard Category", ["classes", "garb", "holding", "humanoids", "setting"])
+        if st.sidebar.button("🔁 Refresh with Claude"):
+            if not claude_api_key:
+                st.warning("Please enter your Claude API key.")
+            else:
+                wildcard_dir = "wildcards"
+                genre_clean = genre.lower().strip()
+                added, err = refresh_wildcards_claude(claude_api_key, genre_clean, category, wildcard_dir)
+                if err:
+                    st.error(err)
+                elif added:
+                    st.success(f"✅ Added {len(added)} entries to {genre}/{category}.txt")
+                    with st.expander("🆕 New Entries"):
+                        st.write("\n".join(added))
+                else:
+                    st.info("No new entries added — Claude returned all known items.")
+        
+        from utils.wildcard_cleaner import clean_wildcards_with_llm
+
+st.sidebar.markdown("### 🧼 Wildcard Cleaner")
+
+clean_genre = st.sidebar.selectbox("Genre to Clean", ["fantasy", "sci-fi", "horror", "realism"])
+clean_category = st.sidebar.selectbox(
+    "Wildcard Category", ["classes", "garb", "holding", "humanoids", "setting"],
+    key="clean_category"
+    )
+
+clean_file = f"wildcards/{clean_genre}/{clean_category}.txt"
+
+if st.sidebar.button("Clean This Wildcard File"):
+    try:
+        with open(clean_file, "r", encoding="utf-8") as f:
+            entries = [line.strip() for line in f if line.strip()]
+
+        st.info(f"Sending {len(entries)} entries to LLM for cleanup...")
+        cleaned = smart_clean_wildcards(entries, genre=clean_genre, category=clean_category)
+
+        if cleaned:
+            original_count = len(entries)
+            cleaned_count = len(cleaned)
+            reduction_pct = 100 * (1 - (cleaned_count / original_count)) if original_count > 0 else 0
+
+            st.success(f"✅ LLM returned {cleaned_count} cleaned entries.")
+            st.markdown(f"🗂️ Original: `{original_count}` entries")
+            st.markdown(f"📉 Reduction: `{reduction_pct:.1f}%`")
+
+            if reduction_pct > 80:
+                st.warning("⚠️ More than 80% of wildcards were removed. This may indicate over-filtering.")
+
+            with st.expander("🔍 Preview Cleaned Wildcards"):
+                st.text("\n".join(cleaned))
+
+            if st.button("💾 Overwrite File with Cleaned Entries"):
+                with open(clean_file, "w", encoding="utf-8") as f:
+                    for entry in cleaned:
+                        f.write(entry + "\n")
+                st.success("✅ Wildcard file updated successfully.")
+        else:
+            st.warning("⚠️ No cleaned entries returned.")
+    except FileNotFoundError:
+        st.error(f"❌ File not found: {clean_file}")
+    except Exception as e:
+        st.error(f"❌ Error during cleanup: {e}")
+
+
+
+
+# Get available templates
 WILDCARD_BASE = os.path.join(os.path.dirname(__file__), "wildcards")
+
 
 def get_super_prompts():
     path = os.path.join(WILDCARD_BASE, "super_prompts")
     return [f for f in os.listdir(path) if f.endswith(".txt")]
 
-# Streamlit UI setup
-st.set_page_config(page_title="Orchestrator", layout="wide")
-st.title("🎼 Orchestrator")
-st.caption("Modular Prompt and LORA Batch Engine for SD Forge")
-
-st.sidebar.header("Prompt Settings")
-genre = st.sidebar.selectbox("🎨 Genre", ["fantasy", "sci-fi", "realism", "horror"])
-
-
-
-reroll_prompt = st.sidebar.button("🎲 Create New Prompt")
-
+# Now safe to call
 super_prompt_files = get_super_prompts()
+
 if super_prompt_files:
     prompt_file = st.sidebar.selectbox("📜 Super Prompt Template", super_prompt_files)
 else:
     st.sidebar.warning("No super prompts found. Please add `.txt` files to `wildcards/super_prompts/`.")
     prompt_file = None
 
+# Initialize resolved prompt to empty
 base_prompt = ""
 resolved_prompt = ""
+enhanced_prompt = ""
 
-if prompt_file:
+# Only handle prompt logic if user clicked button
+if reroll_prompt and prompt_file:
     prompt_path = os.path.join(WILDCARD_BASE, "super_prompts", prompt_file)
     with open(prompt_path, "r", encoding="utf-8") as f:
         base_prompt = f.read()
     base_prompt = base_prompt.replace("{genre}", genre)
-    resolved_prompt = resolve_prompt(base_prompt, genre) if reroll_prompt else ""
+
+    raw_prompt = resolve_prompt(base_prompt, genre)
+
+    if use_gpt:
+        enhanced_prompt = enhance_prompt_with_llm(raw_prompt, genre)
+    else:
+        enhanced_prompt = raw_prompt
+
+    st.session_state["enhanced_prompt"] = enhanced_prompt
+    resolved_prompt = enhanced_prompt
+
+elif "enhanced_prompt" in st.session_state:
+    resolved_prompt = st.session_state["enhanced_prompt"]
+
+
+    # Pull from session cache if not rerolling
+    enhanced_prompt = st.session_state.get("enhanced_prompt", "")
+    resolved_prompt = enhanced_prompt
 
 categorized_loras = lora_selector.categorize_loras(loras)
 
 use_smart_matching = st.sidebar.checkbox(
     "Auto-detect themes from text to influence LORA weight bias", 
-    value=False
+    value=True
 )
 
 
@@ -90,8 +190,6 @@ user_prompt = st.sidebar.text_area(
     height=100
 )
 
-# Config values
-use_gpt = st.sidebar.checkbox("Use GPT Enhancement", value=config["defaults"].get("gpt_enabled", True))
 
 
 # Model configuration
@@ -101,22 +199,22 @@ colA, colB = st.columns(2)
 
 # Resolution picker
 res_options = {
-    "1024 x 1024": (1024, 1024),
-    "1152 x 896": (1152, 896),
-    "896 x 1152": (896, 1152),
-    "1216 x 832": (1216, 832),
-    "832 x 1216": (832, 1216),
-    "1344 x 768": (1344, 768),
-    "768 x 1344": (768, 1344)
+    "1024 x 1024 Square": (1024, 1024),
+    "1152 x 896 Landscape": (1152, 896),
+    "896 x 1152 Portrait": (896, 1152),
+    "1216 x 832 Landscape": (1216, 832),
+    "832 x 1216 Portrait": (832, 1216),
+    "1344 x 768 Landscape": (1344, 768),
+    "768 x 1344 Portrait": (768, 1344)
 }
 with colA:
     model_choice = st.selectbox("Stable Diffusion Model", model_names)
     model_base = normalize_model_name(model_choice)
     model_defaults = load_model_preset(model_choice)
-    selected_res = st.selectbox("Resolution", list(res_options.keys()), index=3)  # Default 1216x832
+    selected_res = st.selectbox("Resolution", list(res_options.keys()), index=4)  # Default 1216x832
     width, height = res_options[selected_res]
     steps = st.slider("Steps", 10, 100, model_defaults.get("steps", 30))
-    batch_size = st.slider("Total Jobs", min_value=1, max_value=50, value=config["defaults"].get("batch_size", 5))
+    batch_size = st.slider("Total Jobs", min_value=1, max_value=50, value=config["defaults"].get("batch_size", 1))
     # Helper for debugging model preset loading
     def sanitize_model_name(name: str) -> str:
         return name.replace("/", "_").replace("\\", "_")
@@ -142,7 +240,7 @@ with colB:
     # Denoising strength slider
     denoise_strength = st.slider("Denoising Strength", 0.1, 1.0, config["defaults"].get("denoising_strength", 0.4))
     # In the colB section where you have other hi-res related settings
-    hires_steps = st.slider("Hi-res Steps", 0, 50, model_defaults.get("hires_steps", 0), 
+    hires_steps = st.slider("Hi-res Steps", 0, 50, model_defaults.get("hires_steps", 4), 
                         help="0 means use same as base steps")
 
 # Select LORAs + capture debug log
@@ -268,10 +366,19 @@ with col1:
     if st.button("💾 Save Prompt Batch for Later"):
         # Generate a full batch of prompts
         batch_payload = []
-        for _ in range(batch_size):
-            # Resolve new prompt
-                resolved = resolve_prompt(base_prompt, genre)
+        
+        # Resolve new prompt
+        with st.spinner(f"🧠 Enhancing {batch_size} prompts..."):
+            for _ in range(batch_size):
+                raw_prompt = resolve_prompt(base_prompt, genre)
 
+                if use_gpt:
+                    enhanced_prompt = enhance_prompt_with_llm(raw_prompt, genre)
+                else:
+                    enhanced_prompt = raw_prompt
+
+                resolved = enhanced_prompt
+    
                 # Get new LORAs
                 loras_this_round, _ = lora_selector.select_loras_for_prompt(
                     categorized_loras, model_base, resolved, use_smart_matching
@@ -312,7 +419,6 @@ with col1:
                 payload = build_forge_payload(final_prompt, ui_config)
 
                 batch_payload.append({
-                    "prompt": final_prompt,
                     "payload": payload
                 })
          # Save to file
@@ -334,25 +440,8 @@ with col1:
         st.success(f"✅ Batch of {batch_size} prompts saved to `{out_path}`")
     from send_to_forge import send_jobs
 
-with col2:
-
-    if st.button("▶️ Start Batch Generation"):
-        saved_dir = "saved_batches"
-        batch_files = sorted(glob.glob(os.path.join(saved_dir, "batch_*.json")), reverse=True)
-
-        if not batch_files:
-            st.error("❌ No saved batch file found.")
-        else:
-            latest_batch = batch_files[0]
-            st.info(f"📦 Using latest batch file: `{os.path.basename(latest_batch)}`")
-
-            with open(latest_batch, "r", encoding="utf-8") as f:
-                jobs = json.load(f)
-
-            output_dir = os.path.join("generated_outputs", os.path.splitext(os.path.basename(latest_batch))[0])
-
-            # Dynamically gather UI settings from sidebar
-            ui_config = {
+# Dynamically gather UI settings from sidebar
+    ui_config = {
                 "model": model_choice,
                 "batch_size": batch_size,
                 "steps": steps,
@@ -369,26 +458,101 @@ with col2:
                 "height": height
             }
 
-            # Progress bars
-            batch_bar = st.progress(0, text="📦 Starting batch...")
-            job_bar = st.progress(0, text="⏳ Initializing...")
+with col2:
+    # Utility: track which batches have already been sent
+    SENT_LOG = "sent_batches.log"
 
-            # Progress callbacks
-            def on_job_progress(pct, label="⏳ Working..."):
-                job_bar.progress(pct, text=label)
+    def get_sent_batches():
+        if not os.path.exists(SENT_LOG):
+            return set()
+        with open(SENT_LOG, "r") as f:
+            return set(line.strip() for line in f.readlines())
 
-            def on_batch_progress(current_idx, total_jobs):
-                pct = (current_idx + 1) / total_jobs
-                batch_bar.progress(pct, text=f"📦 Job {current_idx + 1} / {total_jobs}")
+    def mark_batch_as_sent(batch_filename):
+        with open(SENT_LOG, "a") as f:
+            f.write(batch_filename + "\n")
 
-            # 🔥 Kick off
-            send_jobs(
-                jobs,
-                output_dir,
-                ui_config,
-                on_job_progress=on_job_progress,
-                on_batch_progress=on_batch_progress
-            )
+    # Button 1: Start Latest
+    if st.button("▶️ Start Latest Batch"):
+        saved_dir = "saved_batches"
+        batch_files = sorted(glob.glob(os.path.join(saved_dir, "batch_*.json")), reverse=True)
+
+        if not batch_files:
+            st.error("❌ No saved batch file found.")
+        else:
+            latest_batch = os.path.basename(batch_files[0])
+            st.info(f"📦 Using latest batch: `{latest_batch}`")
+
+            if latest_batch in get_sent_batches():
+                st.warning("⚠️ Latest batch already sent. Consider using 'Start All Incomplete Batches'.")
+            else:
+                with open(os.path.join(saved_dir, latest_batch), "r", encoding="utf-8") as f:
+                    jobs = json.load(f)
+
+                # Only create output folder if Forge doesn't already handle outputs
+                output_dir = None  # Set to None to skip unused folder creation
+
+                # Progress bars
+                batch_bar = st.progress(0, text="📦 Starting batch...")
+                job_bar = st.progress(0, text="⏳ Initializing...")
+
+                def on_job_progress(pct, label="⏳ Working..."):
+                    job_bar.progress(pct, text=label)
+
+                def on_batch_progress(current_idx, total_jobs):
+                    pct = (current_idx + 1) / total_jobs
+                    batch_bar.progress(pct, text=f"📦 Job {current_idx + 1} / {total_jobs}")
+
+                send_jobs(
+                    jobs,
+                    output_dir,
+                    ui_config,
+                    on_job_progress=on_job_progress,
+                    on_batch_progress=on_batch_progress
+                )
+
+                mark_batch_as_sent(latest_batch)
+                st.success(f"✅ Batch `{latest_batch}` sent and logged.")
+
+    # Button 2: Start All Incomplete
+    if st.button("▶️ Start All Incomplete Batches"):
+        saved_dir = "saved_batches"
+        batch_files = sorted(glob.glob(os.path.join(saved_dir, "batch_*.json")))
+        sent = get_sent_batches()
+
+        unsent_batches = [os.path.basename(b) for b in batch_files if os.path.basename(b) not in sent]
+
+        if not unsent_batches:
+            st.info("✅ All batches already sent.")
+        else:
+            for idx, batch_name in enumerate(unsent_batches):
+                st.info(f"📦 Sending batch `{batch_name}` ({idx + 1}/{len(unsent_batches)})")
+                with open(os.path.join(saved_dir, batch_name), "r", encoding="utf-8") as f:
+                    jobs = json.load(f)
+
+                output_dir = None  # Skip creating empty folders
+
+                batch_bar = st.progress(0, text=f"📦 Starting batch {idx + 1}")
+                job_bar = st.progress(0, text="⏳ Initializing...")
+
+                def on_job_progress(pct, label="⏳ Working..."):
+                    job_bar.progress(pct, text=label)
+
+                def on_batch_progress(current_idx, total_jobs):
+                    pct = (current_idx + 1) / total_jobs
+                    batch_bar.progress(pct, text=f"📦 Job {current_idx + 1} / {total_jobs}")
+
+                send_jobs(
+                    jobs,
+                    output_dir,
+                    ui_config,
+                    on_job_progress=on_job_progress,
+                    on_batch_progress=on_batch_progress
+                )
+
+                mark_batch_as_sent(batch_name)
+                st.success(f"✅ Batch `{batch_name}` complete and logged.")
+
 
     # Pause/resume handling
     if "batch_paused" not in st.session_state:

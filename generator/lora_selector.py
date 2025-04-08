@@ -4,6 +4,12 @@ import re
 from collections import defaultdict
 import json
 
+
+# Load tag data
+TAGS_PATH = os.path.join(os.path.dirname(__file__), "lora_tags.json")
+with open(TAGS_PATH, "r") as f:
+    TAGS = json.load(f)
+
 # Load config
 CONFIG_PATH = os.path.join(os.path.dirname(__file__), "lora_config.json")
 with open(CONFIG_PATH, "r") as f:
@@ -32,7 +38,11 @@ def weighted_choice(choices):
             return choice
         upto += weight
     return choices[-1][0]  # fallback
-
+ 
+TAG_STOP_WORDS = set([
+        "sfw", "perform", "tail", "style", "drawing", "character", "pose", 
+        "art", "design", "form", "sketch", "painting", "digital", "details"
+    ])
 
 def extract_keywords(text):
     stop_words = {
@@ -46,8 +56,23 @@ def extract_keywords(text):
         "arm", "hand", "foot", "head", "mouth", "nose", "ear", "smile", "expression", "pose",
         "line", "shape", "form", "size", "proportion", "detail", "texture", "into", "out",
         "over", "under", "between", "above", "below", "near", "far", "close", "around", "about",
-        "theme", "mood", "feeling", "emotion", "action", "movement", "dynamic", "static", "behind"
+        "theme", "mood", "feeling", "emotion", "action", "movement", "dynamic", "static", "behind",
+        "hands", "shoulder", "covered", "who", "hip", "waist", "thigh", "knee", "calf", "ankle", "footwear",
+        "sleeve", "collar", "neck", "earrings", "necklace", "bracelet", "ring", "watch", "belt",
+        "pocket", "button", "zipper", "pattern", "piece", "should", "scheme", "creating", "create", "made",
+        "features", "yet", "unique", "captivating", "stunning", "beautiful", "gorgeous", "breathtaking",
+        "amazing", "fantastic", "incredible", "wonderful", "spectacular", "extraordinary", "exceptional",
+        "remarkable", "outstanding", "impressive", "striking", "eye-catching", "visually", "appealing",
+        "aesthetic", "artistic", "stylish", "trendy", "charming", "adding", "side", "front", "back", "top",
+        "-", "quality", "high", "low", "medium", "soft", "hard", "bright", "dark", "light", "dim",
+        "appearance", "solid", "torso", "dim", "yet", "while", "air", "each", "environment",  "surrounding",
+        "reminiscent", "accents", "piercing", "adorned", "long", "resting", "air", "against", "sky", 
+        "vibrant", "filled", "forward", "tones", "contrast", "vibrant", "viewer", "sharp", "tree", "when", 
+        "weight", "before", "after", "during", "while", "between", "along", "across", "through", "past", "towards",
+        " short", "slightly", "tall", "lashes", "even", "both", "seem"
+
     }
+   
 
     text = text.lower()
     words = set(text.replace(",", " ").replace(".", " ").split())
@@ -57,12 +82,22 @@ def extract_keywords(text):
 
 
 def score_lora_relevance(lora, keywords):
-    activation = str(lora.get("activation") or "")
-    description = str(lora.get("metadata", {}).get("description") or "")
-    tags = " ".join(str(t) for t in lora.get("metadata", {}).get("tags", []) if t)
-    prompts = " ".join(str(p) for p in lora.get("metadata", {}).get("samplePrompts", []) if p)
-    combined = f"{activation} {description} {tags} {prompts}".lower()
-    return sum(1 for kw in keywords if kw in combined)
+    name = lora["name"].replace("/", "\\")  # tag keys use backslashes
+    tag_entry = TAGS.get(name)
+
+    if not tag_entry:
+        return 0, []
+
+    all_tags = []
+    for group in ("genre", "style", "subject", "tone"):
+        all_tags.extend(tag_entry.get(group, []))
+
+    tag_string = " ".join(str(tag).lower() for tag in all_tags)
+    matched = [kw for kw in keywords if kw in tag_string and kw not in TAG_STOP_WORDS]
+
+
+    return len(matched), matched
+
 
 
 def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None, use_smart_matching=False):
@@ -71,7 +106,6 @@ def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None,
         "Artist Styles": 0.8,
         "General Styles": 0.7,
         "Textures & Looks": 0.5,
-        "Characters": 0.5,
         "People styles": 0.7
     }
 
@@ -124,20 +158,16 @@ def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None,
         candidate = None
 
         if prompt_keywords and use_smart_matching:
-            scored = [(l, score_lora_relevance(l, prompt_keywords)) for l in lora_pool]
+            scored = [(l, *score_lora_relevance(l, prompt_keywords)) for l in lora_pool]
             scored.sort(key=lambda x: -x[1])
-            top_scored = [l for l, score in scored if score > 0]
+            top_scored = [l for l, score, _ in scored if score > 0]
 
             if top_scored:
                 candidate = random.choice(top_scored[:5])
-                combined_text = " ".join([
-                    str(candidate.get("activation") or ""),
-                    str(candidate.get("metadata", {}).get("description") or ""),
-                    " ".join(str(t) for t in candidate.get("metadata", {}).get("tags", [])),
-                    " ".join(str(p) for p in candidate.get("metadata", {}).get("samplePrompts", []))
-                ]).lower()
-                matched_keywords = [kw for kw in prompt_keywords if kw in combined_text]
-                reasons.append(f"Matched keywords: {', '.join(matched_keywords)}")
+                _, _, matched_keywords = next((x for x in scored if x[0] == candidate), (None, 0, []))
+                reasons.append(f"Matched tags: {', '.join(matched_keywords)}" if matched_keywords else "Matched tags: None")
+
+    
 
         if not candidate:
             candidate = random.choice(lora_pool)
