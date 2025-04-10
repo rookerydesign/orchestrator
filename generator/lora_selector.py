@@ -69,7 +69,13 @@ def extract_keywords(text):
         "reminiscent", "accents", "piercing", "adorned", "long", "resting", "air", "against", "sky", 
         "vibrant", "filled", "forward", "tones", "contrast", "vibrant", "viewer", "sharp", "tree", "when", 
         "weight", "before", "after", "during", "while", "between", "along", "across", "through", "past", "towards",
-        " short", "slightly", "tall", "lashes", "even", "both", "seem"
+        " short", "slightly", "tall", "lashes", "even", "both", "seem", "if", "not", "just", "like", "as", "such",
+        "more", "less", "than", "very", "much", "many", "few", "several", "each", "every", "any", "no",
+        "none", "some", "all", "most", "both", "either", "neither", "one", "two", "three", "four",
+        "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen",
+        "fifteen", "sixteen", "seventeen", "eighteen", "nineteen", "twenty", "hundred", "thousand",
+        "used", "use", "using", "utilize", "utilizing", "utilized", "utilizes", "utilize", "utilizing",
+        "own", "stand"
 
     }
    
@@ -100,17 +106,20 @@ def score_lora_relevance(lora, keywords):
 
 
 
-def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None, use_smart_matching=False):
+def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None, use_smart_matching=False, genre=None):
     DEFAULT_WEIGHTS = {
-        "Detailers": 0.9,
-        "Artist Styles": 0.8,
-        "General Styles": 0.7,
-        "Textures & Looks": 0.5,
-        "People styles": 0.7
+        "detailer": 0.9,
+        "artist": 0.8,
+        "general": 0.7,
+        "fx": 0.5,
+        "people": 0.7,
+        "characters": 0.9
     }
 
     prompt_keywords = extract_keywords(resolved_prompt) if use_smart_matching and resolved_prompt else set()
     selection_log = []
+
+    category_usage_count = defaultdict(int)
 
     # Decide total number of LORAs
     counts = CONFIG["preferred_lora_count"]
@@ -141,7 +150,22 @@ def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None,
     if remaining <= 0:
         return selected, selection_log
 
-    weighted_categories = [(cat, wt) for cat, wt in CONFIG["weights"].items() if cat.lower() != "detailer"]
+    weighted_categories = []
+
+    for cat, wt in CONFIG["weights"].items():
+        if cat.lower() == "detailer":
+            continue  # already handled
+
+        # Bias artist/general when NOT realism
+        if genre != "realism" and cat in ("artist", "general"):
+            wt *= 1.4  # or whatever bias feels right
+
+        # Bias characters/fx when realism
+        elif genre == "realism" and cat in ("characters", "fx"):
+            wt *= 1.3
+
+        weighted_categories.append((cat, wt))
+
     recent_character_used = False
 
     while remaining > 0:
@@ -167,7 +191,22 @@ def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None,
                 _, _, matched_keywords = next((x for x in scored if x[0] == candidate), (None, 0, []))
                 reasons.append(f"Matched tags: {', '.join(matched_keywords)}" if matched_keywords else "Matched tags: None")
 
-    
+        # 🔍 Boost cinematic-style LORAs for realism
+        if genre == "realism" and candidate:
+            cinematic_keywords = {
+                "cinematic", "film", "movie", "lighting", "bokeh", "natural light", "photographic", "lens", "vintage", 
+                "cinema", "realistic", "photo", "photorealistic", "realism", "documentary", "cinematography",
+                "analog", "film grain", "depth of field", "analogue", "grainy", "filmic", "shadows"
+                }
+            name_key = candidate["name"].replace("/", "\\")
+            tag_entry = TAGS.get(name_key)
+            if tag_entry:
+                tag_values = []
+                for group in ("style", "tone"):
+                    tag_values.extend(tag_entry.get(group, []))
+                tag_set = set(t.lower() for t in tag_values)
+                if tag_set & cinematic_keywords:
+                    reasons.append("🎥 Boosted for realism (cinematic tag match)")
 
         if not candidate:
             candidate = random.choice(lora_pool)
@@ -177,10 +216,16 @@ def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None,
             continue
 
         base_weight = DEFAULT_WEIGHTS.get(category, 0.6)
-        weight = round(random.uniform(base_weight - 0.05, base_weight + 0.1), 2)
+        usage_count = category_usage_count[category]
+
+        # Reduce influence if reused category
+        if usage_count > 0:
+            base_weight = max(base_weight - (0.1 * usage_count), 0.3)  # Don’t drop too low
+
+        weight = round(random.uniform(base_weight - 0.05, base_weight + 0.05), 2)
         candidate["weight"] = weight
         selected.append(candidate)
-
+        category_usage_count[category] += 1
         selection_log.append({
             "name": candidate["name"],
             "weight": weight,

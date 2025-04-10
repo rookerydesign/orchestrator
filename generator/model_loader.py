@@ -91,8 +91,15 @@ def get_available_loras(lora_dir):
 
                             lora_entry["metadata"].update(meta_data)
 
-                            if "activation text" in meta_data:
-                                lora_entry["activation"] = meta_data["activation text"]
+                            possible_keys = ["activation text", "activation_text", "trigger", "trained words"]
+                            for key in possible_keys:
+                                if key in meta_data:
+                                    value = meta_data[key]
+                                    if isinstance(value, list) and value:
+                                        lora_entry["activation"] = value[0]  # Use first alias
+                                    elif isinstance(value, str):
+                                        lora_entry["activation"] = value.strip()
+                                    break
                             if "preferred weight" in meta_data:
                                 lora_entry["weight"] = meta_data["preferred weight"]
 

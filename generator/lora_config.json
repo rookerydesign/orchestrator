@@ -9,25 +9,27 @@
     6
   ],
   "preferred_lora_weights": [
-    2,
+    5,
+    10,
     15,
-    30,
-    30,
-    15,
+    34,
+    29,
     7
   ],
   "weights": {
     "detailer": 100,
     "artist": 90,
     "general": 80,
-    "people": 30,
-    "fx": 30
+    "people": 20,
+    "fx": 40,
+    "characters": 20
   },
   "categories": {
     "Detailers": "detailer",
     "People Styles": "people",
     "Artist Styles": "artist",
     "General Styles": "general",
-    "Textures & Looks": "fx"
+    "Textures & Looks": "fx",
+    "Characters": "characters"
   }
 }

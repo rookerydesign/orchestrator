@@ -304,3 +304,18 @@ witchdoctor
 witchhunter
 wizard
 world-breaker
+Shadowbane Infiltrator
+Ethereal Songsmith
+Riftwalker Scout
+Wyrmtongue Shaman
+Dawnblade Battlemage
+Grimoire Archiver
+Bloodmoon Reaper
+Feyforged Armorer
+Chronolith Seer
+Umbramancer Adept
+Runekeeper Artificer
+Covenblood Hexblade
+Lunardrift Ranger
+Voidbinder Mystic
+Celestrune Acolyte

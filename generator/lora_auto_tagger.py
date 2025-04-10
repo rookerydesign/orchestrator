@@ -6,6 +6,13 @@ from pathlib import Path
 import re
 from bs4 import BeautifulSoup
 
+# This script is designed to tag LORA files with metadata and send the information to a local LLM API for further processing.
+# It extracts metadata from JSON and info files, cleans the data, and formats it for the LLM API.
+# It also handles the discovery of LORA pairs in a specified directory and manages the output of tagged data to a JSON file.
+# It is important to ensure that the paths and API configurations are set correctly for the script to function as intended.
+# The script uses BeautifulSoup for HTML parsing, requests for API calls, and JSON for data handling.
+
+
 # Configuration
 LORA_DIR = "F:/03_Gen AI tools/webui_forge_cu121_torch231/webui/models/Lora"  # Adjust this path if needed 
 OUTPUT_FILE = "lora_tags.json"
@@ -88,15 +95,16 @@ def extract_metadata(json_path, info_path):
         "example_prompts": "\n".join(unique_prompts)
     }
 
-def send_to_llm_chat(prompt):
+def send_to_llm_chat(prompt, temperature=0.2, max_tokens=300, stop=["###", "\n\n", "</s>"]):
     payload = {
-        "model": MODEL_NAME,
+    
         "messages": [
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": prompt}
         ],
-        "temperature": 0.7,
-        "max_tokens": -1,
+        "temperature": temperature,
+        "max_tokens": max_tokens,
+        "stop": stop,
         "stream": False
     }
 
@@ -159,29 +167,28 @@ def main():
         key = str(folder.relative_to(LORA_DIR) / stem)
         current_keys.append(key)
 
+        # Extract metadata and activation first
+        meta = extract_metadata(json_path, info_path)
+        activation_match = re.search(r"<lora:([^:>]+):", meta["example_prompts"])
+        activation_name = activation_match.group(1).strip() if activation_match else stem
+
+        # Update activation for already-tagged entries
         if key in lora_tags:
-            print(f"[⏩] Skipping already-tagged LORA: {key}")
+            if "activation" not in lora_tags[key]:
+                lora_tags[key]["activation"] = activation_name
             skipped += 1
             continue
 
         print(f"[🔍] Tagging new LORA: {key}")
-        meta = extract_metadata(json_path, info_path)
 
-        user_prompt = USER_TEMPLATE.format(
-            description=meta["description"],
-            notes=meta["notes"],
-            trained_words=meta["trained_words"],
-            example_prompts=meta["example_prompts"]
-        )
+        # Skip LLM tagging for now — just create a blank tag structure
+        tags = {}
+        tags["activation"] = activation_name
 
-        try:
-            tag_json = send_to_llm_chat(user_prompt)
-            tags = json.loads(tag_json)
-            lora_tags[key] = tags
-            new_tags += 1
-            print(f"[✓] Tagged {key}")
-        except Exception as e:
-            print(f"[!] Error tagging {stem}: {e}")
+        # Save tags
+        lora_tags[key] = tags
+        new_tags += 1
+        print(f"[✓] Added activation tag for {key}")
 
     # Clean out any tags for LORAs that no longer exist
     cleaned_tags = {k: v for k, v in lora_tags.items() if k in current_keys}
@@ -199,5 +206,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 

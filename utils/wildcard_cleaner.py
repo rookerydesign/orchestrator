@@ -119,8 +119,11 @@ def clean_wildcards_with_llm(entries, genre, category, retries=3, base_delay=1.5
     instruction_text = instruction.format(genre=genre)
 
     prompt = (
-        f"{instruction_text}\n\n"
-        f"Wildcard List:\n" + "\n".join(entries) + "\n\nCleaned Wildcards:"
+        "### Instruction:\n"
+        f"{instruction_text.strip()}\n\n"
+        "### Input Wildcards:\n"
+        + "\n".join(entries).strip()
+        + "\n\n### Output (cleaned list, one item per line):\n"
     )
 
     token_estimate = estimate_token_count(prompt)
@@ -138,8 +141,8 @@ def clean_wildcards_with_llm(entries, genre, category, retries=3, base_delay=1.5
                 headers={"Content-Type": "application/json"},
                 json={
                     "prompt": prompt,
-                    "max_tokens": 900,
-                    "temperature": 0.7
+                    "max_tokens": 2000,
+                    "temperature": 0.9
                 },
                 timeout=60
             )

@@ -5,7 +5,7 @@ import json
 from datetime import datetime
 import requests
 import glob
-import base64
+import random
 from generator import model_loader, lora_selector
 from generator.wildcard_loader import resolve_prompt
 from generator.model_loader import normalize_model_name
@@ -16,6 +16,8 @@ from utils.wildcard_refresher import refresh_wildcards_claude
 from utils.model_tools import load_model_preset, sanitize_model_name
 from utils.wildcard_prompts import get_prompt_template
 from utils.wildcard_cleaner import smart_clean_wildcards
+from generator.favorite_combo_selector import load_favorite_combos, pick_random_favorite_combo
+from generator.lora_selector import extract_keywords
 
 
 # Load config
@@ -50,50 +52,148 @@ models = list(unique_models.values())
 model_names = [m["name"] for m in models] or ["No models found"]
 
 # Sidebar settings
-use_gpt = st.sidebar.checkbox("Use GPT Enhancement", value=True, key="use_gpt_logic")
 st.sidebar.header("Prompt Settings")
-genre = st.sidebar.selectbox("🎨 Genre to Prompt for", ["fantasy", "sci-fi", "realism", "horror"])
-reroll_prompt = st.sidebar.button("🎲 Create New Prompt", key="reroll_prompt")
 
-col1, col2 = st.columns([1, 1])
+st.sidebar.markdown("")
+col1, col2 = st.sidebar.columns(2)
 with col1:
-        st.sidebar.markdown("### 🧠 Wildcard Refresher")
-        category = st.sidebar.selectbox("Wildcard Category", ["classes", "garb", "holding", "humanoids", "setting"])
-        if st.sidebar.button("🔁 Refresh with Claude"):
-            if not claude_api_key:
-                st.warning("Please enter your Claude API key.")
-            else:
-                wildcard_dir = "wildcards"
-                genre_clean = genre.lower().strip()
-                added, err = refresh_wildcards_claude(claude_api_key, genre_clean, category, wildcard_dir)
-                if err:
-                    st.error(err)
-                elif added:
-                    st.success(f"✅ Added {len(added)} entries to {genre}/{category}.txt")
-                    with st.expander("🆕 New Entries"):
-                        st.write("\n".join(added))
-                else:
-                    st.info("No new entries added — Claude returned all known items.")
-        
-        from utils.wildcard_cleaner import clean_wildcards_with_llm
+    use_gpt = st.checkbox("Use GPT Enhancement", value=True, key="use_gpt_logic")
+with col2:
+    # # --- [Moved up] Auto-detect toggle ---
+    # use_smart_matching = st.checkbox(
+    # "Prompts influence LORA weights", 
+    # value=True
+    # )
+
+    resolved_prompt = st.session_state.get("enhanced_prompt", "")
+
+use_smart_matching = value=False
+
+st.sidebar.markdown("")  # blank space
+
+# Second row of toggles or controls
+col3, col4 = st.sidebar.columns(2)
+with col3:
+    genre = st.selectbox("🎨 Genre to Prompt for", ["fantasy", "sci-fi", "realism", "horror"])
+    
+    # --- [Moved up] Super Prompt Template ---
+    WILDCARD_BASE = os.path.join(os.path.dirname(__file__), "wildcards")
+    def get_super_prompts():
+        path = os.path.join(WILDCARD_BASE, "super_prompts")
+        return [f for f in os.listdir(path) if f.endswith(".txt")]
+
+    super_prompt_files = get_super_prompts()
+with col4:
+    if super_prompt_files:
+        prompt_file = st.selectbox("📜 Super Prompt Template", super_prompt_files)
+    else:
+        st.sidebar.warning("No super prompts found. Please add `.txt` files to `wildcards/super_prompts/`.")
+        prompt_file = None
+
+reroll_prompt = st.sidebar.button("🎲 Create New Prompt", key="reroll_prompt", use_container_width=True)
+
+st.sidebar.markdown("")  # blank space
+
+col5, col6 = st.sidebar.columns(2)
+
+# Temporary toggle values (not yet linked to logic)
+use_wildcards_tmp = col5.toggle("🧩 Wildcards", value=True, key="use_wildcards")
+use_manual_tmp = col6.toggle("✍️ Manual Prompt", value=not use_wildcards_tmp, key="use_manual")
+
+# Determine final prompt source without writing to session_state directly
+# Only allow one active at a time (manual takes precedence if both are selected)
+if use_manual_tmp:
+    prompt_source = "Enter Your Own Prompt"
+elif use_wildcards_tmp:
+    prompt_source = "Use Wildcards"
+else:
+    prompt_source = "Use Wildcards"  # fallback
+
+# Show input only if manual is selected
+if prompt_source == "Enter Your Own Prompt":
+    user_prompt = st.sidebar.text_area("Your Prompt", resolved_prompt, height=100)
+else:
+    user_prompt = ""
+
+# col7, col8 = st.sidebar.columns(2)
+
+# use_favs_tmp = col7.toggle("✨ Favourites", value=True, key="use_favs")
+# use_keyword_tmp = col8.toggle("📒 Keyword Selection", value=not use_favs_tmp, key="use_keyword")
+
+# # Mutual exclusivity
+# use_favs = use_favs_tmp
+# use_smart_matching = not use_favs_tmp  # replaces use_keyword
+st.sidebar.markdown("---")
+
+selection_mode = st.sidebar.radio(
+    "🎛️ Selection Mode",
+    ["✨ Favourites", "✍️ Keyword Selection", "🧪 Discovery"],
+    index=1,  # default to Keyword
+    horizontal=True,
+)
+st.sidebar.markdown("**How it works:**")
+st.sidebar.caption("""
+- ✨ Favourites: Picks from curated combos.
+- ✍️ Keyword: Matches tags from prompt.
+- 🧪 Discovery: Prioritizes underused LORAs.
+""")
+
+use_favs = selection_mode == "✨ Favourites"
+use_smart_matching = selection_mode == "✍️ Keyword Selection"
+use_discovery = selection_mode == "🧪 Discovery"
+
+st.sidebar.markdown("---")
+# --- Wildcard Refresher ---
+st.sidebar.markdown("### 🧠 Wildcard Refresher")
+
+col1, col2 = st.sidebar.columns(2)
+with col1:
+    refresh_genre = st.selectbox("Genre", ["fantasy", "sci-fi", "horror", "realism"], key="refresh_genre")
+with col2:
+    refresh_category = st.selectbox("Category", ["classes", "garb", "holding", "humanoids", "setting"], key="refresh_category")
+
+if st.sidebar.button("🔁 Refresh with LLM", use_container_width=True):
+    if not claude_api_key:
+        st.warning("Please enter your Claude API key.")
+    else:
+        wildcard_dir = "wildcards"
+        refresh_genre = genre.lower().strip()
+        added, err = refresh_wildcards_claude(claude_api_key, refresh_genre, refresh_category, wildcard_dir)
+        if err:
+            st.error(err)
+        elif added:
+            st.success(f"✅ Added {len(added)} entries to {genre}/{refresh_category}.txt")
+            with st.expander("🆕 New Entries"):
+                st.write("\n".join(added))
+        else:
+            st.info("No new entries added — Claude returned all known items.")
+
+st.sidebar.markdown("---")
+
+# --- Wildcard Cleaner ---
+from utils.wildcard_cleaner import clean_wildcards_with_llm
 
 st.sidebar.markdown("### 🧼 Wildcard Cleaner")
 
-clean_genre = st.sidebar.selectbox("Genre to Clean", ["fantasy", "sci-fi", "horror", "realism"])
-clean_category = st.sidebar.selectbox(
-    "Wildcard Category", ["classes", "garb", "holding", "humanoids", "setting"],
-    key="clean_category"
+col1, col2 = st.sidebar.columns(2)
+with col1:
+    clean_genre = st.selectbox("Genre", ["fantasy", "sci-fi", "horror", "realism"], key="clean_genre")
+with col2:
+    clean_category = st.selectbox(
+        "Category", ["classes", "garb", "holding", "humanoids", "setting"], key="clean_category"
     )
-
 clean_file = f"wildcards/{clean_genre}/{clean_category}.txt"
+if st.sidebar.button("🧹 Clean Wildcard File with LLM", use_container_width=True):
+    # ... [rest of original logic remains unchanged]
 
-if st.sidebar.button("Clean This Wildcard File"):
     try:
         with open(clean_file, "r", encoding="utf-8") as f:
             entries = [line.strip() for line in f if line.strip()]
 
         st.info(f"Sending {len(entries)} entries to LLM for cleanup...")
         cleaned = smart_clean_wildcards(entries, genre=clean_genre, category=clean_category)
+        st.session_state["cleaned_entries"] = cleaned
+        st.session_state["ready_to_save"] = True
 
         if cleaned:
             original_count = len(entries)
@@ -110,11 +210,6 @@ if st.sidebar.button("Clean This Wildcard File"):
             with st.expander("🔍 Preview Cleaned Wildcards"):
                 st.text("\n".join(cleaned))
 
-            if st.button("💾 Overwrite File with Cleaned Entries"):
-                with open(clean_file, "w", encoding="utf-8") as f:
-                    for entry in cleaned:
-                        f.write(entry + "\n")
-                st.success("✅ Wildcard file updated successfully.")
         else:
             st.warning("⚠️ No cleaned entries returned.")
     except FileNotFoundError:
@@ -122,6 +217,17 @@ if st.sidebar.button("Clean This Wildcard File"):
     except Exception as e:
         st.error(f"❌ Error during cleanup: {e}")
 
+if st.session_state.get("ready_to_save") and "cleaned_entries" in st.session_state:
+    if st.button("💾 Overwrite File with Cleaned Entries"):
+        try:
+            with open(clean_file, "w", encoding="utf-8") as f:
+                for entry in st.session_state["cleaned_entries"]:
+                    f.write(entry + "\n")
+            st.success("✅ Wildcard file updated successfully.")
+            with st.expander("📂 Updated File Contents"):
+                st.text("\n".join(st.session_state["cleaned_entries"]))
+        except Exception as e:
+            st.error(f"❌ Failed to save file: {e}")
 
 
 
@@ -133,14 +239,6 @@ def get_super_prompts():
     path = os.path.join(WILDCARD_BASE, "super_prompts")
     return [f for f in os.listdir(path) if f.endswith(".txt")]
 
-# Now safe to call
-super_prompt_files = get_super_prompts()
-
-if super_prompt_files:
-    prompt_file = st.sidebar.selectbox("📜 Super Prompt Template", super_prompt_files)
-else:
-    st.sidebar.warning("No super prompts found. Please add `.txt` files to `wildcards/super_prompts/`.")
-    prompt_file = None
 
 # Initialize resolved prompt to empty
 base_prompt = ""
@@ -173,23 +271,6 @@ elif "enhanced_prompt" in st.session_state:
     resolved_prompt = enhanced_prompt
 
 categorized_loras = lora_selector.categorize_loras(loras)
-
-use_smart_matching = st.sidebar.checkbox(
-    "Auto-detect themes from text to influence LORA weight bias", 
-    value=True
-)
-
-
-
-
-# Prompt Source options
-prompt_source = st.sidebar.radio("Prompt Source", ["Use Wildcards", "Enter Your Own Prompt"])
-user_prompt = st.sidebar.text_area(
-    "Your Prompt",
-    resolved_prompt if prompt_source == "Enter Your Own Prompt" else "",
-    height=100
-)
-
 
 
 # Model configuration
@@ -245,25 +326,77 @@ with colB:
 
 # Select LORAs + capture debug log
 if reroll_prompt or "initial_lora_pick" not in st.session_state:
-    selected_loras, lora_debug_log = lora_selector.select_loras_for_prompt(
-        categorized_loras, model_base, resolved_prompt, use_smart_matching
-    )
+    if use_favs:
+        favorite_combos = load_favorite_combos()
+        picked = pick_random_favorite_combo(
+            favorite_combos,
+            genre=genre,
+            prompt_keywords=extract_keywords(resolved_prompt)
+        )
+        selected_loras = picked["loras"]
+        lora_debug_log = [
+            {
+                "name": l["name"],
+                "weight": l["weight"],
+                "category": "from_favorites",
+                "reasons": ["✨ Picked from favorites DB"]
+            } for l in selected_loras
+        ]
+
+    elif use_smart_matching:
+        selected_loras, lora_debug_log = lora_selector.select_loras_for_prompt(
+            categorized_loras, model_base, resolved_prompt,
+            use_smart_matching, genre=genre
+        )
+
+    elif use_discovery:
+        from utils.lora_audit import get_unused_loras_grouped_by_model_and_category
+
+        unused_by_model_cat = get_unused_loras_grouped_by_model_and_category()
+        underused = unused_by_model_cat.get("Flux", {})  # 👈 update this if model is dynamic
+
+        selected_loras = []
+        lora_debug_log = []
+
+        for category, loras in underused.items():
+            if not loras:
+                continue
+            lora_path = random.choice(loras)
+            lora_name = os.path.basename(lora_path)
+            selected_loras.append({
+                "name": lora_name,
+                "weight": 0.6,
+                "activation": lora_name
+            })
+            lora_debug_log.append({
+                "name": lora_name,
+                "weight": 0.6,
+                "category": category,
+                "reasons": ["🧪 Discovery mode - underused LORA"]
+            })
+
+    else:
+        selected_loras, lora_debug_log = st.session_state.get("initial_lora_pick", ([], []))
+
     st.session_state["initial_lora_pick"] = (selected_loras, lora_debug_log)
 else:
     selected_loras, lora_debug_log = st.session_state["initial_lora_pick"]
+
 
 # 🧩 Build inline LORA activations
 lora_injections = []
 
 for lora in selected_loras:
-    filename = os.path.splitext(os.path.basename(lora["file"]))[0]
+    # ✅ Use explicit 'name' if it's there — this prevents file-based overrides
+    full_name = lora.get("name", "unknown")
+    filename = os.path.basename(full_name)
     weight = float(lora.get("weight", 0.6)) or 0.6
+    activation = lora.get("activation") or filename
 
-    if lora.get("activation"):
-        act = f"<lora:{filename}:{weight}>"
-        lora_injections.append(f"{act} {lora['activation']}")
+    act = f"<lora:{filename}:{weight}>"
+    if activation and activation != filename:
+        lora_injections.append(f"{act} {activation}")
     else:
-        act = f"<lora:{filename}:{weight}>"
         lora_injections.append(act)
 
 lora_block = ", ".join(lora_injections)
@@ -274,6 +407,7 @@ if reroll_prompt and resolved_prompt:
     final_prompt = st.text_area("Resolved Prompt", value=final_with_loras, height=150)
 else:
     final_prompt = ""
+
 
 # Highres fix toggle (keep as is)
 hires_fix = st.checkbox("Enable Highres Fix", value=True)
@@ -308,7 +442,12 @@ with st.sidebar.expander("🧠 LORA Selection Debug Info"):
     else:
         st.write("No debug info available.")
 
-lora_roots = sorted(set([l["name"].split("/")[0] for l in loras]))
+lora_roots = sorted(set(
+    l["name"].split("/")[0]
+    for l in loras
+    if isinstance(l, dict) and "name" in l and "/" in l["name"]
+))
+
 selected_root = st.sidebar.selectbox("Filter by Folder", ["All"] + lora_roots)
 
 # Full LORA list
@@ -318,7 +457,9 @@ with st.sidebar.expander("📚 LORA List", expanded=False):
     for lora in loras:
         if selected_root != "All" and not lora["name"].startswith(selected_root + "/"):
             continue
-        if not lora.get("base_model") and not lora["base_model"].startswith(model_base):
+        if not isinstance(lora, dict):
+            continue
+        if not lora.get("base_model") or not lora["base_model"].startswith(model_base):
             continue
         label = f"✅ `{lora['name']}`"
         if lora.get("activation"):
@@ -335,7 +476,7 @@ generation_payload = {
     "loras": [
         {
             "name": l["name"],
-            "file": l["file"],
+            "file": l.get("file", ""),  # Safe fallback
             "activation": l.get("activation", ""),
             "weight": l.get("weight", 0.6)
         } for l in selected_loras
@@ -367,28 +508,40 @@ with col1:
         # Generate a full batch of prompts
         batch_payload = []
         
+        # Before the loop:
+        last_prompt = st.session_state.get("enhanced_prompt", None)
+
+        prompt_path = os.path.join(WILDCARD_BASE, "super_prompts", prompt_file)
+        with open(prompt_path, "r", encoding="utf-8") as f:
+            base_prompt = f.read()
+
+        base_prompt = base_prompt.replace("{genre}", genre)
+
         # Resolve new prompt
         with st.spinner(f"🧠 Enhancing {batch_size} prompts..."):
-            for _ in range(batch_size):
-                raw_prompt = resolve_prompt(base_prompt, genre)
-
-                if use_gpt:
-                    enhanced_prompt = enhance_prompt_with_llm(raw_prompt, genre)
+            for i in range(batch_size):
+                if i == 0 and last_prompt:
+                    enhanced_prompt = last_prompt
                 else:
-                    enhanced_prompt = raw_prompt
+                    raw_prompt = resolve_prompt(base_prompt, genre)
+                    enhanced_prompt = enhance_prompt_with_llm(raw_prompt, genre) if use_gpt else raw_prompt
 
                 resolved = enhanced_prompt
     
                 # Get new LORAs
                 loras_this_round, _ = lora_selector.select_loras_for_prompt(
-                    categorized_loras, model_base, resolved, use_smart_matching
+                    categorized_loras, model_base, resolved, use_smart_matching, genre=genre
                 )
 
                 # Build LORA string
+                # Build LORA string
                 lora_injections = []
+
                 for lora in loras_this_round:
-                    filename = os.path.splitext(os.path.basename(lora["file"]))[0]
+                    # ✅ Always prefer the 'name' field for prompt injection
+                    filename = lora.get("name") or os.path.splitext(os.path.basename(lora["file"]))[0]
                     weight = float(lora.get("weight", 0.6)) or 0.6
+
                     if lora.get("activation"):
                         lora_injections.append(f"<lora:{filename}:{weight}> {lora['activation']}")
                     else:
@@ -503,16 +656,18 @@ with col2:
                     pct = (current_idx + 1) / total_jobs
                     batch_bar.progress(pct, text=f"📦 Job {current_idx + 1} / {total_jobs}")
 
-                send_jobs(
-                    jobs,
-                    output_dir,
-                    ui_config,
-                    on_job_progress=on_job_progress,
-                    on_batch_progress=on_batch_progress
-                )
-
-                mark_batch_as_sent(latest_batch)
-                st.success(f"✅ Batch `{latest_batch}` sent and logged.")
+                try:
+                    send_jobs(
+                        jobs,
+                        output_dir,
+                        ui_config,
+                        on_job_progress=on_job_progress,
+                        on_batch_progress=on_batch_progress
+                    )
+                    mark_batch_as_sent(latest_batch)
+                    st.success(f"✅ Batch `{latest_batch}` sent and logged.")
+                except Exception as e:
+                    st.error(f"❌ Failed to send batch `{latest_batch}`: {e}")
 
     # Button 2: Start All Incomplete
     if st.button("▶️ Start All Incomplete Batches"):

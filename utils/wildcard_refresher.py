@@ -14,7 +14,7 @@ def refresh_wildcards_claude(api_key, genre, category, wildcard_dir, n_entries=1
     try:
         response = client.messages.create(
             model="claude-3-sonnet-20240229",
-            max_tokens=600,
+            max_tokens=800,
             temperature=1.0,
             system="You are a creative assistant helping generate prompt components for an AI art system.",
             messages=[{"role": "user", "content": prompt}]
@@ -60,7 +60,7 @@ def refresh_wildcards_openai(api_key, genre, category, wildcard_dir, n_entries=1
         response = client.chat.completions.create(
             model="gpt-4o",
             messages=[{"role": "user", "content": prompt}],
-            max_tokens=400,
+            max_tokens=1000,
             temperature=1.1,
         )
         text = response.choices[0].message.content
