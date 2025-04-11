@@ -1,0 +1,2466 @@
+{
+  "Flux/Artist Styles/20.safetensors": {
+    "activation": "20",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Adam_Hughes_FLUX.safetensors": {
+    "activation": "Adam_Hughes_FLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/aesthetical.safetensors": {
+    "activation": "aesthetical",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Alejandro_Burdisio.safetensors": {
+    "activation": "Alejandro_Burdisio",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Alexey_Egorov.safetensors": {
+    "activation": "Alexey_Egorov",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Anato_Finnstark.safetensors": {
+    "activation": "Anato_Finnstark",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Anime Art V3.safetensors": {
+    "activation": "Anime Art V3",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Anime v1.3.safetensors": {
+    "activation": "Anime v1.3",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/anime_martzv2.safetensors": {
+    "activation": "anime_martzv2",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/ArcaneFGTNR.safetensors": {
+    "activation": "ArcaneFGTNR",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Artem_Chebokha.safetensors": {
+    "activation": "Artem_Chebokha",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/arti_monopencildrawing_v01.safetensors": {
+    "activation": "arti_monopencildrawing_v01",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Blue_Future.safetensors": {
+    "activation": "Blue_Future",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Boris_Vallejo_style.safetensors": {
+    "activation": "Boris_Vallejo_style",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/branno-style.safetensors": {
+    "activation": "branno-style",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Carlos_Nine.safetensors": {
+    "activation": "Carlos_Nine",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/ck-painterly-fantasy-000017.safetensors": {
+    "activation": "ck-painterly-fantasy-000017",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/ck-shadow-circuit-000021.safetensors": {
+    "activation": "ck-shadow-circuit-000021",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Comic book opus IV.safetensors": {
+    "activation": "Comic book opus IV",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/CPA.safetensors": {
+    "activation": "CPA",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/cryptics.safetensors": {
+    "activation": "cryptics",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/dmai-colors-v02.safetensors": {
+    "activation": "dmai-colors-v02",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Donna_Young.safetensors": {
+    "activation": "Donna_Young",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Dorota_Pietrowiak.safetensors": {
+    "activation": "Dorota_Pietrowiak",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/dreadmirth-art-style.safetensors": {
+    "activation": "dreadmirth-art-style",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Elden_ring.safetensors": {
+    "activation": "Elden_ring",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Fantasy_Anime_Realism.safetensors": {
+    "activation": "Fantasy_Anime_Realism",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/flux-lora-000016.safetensors": {
+    "activation": "flux-lora-000016",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/FluxMythAn1meL1nes.safetensors": {
+    "activation": "FluxMythAn1meL1nes",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/FluxMythR3tr0Style.safetensors": {
+    "activation": "FluxMythR3tr0Style",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Flux_-_Renaissance_art_style.safetensors": {
+    "activation": "Flux_-_Renaissance_art_style",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/frazetta_flux_v2.safetensors": {
+    "activation": "frazetta_flux_v2",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Ganin_II.safetensors": {
+    "activation": "Ganin_II",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Gerald_Brom.safetensors": {
+    "activation": "Gerald_Brom",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/gerald_brom_flux.safetensors": {
+    "activation": "gerald_brom_flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Greg Rutkowski.safetensors": {
+    "activation": "Greg Rutkowski",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Hyperdetailed_Colored_Pencil.safetensors": {
+    "activation": "Hyperdetailed_Colored_Pencil",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Illustration concept variant 2.safetensors": {
+    "activation": "Illustration concept variant 2",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Illustration concept Variant 3A.safetensors": {
+    "activation": "Illustration concept Variant 3A",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Illustration_concept.safetensors": {
+    "activation": "Illustration_concept",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/ImpressionismFlux.safetensors": {
+    "activation": "ImpressionismFlux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Impressionism_Oil_Painting_Flux.safetensors": {
+    "activation": "Impressionism_Oil_Painting_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Jeffrey_Catherine_Jones.safetensors": {
+    "activation": "Jeffrey_Catherine_Jones",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/jon-contino-flux1-dev-v1-000096.safetensors": {
+    "activation": "jon-contino-flux1-dev-v1-000096",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/J_Anime.safetensors": {
+    "activation": "J_Anime",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Mangaka V2.safetensors": {
+    "activation": "Mangaka V2",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/metal_hurlant_v1.safetensors": {
+    "activation": "metal_hurlant_v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Mezzotint_Artstyle_for_Flux_-_by_Ethanar.safetensors": {
+    "activation": "Mezzotint_Artstyle_for_Flux_-_by_Ethanar",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/midjourney-dark.safetensors": {
+    "activation": "midjourney-dark",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Modern_Retro_Anime - FLUX.safetensors": {
+    "activation": "Modern_Retro_Anime - FLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/MoriiMee_Gothic_Niji_Style_FLUX_Lora_Test_2.safetensors": {
+    "activation": "MoriiMee_Gothic_Niji_Style_FLUX_Lora_Test_2",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Niji B.safetensors": {
+    "activation": "Niji B",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/niji_flux.safetensors": {
+    "activation": "niji_flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Norman_Rockwell.safetensors": {
+    "activation": "Norman_Rockwell",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/OB\u534a\u5199\u5b9e\u8096\u50cf\u753bV2.0.safetensors": {
+    "activation": "OB\u534a\u5199\u5b9e\u8096\u50cf\u753bV2.0",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/openart_Surreal_Anime_III_20250104_025344.safetensors": {
+    "activation": "openart_Surreal_Anime_III_20250104_025344",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/orithis-vale-style.safetensors": {
+    "activation": "orithis-vale-style",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Paco_Gimenez.safetensors": {
+    "activation": "Paco_Gimenez",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/painterly_speed-painting.safetensors": {
+    "activation": "painterly_speed-painting",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Pascal_Blanch\u00e9.safetensors": {
+    "activation": "Pascal_Blanch\u00e9",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Patrick Jones II.safetensors": {
+    "activation": "Patrick Jones II",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Patrick_Jones.safetensors": {
+    "activation": "Patrick_Jones",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Phandigrams.safetensors": {
+    "activation": "Phandigrams",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Phandigrams_II.safetensors": {
+    "activation": "Phandigrams_II",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Piotr_Jab\u0142o\u0144ski.safetensors": {
+    "activation": "Piotr_Jab\u0142o\u0144ski",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/qiu_blue.safetensors": {
+    "activation": "qiu_blue",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Raphael_Vicenzi.safetensors": {
+    "activation": "Raphael_Vicenzi",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/RetroAnimeFluxV1.safetensors": {
+    "activation": "RetroAnimeFluxV1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Richard_Anderson.safetensors": {
+    "activation": "Richard_Anderson",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/RM_AnimeNiji_v0.3.safetensors": {
+    "activation": "RM_AnimeNiji_v0.3",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/rofeFLUX.safetensors": {
+    "activation": "rofeFLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Ronan_Le_Fur.safetensors": {
+    "activation": "Ronan_Le_Fur",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Sergey_Marshennikov.safetensors": {
+    "activation": "Sergey_Marshennikov",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/sleeek.safetensors": {
+    "activation": "sleeek",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Steve_McDonald.safetensors": {
+    "activation": "Steve_McDonald",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Techno_Digitalis.safetensors": {
+    "activation": "Techno_Digitalis",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/ThomasBlackshear.safetensors": {
+    "activation": "ThomasBlackshear",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Tom_Nulens_II.safetensors": {
+    "activation": "Tom_Nulens_II",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Tony_Rodriguez_v2.safetensors": {
+    "activation": "Tony_Rodriguez_v2",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/xjie_mihuan.safetensors": {
+    "activation": "xjie_mihuan",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/YFG-Bauhaus-v1.safetensors": {
+    "activation": "YFG-Bauhaus-v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/Yoshitaka_Amano__Ayami_Kojima_Style_Blend_Flux_V2.safetensors": {
+    "activation": "Yoshitaka_Amano__Ayami_Kojima_Style_Blend_Flux_V2",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/zimora-style.safetensors": {
+    "activation": "zimora-style",
+    "preferred_weight": 0.7
+  },
+  "Flux/Artist Styles/\u98ce\u683c\u5316-\u590d\u53e4\u5f69\u94c5.safetensors": {
+    "activation": "\u98ce\u683c\u5316-\u590d\u53e4\u5f69\u94c5",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Aa_de_Armas_FLUX_v5-merger_37_53_65_02_03_05.safetensors": {
+    "activation": "Aa_de_Armas_FLUX_v5-merger_37_53_65_02_03_05",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Aletta_Ocean_rank16_bf16.safetensors": {
+    "activation": "Aletta_Ocean_rank16_bf16",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Alexandra_Daddario_Flux.safetensors": {
+    "activation": "Alexandra_Daddario_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Andolenko.safetensors": {
+    "activation": "Andolenko",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Angel Wicky_rank16_bf16.safetensors": {
+    "activation": "Angel Wicky_rank16_bf16",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Anna_Kendrick_Flux.safetensors": {
+    "activation": "Anna_Kendrick_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Anne_Hathaway_Flux.safetensors": {
+    "activation": "Anne_Hathaway_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Anya_Chalotra_Flux.safetensors": {
+    "activation": "Anya_Chalotra_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Aria_Sky_Flux.safetensors": {
+    "activation": "Aria_Sky_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Bella_Thorne.safetensors": {
+    "activation": "Bella_Thorne",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Big_Titty_Goth_Girlfriend__Big_Tiddy_Goth_Flux.safetensors": {
+    "activation": "Big_Titty_Goth_Girlfriend__Big_Tiddy_Goth_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Bryce_Dallas_Howard_Flux.safetensors": {
+    "activation": "Bryce_Dallas_Howard_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Cordelia_Chase_Flux.safetensors": {
+    "activation": "Cordelia_Chase_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Deborah_Ann_Woll_Flux.safetensors": {
+    "activation": "Deborah_Ann_Woll_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/ebanko.safetensors": {
+    "activation": "ebanko",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Eden_Ivy_Flux.safetensors": {
+    "activation": "Eden_Ivy_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/ellaPurnell.safetensors": {
+    "activation": "ellaPurnell",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Emily_Beecham_Flux.safetensors": {
+    "activation": "Emily_Beecham_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/EmmaStone_flux_lora_v1.safetensors": {
+    "activation": "EmmaStone_flux_lora_v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Emma_Watson_V2_Flux.safetensors": {
+    "activation": "Emma_Watson_V2_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Eva_Green_V2_Flux.safetensors": {
+    "activation": "Eva_Green_V2_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Faye_Reagan_V2_Flux.safetensors": {
+    "activation": "Faye_Reagan_V2_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Fictional_Model_Anna_-_FLUX.safetensors": {
+    "activation": "Fictional_Model_Anna_-_FLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Fictional_Model_Crystal_-_FLUX.safetensors": {
+    "activation": "Fictional_Model_Crystal_-_FLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Freya_Allan_Flux_r1.safetensors": {
+    "activation": "Freya_Allan_Flux_r1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Gianna_Michaels_FLux.safetensors": {
+    "activation": "Gianna_Michaels_FLux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Gillian_Anderson_1993_Flux.safetensors": {
+    "activation": "Gillian_Anderson_1993_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Hazel Moore.safetensors": {
+    "activation": "Hazel Moore",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Isla_Fisher_Flux.safetensors": {
+    "activation": "Isla_Fisher_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Jennifer_Connelly_1990-000032.safetensors": {
+    "activation": "Jennifer_Connelly_1990-000032",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Jennifer_Lawrence_V2_Flux.safetensors": {
+    "activation": "Jennifer_Lawrence_V2_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Jessica_Chastain_FLUX_v1_merger_40_61_08_02.safetensors": {
+    "activation": "Jessica_Chastain_FLUX_v1_merger_40_61_08_02",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Jewelz_Blu.safetensors": {
+    "activation": "Jewelz_Blu",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Karen_Allen_1980s.safetensors": {
+    "activation": "Karen_Allen_1980s",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Karen_Gillan_Flux.safetensors": {
+    "activation": "Karen_Gillan_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Kate_Beckinsale_Flux.safetensors": {
+    "activation": "Kate_Beckinsale_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Kat_Dennings_Flux.safetensors": {
+    "activation": "Kat_Dennings_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Kaya_Scodelario_FLUX_v1-000055.safetensors": {
+    "activation": "Kaya_Scodelario_FLUX_v1-000055",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Kira Queen.safetensors": {
+    "activation": "Kira Queen",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/KristenDunst_flux_lora_v1.safetensors": {
+    "activation": "KristenDunst_flux_lora_v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Livtyler_FLUX_v1-merger_merger33_73_merger45_73_03_07.safetensors": {
+    "activation": "Livtyler_FLUX_v1-merger_merger33_73_merger45_73_03_07",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Lulu Martinez.safetensors": {
+    "activation": "Lulu Martinez",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/MadiKat_rank16_bf16.safetensors": {
+    "activation": "MadiKat_rank16_bf16",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Margaret_Qualley_Flux.safetensors": {
+    "activation": "Margaret_Qualley_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Mary_Elizabeth_Winstead.safetensors": {
+    "activation": "Mary_Elizabeth_Winstead",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Megan_Fox.safetensors": {
+    "activation": "Megan_Fox",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Mia_Sara_1980s_Flux.safetensors": {
+    "activation": "Mia_Sara_1980s_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Michelle_Pfeiffer_198090s_Flux.safetensors": {
+    "activation": "Michelle_Pfeiffer_198090s_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Michelle_Trachtenberg_Flux.safetensors": {
+    "activation": "Michelle_Trachtenberg_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Mila_Azul_Flux.safetensors": {
+    "activation": "Mila_Azul_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/MorenaBaccarinF1D.safetensors": {
+    "activation": "MorenaBaccarinF1D",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Morena_Baccarin_Flux.safetensors": {
+    "activation": "Morena_Baccarin_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/NatalieCuomoFlux_v1_byTigonTX.safetensors": {
+    "activation": "NatalieCuomoFlux_v1_byTigonTX",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Olivia_Cooke_2021-2023_FLUX_v2-merger_37_52_07_03.safetensors": {
+    "activation": "Olivia_Cooke_2021-2023_FLUX_v2-merger_37_52_07_03",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Phoebe_Cates_1980s_Flux.safetensors": {
+    "activation": "Phoebe_Cates_1980s_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Sabrina_Lynn_Flux.safetensors": {
+    "activation": "Sabrina_Lynn_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Sadie_Sink_Flux.safetensors": {
+    "activation": "Sadie_Sink_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Saffron_Firefly-000048.safetensors": {
+    "activation": "Saffron_Firefly-000048",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Sasha_Grey_Flux.safetensors": {
+    "activation": "Sasha_Grey_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Sophie_Turner_Flux.safetensors": {
+    "activation": "Sophie_Turner_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Tiffany_Flux_CFH-000013.safetensors": {
+    "activation": "Tiffany_Flux_CFH-000013",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Valentina Nappi.safetensors": {
+    "activation": "Valentina Nappi",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Veronika_Zemanova_Flux.safetensors": {
+    "activation": "Veronika_Zemanova_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/Veruca_James_Flux.safetensors": {
+    "activation": "Veruca_James_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Characters/woStoya01Flux.safetensors": {
+    "activation": "woStoya01Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/aidmaFLUXpro1.1-FLUX-V0.2.safetensors": {
+    "activation": "aidmaFLUXpro1.1-FLUX-V0.2",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/aidmaFluxProUltra-FLUX-v0.1.safetensors": {
+    "activation": "aidmaFluxProUltra-FLUX-v0.1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/aidmaImageUprader-FLUX-v0.3.safetensors": {
+    "activation": "aidmaImageUprader-FLUX-v0.3",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/aidmaMJ6.1-FLUX-v0.5.safetensors": {
+    "activation": "aidmaMJ6.1-FLUX-v0.5",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/ARTifacts.safetensors": {
+    "activation": "ARTifacts",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/Delicate_Balance.safetensors": {
+    "activation": "Delicate_Balance",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/detailifier_flux-000006.safetensors": {
+    "activation": "detailifier_flux-000006",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/epic-midj.safetensors": {
+    "activation": "epic-midj",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/Epic_enhancer.safetensors": {
+    "activation": "Epic_enhancer",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/Flux DetailerV2.safetensors": {
+    "activation": "Flux DetailerV2",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/flux.1_lora_flyway_Epic-Characters_v1.safetensors": {
+    "activation": "flux.1_lora_flyway_Epic-Characters_v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/flux.1_lora_flyway_Epic-detail_v2.safetensors": {
+    "activation": "flux.1_lora_flyway_Epic-detail_v2",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/Fluxartis 28.11A.safetensors": {
+    "activation": "Fluxartis 28.11A",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/FluxDFaeTasticDetails.safetensors": {
+    "activation": "FluxDFaeTasticDetails",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/fluxenhancer.safetensors": {
+    "activation": "fluxenhancer",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/lora_TA_trained.safetensors": {
+    "activation": "lora_TA_trained",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/Magic of Art  3 (FLUX).safetensors": {
+    "activation": "Magic of Art  3 (FLUX)",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/MysticRealism.safetensors": {
+    "activation": "MysticRealism",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/PCB_Image_Enhancer_for_FLUX.safetensors": {
+    "activation": "PCB_Image_Enhancer_for_FLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/Prismatica2024.safetensors": {
+    "activation": "Prismatica2024",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/_Detail_Enhancer__3D_Blender_Style-000001.safetensors": {
+    "activation": "_Detail_Enhancer__3D_Blender_Style-000001",
+    "preferred_weight": 0.7
+  },
+  "Flux/Detailers/__r.safetensors": {
+    "activation": "__r",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/- Flux1 - impossible_geometry_V1.0.safetensors": {
+    "activation": "- Flux1 - impossible_geometry_V1.0",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/- Flux1 - soothing_atmo_V2.0.safetensors": {
+    "activation": "- Flux1 - soothing_atmo_V2.0",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/- Flux1 De-Distilled - the_edgy_mech_1.0.safetensors": {
+    "activation": "- Flux1 De-Distilled - the_edgy_mech_1.0",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/116_novuschromaFLX_1.safetensors": {
+    "activation": "116_novuschromaFLX_1",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/128404.safetensors": {
+    "activation": "128404",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/5fed87.safetensors": {
+    "activation": "5fed87",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/anhei_first_flux_lora_v1.safetensors": {
+    "activation": "anhei_first_flux_lora_v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/anotherdysto02.safetensors": {
+    "activation": "anotherdysto02",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/apoclypse02-style.safetensors": {
+    "activation": "apoclypse02-style",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/artilands.safetensors": {
+    "activation": "artilands",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/artilands_v02.safetensors": {
+    "activation": "artilands_v02",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/artisketchyfs-v02.safetensors": {
+    "activation": "artisketchyfs-v02",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/artisticanalogphotos.safetensors": {
+    "activation": "artisticanalogphotos",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/ArtNouveau2Flux.safetensors": {
+    "activation": "ArtNouveau2Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Artsy_Photo.safetensors": {
+    "activation": "Artsy_Photo",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/atmospheric_painting.safetensors": {
+    "activation": "atmospheric_painting",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/BeautyInEvilFlux.safetensors": {
+    "activation": "BeautyInEvilFlux",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/body_horror-000007.safetensors": {
+    "activation": "body_horror-000007",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/cg_sd3l_lora_v1.safetensors": {
+    "activation": "cg_sd3l_lora_v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/ck-70sScifi.safetensors": {
+    "activation": "ck-70sScifi",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/ck-Neon-Retrowave.safetensors": {
+    "activation": "ck-Neon-Retrowave",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/ck-OneViolentFantasy.safetensors": {
+    "activation": "ck-OneViolentFantasy",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/ck-Sci-Fi-Concepts.safetensors": {
+    "activation": "ck-Sci-Fi-Concepts",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/ck-Sommo-Concept-Art.safetensors": {
+    "activation": "ck-Sommo-Concept-Art",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Comic_book_VIntage.safetensors": {
+    "activation": "Comic_book_VIntage",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Cyberpunk__Realistic.safetensors": {
+    "activation": "Cyberpunk__Realistic",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Cynthia3DProduct.safetensors": {
+    "activation": "Cynthia3DProduct",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/dark-moody-ill.safetensors": {
+    "activation": "dark-moody-ill",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/dark_fantasy_flux.safetensors": {
+    "activation": "dark_fantasy_flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Delicate_Whimsy.safetensors": {
+    "activation": "Delicate_Whimsy",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Design.safetensors": {
+    "activation": "Design",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/digital-abyss.safetensors": {
+    "activation": "digital-abyss",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/DistantFutureFluxV2.safetensors": {
+    "activation": "DistantFutureFluxV2",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/drkfnsy_pdxl_EliPot.safetensors": {
+    "activation": "drkfnsy_pdxl_EliPot",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Eldritch_Fantasy1.2.2.safetensors": {
+    "activation": "Eldritch_Fantasy1.2.2",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Erotic Comic F.safetensors": {
+    "activation": "Erotic Comic F",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Fantasy World.safetensors": {
+    "activation": "Fantasy World",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/fantasy-flux-nymical-v3.safetensors": {
+    "activation": "fantasy-flux-nymical-v3",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/FantasyWizardWitchesFluxV2-000001.safetensors": {
+    "activation": "FantasyWizardWitchesFluxV2-000001",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/flux-1-lora-flyway-3d-icon-v1.safetensors": {
+    "activation": "flux-1-lora-flyway-3d-icon-v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/FLUX-daubrez-DB4RZ-v2.safetensors": {
+    "activation": "FLUX-daubrez-DB4RZ-v2",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/flux.1_lora_flyway_ink-dynamic.safetensors": {
+    "activation": "flux.1_lora_flyway_ink-dynamic",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Fluxhknuns-000001.safetensors": {
+    "activation": "Fluxhknuns-000001",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/FluxMechaKnights.safetensors": {
+    "activation": "FluxMechaKnights",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/FluxMythG0thicL1nes.safetensors": {
+    "activation": "FluxMythG0thicL1nes",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/FluxMythP0rtr4itStyle.safetensors": {
+    "activation": "FluxMythP0rtr4itStyle",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/FluxMythR3alisticF.safetensors": {
+    "activation": "FluxMythR3alisticF",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Geometrical_Woman.safetensors": {
+    "activation": "Geometrical_Woman",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/George_illustration.safetensors": {
+    "activation": "George_illustration",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/gopFLUX.safetensors": {
+    "activation": "gopFLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/grunge.safetensors": {
+    "activation": "grunge",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/HorrorGoth - Mitsuko Style - Once Human_v1.safetensors": {
+    "activation": "HorrorGoth - Mitsuko Style - Once Human_v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Hyper_detailed_illustration.safetensors": {
+    "activation": "Hyper_detailed_illustration",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/kenichi_flux.safetensors": {
+    "activation": "kenichi_flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Kight_and_Warrior.safetensors": {
+    "activation": "Kight_and_Warrior",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/KNKstyle_-_FLUX.safetensors": {
+    "activation": "KNKstyle_-_FLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/last.safetensors": {
+    "activation": "last",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/m100-style_v.02.safetensors": {
+    "activation": "m100-style_v.02",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/m200.safetensors": {
+    "activation": "m200",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Minimalist_Photos.safetensors": {
+    "activation": "Minimalist_Photos",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/moody-fog.safetensors": {
+    "activation": "moody-fog",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Movie-Style-Backgrounds-Flux.safetensors": {
+    "activation": "Movie-Style-Backgrounds-Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/neon-mist03.safetensors": {
+    "activation": "neon-mist03",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/NeonFantasyPrimeFLUX.safetensors": {
+    "activation": "NeonFantasyPrimeFLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Neon_Punk-Flux.safetensors": {
+    "activation": "Neon_Punk-Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/New_Fantasy_CoreV4_FLUX.safetensors": {
+    "activation": "New_Fantasy_CoreV4_FLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/NF.safetensors": {
+    "activation": "NF",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/NouvaLume.safetensors": {
+    "activation": "NouvaLume",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Occult.safetensors": {
+    "activation": "Occult",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Paper Marbling Flux.safetensors": {
+    "activation": "Paper Marbling Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/POSTER.safetensors": {
+    "activation": "POSTER",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/quartzara-style.safetensors": {
+    "activation": "quartzara-style",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/ral-nssndtsn.safetensors": {
+    "activation": "ral-nssndtsn",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/RM_Artistify_v1.0M.safetensors": {
+    "activation": "RM_Artistify_v1.0M",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/RM_Cinematify_v0.8M.safetensors": {
+    "activation": "RM_Cinematify_v0.8M",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/RM_Fantastify_v0.8M_classic.safetensors": {
+    "activation": "RM_Fantastify_v0.8M_classic",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/RM_Nudify_v0.7M.safetensors": {
+    "activation": "RM_Nudify_v0.7M",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/SemiRealPainted_-_Flux-000002.safetensors": {
+    "activation": "SemiRealPainted_-_Flux-000002",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/sickdark.safetensors": {
+    "activation": "sickdark",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Simple_Vector_Flux_v2_renderartist.safetensors": {
+    "activation": "Simple_Vector_Flux_v2_renderartist",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/SkoolDaze_Fantasy_v275-000001.safetensors": {
+    "activation": "SkoolDaze_Fantasy_v275-000001",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Sweet_Dreams.safetensors": {
+    "activation": "Sweet_Dreams",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/sxz-Dark-Fantasy-v2-Flux.safetensors": {
+    "activation": "sxz-Dark-Fantasy-v2-Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Tarots_Flux.safetensors": {
+    "activation": "Tarots_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Test_OS.safetensors": {
+    "activation": "Test_OS",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/The_Painted_Realm-FLUX.safetensors": {
+    "activation": "The_Painted_Realm-FLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Transhuman_Flux.safetensors": {
+    "activation": "Transhuman_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Tryout.safetensors": {
+    "activation": "Tryout",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/UNI_FI_NoCAP.safetensors": {
+    "activation": "UNI_FI_NoCAP",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/victoriangothic_v50_rank64_bf16.safetensors": {
+    "activation": "victoriangothic_v50_rank64_bf16",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Vintage_Pulp_-_FLUX.safetensors": {
+    "activation": "Vintage_Pulp_-_FLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/VividlySurrealOrigin.safetensors": {
+    "activation": "VividlySurrealOrigin",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/w1z_v1zu4l_h41ku.safetensors": {
+    "activation": "w1z_v1zu4l_h41ku",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Warhammer_Rogue_Trader_Style_flux-000021.safetensors": {
+    "activation": "Warhammer_Rogue_Trader_Style_flux-000021",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Weird_Portraits.safetensors": {
+    "activation": "Weird_Portraits",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/Wizards_Experimental_Photo_Lab.safetensors": {
+    "activation": "Wizards_Experimental_Photo_Lab",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/xjie_Black gold.safetensors": {
+    "activation": "xjie_Black gold",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/yfg-Geometric-v2.safetensors": {
+    "activation": "yfg-Geometric-v2",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/YFG-Smorgas-v1.safetensors": {
+    "activation": "YFG-Smorgas-v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/yug-soares-v1.safetensors": {
+    "activation": "yug-soares-v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/\u98ce\u683c\u5316-\u590d\u53e4\u6f2b.safetensors": {
+    "activation": "\u98ce\u683c\u5316-\u590d\u53e4\u6f2b",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/\u98ce\u683c\u5316-\u73b0\u4ee3\u5efa\u7b51-loco.safetensors": {
+    "activation": "\u98ce\u683c\u5316-\u73b0\u4ee3\u5efa\u7b51-loco",
+    "preferred_weight": 0.7
+  },
+  "Flux/General Styles/\u98ce\u683c\u5316-\u8d85\u73b0\u5b9e.safetensors": {
+    "activation": "\u98ce\u683c\u5316-\u8d85\u73b0\u5b9e",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/4x_GPU_Quality_Tier_1.safetensors": {
+    "activation": "4x_GPU_Quality_Tier_1",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/5.safetensors": {
+    "activation": "5",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/70s_vintage_nudity.safetensors": {
+    "activation": "70s_vintage_nudity",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/aidmaNSFWunlockV2.safetensors": {
+    "activation": "aidmaNSFWunlockV2",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/analsex_reverse_cowgirl_flux_sevenof9.safetensors": {
+    "activation": "analsex_reverse_cowgirl_flux_sevenof9",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/AQueensTits_rank16_bf16.safetensors": {
+    "activation": "AQueensTits_rank16_bf16",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/ArtfulNSFWV2Flux.safetensors": {
+    "activation": "ArtfulNSFWV2Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/Artistic_Nude_Photography_-_All.safetensors": {
+    "activation": "Artistic_Nude_Photography_-_All",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/Black nurse uniform_pony.safetensors": {
+    "activation": "Black nurse uniform_pony",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/BodyLicious_Flux-V2.safetensors": {
+    "activation": "BodyLicious_Flux-V2",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/Boudoir_Nudity.safetensors": {
+    "activation": "Boudoir_Nudity",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/breast-size2.safetensors": {
+    "activation": "breast-size2",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/BreastShaper_splendid_droplets_Flux_v3.0.safetensors": {
+    "activation": "BreastShaper_splendid_droplets_Flux_v3.0",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/Breasts_covered_by_long_hair_for_FLUX.safetensors": {
+    "activation": "Breasts_covered_by_long_hair_for_FLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/bustyfc-v2.safetensors": {
+    "activation": "bustyfc-v2",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/curvy.safetensors": {
+    "activation": "curvy",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/Curvy_body_type_for_FLUX_Saggy_natural_breasts.safetensors": {
+    "activation": "Curvy_body_type_for_FLUX_Saggy_natural_breasts",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/female_anatomy.safetensors": {
+    "activation": "female_anatomy",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/Fineart_Anatomy.safetensors": {
+    "activation": "Fineart_Anatomy",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/FLUXTASTIC_V3.safetensors": {
+    "activation": "FLUXTASTIC_V3",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/FLUX_FD-BreastMegaPack-R16.safetensors": {
+    "activation": "FLUX_FD-BreastMegaPack-R16",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/FLUX_missio_pussy_v2.safetensors": {
+    "activation": "FLUX_missio_pussy_v2",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/h41ryFLUXReality.safetensors": {
+    "activation": "h41ryFLUXReality",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/Mast.safetensors": {
+    "activation": "Mast",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/my_fist_flux_lora_v1-101224-xxx.safetensors": {
+    "activation": "my_fist_flux_lora_v1-101224-xxx",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/nipplediffusion.safetensors": {
+    "activation": "nipplediffusion",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/nipples texture closeup.safetensors": {
+    "activation": "nipples texture closeup",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/nipples.safetensors": {
+    "activation": "nipples",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/nsfw-highress.safetensors": {
+    "activation": "nsfw-highress",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/nsfw_flux_lora_v1.safetensors": {
+    "activation": "nsfw_flux_lora_v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/NSFW_master.safetensors": {
+    "activation": "NSFW_master",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/OiledSkin_v2.safetensors": {
+    "activation": "OiledSkin_v2",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/outfit0015-lingerie-set.safetensors": {
+    "activation": "outfit0015-lingerie-set",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/outfit0017-transparent-bodysuit.safetensors": {
+    "activation": "outfit0017-transparent-bodysuit",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/outfit0019-lingerie-set-with-flora-pattern.safetensors": {
+    "activation": "outfit0019-lingerie-set-with-flora-pattern",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/Page3TitsL_rank16_bf16.safetensors": {
+    "activation": "Page3TitsL_rank16_bf16",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/Page3TitsXL_rank16_bf16.safetensors": {
+    "activation": "Page3TitsXL_rank16_bf16",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/Red_District.safetensors": {
+    "activation": "Red_District",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/ridingsexscene_Flux_SMF_V01.safetensors": {
+    "activation": "ridingsexscene_Flux_SMF_V01",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/scg-anatomy-female-v2.safetensors": {
+    "activation": "scg-anatomy-female-v2",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/stb.safetensors": {
+    "activation": "stb",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/SuperModel-V8.safetensors": {
+    "activation": "SuperModel-V8",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/The_Body.safetensors": {
+    "activation": "The_Body",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/The_Body_V3.safetensors": {
+    "activation": "The_Body_V3",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/The_Body_Version_D.safetensors": {
+    "activation": "The_Body_Version_D",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/Vintage_Erotism.safetensors": {
+    "activation": "Vintage_Erotism",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/Vintage_Nudity_60s.safetensors": {
+    "activation": "Vintage_Nudity_60s",
+    "preferred_weight": 0.7
+  },
+  "Flux/NSFW Styles/woman_dildo_flux_sevenof9_v1.safetensors": {
+    "activation": "woman_dildo_flux_sevenof9_v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/- Flux1 De-Distilled - temp_haunting_cre_1.0.safetensors": {
+    "activation": "- Flux1 De-Distilled - temp_haunting_cre_1.0",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/ADD_Gold_and_Crystals_like_its_1995.safetensors": {
+    "activation": "ADD_Gold_and_Crystals_like_its_1995",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/aeshteticv5.safetensors": {
+    "activation": "aeshteticv5",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/aidmaGothGirl-FLUX-V0.1.safetensors": {
+    "activation": "aidmaGothGirl-FLUX-V0.1",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/aidmaRealisticSkin-FLUX-v0.1.safetensors": {
+    "activation": "aidmaRealisticSkin-FLUX-v0.1",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Aquamarine_Pinup.safetensors": {
+    "activation": "Aquamarine_Pinup",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/black sclera.safetensors": {
+    "activation": "black sclera",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/BowFlux-000001.safetensors": {
+    "activation": "BowFlux-000001",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Brain_eaters.safetensors": {
+    "activation": "Brain_eaters",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Cenobites_flux.safetensors": {
+    "activation": "Cenobites_flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/CharacterDesign-FluxV2.safetensors": {
+    "activation": "CharacterDesign-FluxV2",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/chin-tattoo01.safetensors": {
+    "activation": "chin-tattoo01",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Cyber_Beauties_Ethanar.safetensors": {
+    "activation": "Cyber_Beauties_Ethanar",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Cyber_Graphic.safetensors": {
+    "activation": "Cyber_Graphic",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Detail__Mystic_Enchantress.safetensors": {
+    "activation": "Detail__Mystic_Enchantress",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Disgustor.safetensors": {
+    "activation": "Disgustor",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/facepaint2.safetensors": {
+    "activation": "facepaint2",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/flux-frenchmaid.safetensors": {
+    "activation": "flux-frenchmaid",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/FluxBlackT40k.safetensors": {
+    "activation": "FluxBlackT40k",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/FluxBossBattle.safetensors": {
+    "activation": "FluxBossBattle",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/FluxF4ngs.safetensors": {
+    "activation": "FluxF4ngs",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/FluxNightL40K.safetensors": {
+    "activation": "FluxNightL40K",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/flux_realism_lora.safetensors": {
+    "activation": "flux_realism_lora",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/FurFemX.safetensors": {
+    "activation": "FurFemX",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/future_fashion.safetensors": {
+    "activation": "future_fashion",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/giant-sword-flux.safetensors": {
+    "activation": "giant-sword-flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/GodsAndMayhemFlux.safetensors": {
+    "activation": "GodsAndMayhemFlux",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Goonstyle_Flux.safetensors": {
+    "activation": "Goonstyle_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Gorgeous_Galactic_Females_FLUX_Ethanar.safetensors": {
+    "activation": "Gorgeous_Galactic_Females_FLUX_Ethanar",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Graphic_Portrait_Flux.safetensors": {
+    "activation": "Graphic_Portrait_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Hand v2.safetensors": {
+    "activation": "Hand v2",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Horror vampire fangs style v3.safetensors": {
+    "activation": "Horror vampire fangs style v3",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/latexCatsuitFlux.safetensors": {
+    "activation": "latexCatsuitFlux",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Lorena_Style.safetensors": {
+    "activation": "Lorena_Style",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Mechanical body.safetensors": {
+    "activation": "Mechanical body",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/metal-gothic-girls.safetensors": {
+    "activation": "metal-gothic-girls",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/midjourney_whisper_avant_couture_v01.safetensors": {
+    "activation": "midjourney_whisper_avant_couture_v01",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/monster_flux.safetensors": {
+    "activation": "monster_flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Neon_Cyberpunk_Cyberbody_FLUX.safetensors": {
+    "activation": "Neon_Cyberpunk_Cyberbody_FLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Pastelgoth_Turquoise_love_FLUX.safetensors": {
+    "activation": "Pastelgoth_Turquoise_love_FLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Pretty__Emotional_Faces_FLUX.safetensors": {
+    "activation": "Pretty__Emotional_Faces_FLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/RM_Baroque_Cyberpunk_v0.8M.safetensors": {
+    "activation": "RM_Baroque_Cyberpunk_v0.8M",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/RM_Futurcouture_v0.5M.safetensors": {
+    "activation": "RM_Futurcouture_v0.5M",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/RM_Robotify_v0.7M.safetensors": {
+    "activation": "RM_Robotify_v0.7M",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/RM_TacExoGear_v0.5M.safetensors": {
+    "activation": "RM_TacExoGear_v0.5M",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/rootform-simple1.safetensors": {
+    "activation": "rootform-simple1",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/sameface2.safetensors": {
+    "activation": "sameface2",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/sdf.safetensors": {
+    "activation": "sdf",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/shinylatexv3.safetensors": {
+    "activation": "shinylatexv3",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/skin texture style v5.safetensors": {
+    "activation": "skin texture style v5",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/the-walking-dead-flux1-dev-v1.safetensors": {
+    "activation": "the-walking-dead-flux1-dev-v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/The_Vanguard.safetensors": {
+    "activation": "The_Vanguard",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Torn_clothes_FLUX.safetensors": {
+    "activation": "Torn_clothes_FLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/vintage-1930-flux.safetensors": {
+    "activation": "vintage-1930-flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/vintage-beauties-flux.safetensors": {
+    "activation": "vintage-beauties-flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Wizards_Machina_ROBOTS_DROIDS__MECH_SUITS.safetensors": {
+    "activation": "Wizards_Machina_ROBOTS_DROIDS__MECH_SUITS",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/Wizards_Veiled.safetensors": {
+    "activation": "Wizards_Veiled",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/YFG-FaceGear-v1.safetensors": {
+    "activation": "YFG-FaceGear-v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/yfg-fwshn.safetensors": {
+    "activation": "yfg-fwshn",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/ZooPolis.safetensors": {
+    "activation": "ZooPolis",
+    "preferred_weight": 0.7
+  },
+  "Flux/People styles/zy_horror_monsters_flux.safetensors": {
+    "activation": "zy_horror_monsters_flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/116_novuschromaFLX_1.safetensors": {
+    "activation": "116_novuschromaFLX_1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/2010s_Folk_Horror_Movie.safetensors": {
+    "activation": "2010s_Folk_Horror_Movie",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/60sPsychedelicMovie2.safetensors": {
+    "activation": "60sPsychedelicMovie2",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/70sHorrorMovie2Flux.safetensors": {
+    "activation": "70sHorrorMovie2Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/80sFantasyMovieV3.safetensors": {
+    "activation": "80sFantasyMovieV3",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/90s_Indie_Movie.safetensors": {
+    "activation": "90s_Indie_Movie",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Abstract_Retro_Future_Movie.safetensors": {
+    "activation": "Abstract_Retro_Future_Movie",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Black illusion B.safetensors": {
+    "activation": "Black illusion B",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/bo-chromatic.safetensors": {
+    "activation": "bo-chromatic",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/c41_hasselblad_portra400_FLUX.safetensors": {
+    "activation": "c41_hasselblad_portra400_FLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/candypalette.safetensors": {
+    "activation": "candypalette",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/cinematic ARRIFLEX 435 200 500 style v1.safetensors": {
+    "activation": "cinematic ARRIFLEX 435 200 500 style v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/cinematic film style v1.safetensors": {
+    "activation": "cinematic film style v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/cinematic Petzval - Lenses style v1.safetensors": {
+    "activation": "cinematic Petzval - Lenses style v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/cinematic-octane.safetensors": {
+    "activation": "cinematic-octane",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/CinematicStyleFlux_v1.safetensors": {
+    "activation": "CinematicStyleFlux_v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Cinematic_lighting.safetensors": {
+    "activation": "Cinematic_lighting",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/ck-dune-style_r1.safetensors": {
+    "activation": "ck-dune-style_r1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Dark_Gray_Photography.safetensors": {
+    "activation": "Dark_Gray_Photography",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Exogenous.safetensors": {
+    "activation": "Exogenous",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/flux dtmh.safetensors": {
+    "activation": "flux dtmh",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/FLUX-Vintage_Abstract_Film.safetensors": {
+    "activation": "FLUX-Vintage_Abstract_Film",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Flux1 - vanta_black_V2.0.safetensors": {
+    "activation": "Flux1 - vanta_black_V2.0",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Gen-X_Soft_Club.safetensors": {
+    "activation": "Gen-X_Soft_Club",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Gen-X_Soft_Club_1.1_Album_Covers.safetensors": {
+    "activation": "Gen-X_Soft_Club_1.1_Album_Covers",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Geometric_Dreamlike_Movie.safetensors": {
+    "activation": "Geometric_Dreamlike_Movie",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/glamatrix.safetensors": {
+    "activation": "glamatrix",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Gloominence.safetensors": {
+    "activation": "Gloominence",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/GothicDarkFantasyMovie.safetensors": {
+    "activation": "GothicDarkFantasyMovie",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/GrainScape.safetensors": {
+    "activation": "GrainScape",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Helmut_Newton-000001.safetensors": {
+    "activation": "Helmut_Newton-000001",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Hollywood Cinematic Film style v1.safetensors": {
+    "activation": "Hollywood Cinematic Film style v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Horrifier.safetensors": {
+    "activation": "Horrifier",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Ibai_Acevedo.safetensors": {
+    "activation": "Ibai_Acevedo",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/i_see_red_by_redtvpe.safetensors": {
+    "activation": "i_see_red_by_redtvpe",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Kodak cinematic film style Photography v1.safetensors": {
+    "activation": "Kodak cinematic film style Photography v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Kodak Motion Picture Film style v1.safetensors": {
+    "activation": "Kodak Motion Picture Film style v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/lith_mimosa_kiel_grw134_FLUX.safetensors": {
+    "activation": "lith_mimosa_kiel_grw134_FLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Luminous_Shadowscape.safetensors": {
+    "activation": "Luminous_Shadowscape",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/magazine_cover.safetensors": {
+    "activation": "magazine_cover",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/mental-vision.safetensors": {
+    "activation": "mental-vision",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/MF_AtomUltra_Flux.safetensors": {
+    "activation": "MF_AtomUltra_Flux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Monochrodepth.safetensors": {
+    "activation": "Monochrodepth",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/moody_kodachrome.safetensors": {
+    "activation": "moody_kodachrome",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Movie_Portrait.safetensors": {
+    "activation": "Movie_Portrait",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Mystic_Vogue_80s__Occult_Pop.safetensors": {
+    "activation": "Mystic_Vogue_80s__Occult_Pop",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/NEOSTF-000001.safetensors": {
+    "activation": "NEOSTF-000001",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/NSTLG_-_NSFW.safetensors": {
+    "activation": "NSTLG_-_NSFW",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/OBInstant camera portrait photography V2.safetensors": {
+    "activation": "OBInstant camera portrait photography V2",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Obscurav\u00e9.safetensors": {
+    "activation": "Obscurav\u00e9",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/OB\u62cd\u7acb\u5f97\u4eba\u50cf\u6444\u5f71Instant camera portrait photography V2.safetensors": {
+    "activation": "OB\u62cd\u7acb\u5f97\u4eba\u50cf\u6444\u5f71Instant camera portrait photography V2",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Overexposed-dream.safetensors": {
+    "activation": "Overexposed-dream",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Painting Chiaroscuro Lighting Style v1.1.safetensors": {
+    "activation": "Painting Chiaroscuro Lighting Style v1.1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Phlux.safetensors": {
+    "activation": "Phlux",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Portrait_Dream.safetensors": {
+    "activation": "Portrait_Dream",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Psy.safetensors": {
+    "activation": "Psy",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Real_Aesthetic_Spectrum.safetensors": {
+    "activation": "Real_Aesthetic_Spectrum",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Rembrandt Lighting II.safetensors": {
+    "activation": "Rembrandt Lighting II",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Sinfully_Stylish_.02_for_FLUX.safetensors": {
+    "activation": "Sinfully_Stylish_.02_for_FLUX",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/sss-snek.safetensors": {
+    "activation": "sss-snek",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/surrealidescent_v1.safetensors": {
+    "activation": "surrealidescent_v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Surreal_Retro_Horror_Movie.safetensors": {
+    "activation": "Surreal_Retro_Horror_Movie",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Synesthesia.safetensors": {
+    "activation": "Synesthesia",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Synthesia_v2.safetensors": {
+    "activation": "Synthesia_v2",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/THINK_horror_creepy_art_By_AmeshinGRIMBLE.safetensors": {
+    "activation": "THINK_horror_creepy_art_By_AmeshinGRIMBLE",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/UltraRealPhoto.safetensors": {
+    "activation": "UltraRealPhoto",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Vintage_Sci-fi_Movie.safetensors": {
+    "activation": "Vintage_Sci-fi_Movie",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/VividlySurrealApex.safetensors": {
+    "activation": "VividlySurrealApex",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/w3ird1.safetensors": {
+    "activation": "w3ird1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/wasted_films.safetensors": {
+    "activation": "wasted_films",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/Wizards_Arcana_The_Spectral_Glow.safetensors": {
+    "activation": "Wizards_Arcana_The_Spectral_Glow",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/yfg-asak-v1.safetensors": {
+    "activation": "yfg-asak-v1",
+    "preferred_weight": 0.7
+  },
+  "Flux/Textures & Looks/yfg-patterns-v1.safetensors": {
+    "activation": "yfg-patterns-v1",
+    "preferred_weight": 0.7
+  },
+  "Pony/Detailers/Pony_DetailV2.0.safetensors": {
+    "activation": "Pony_DetailV2.0",
+    "preferred_weight": 0.7
+  },
+  "Pony/NSFW Styles/bigSaggyBreastsPony2.safetensors": {
+    "activation": "bigSaggyBreastsPony2",
+    "preferred_weight": 0.7
+  },
+  "Pony/NSFW Styles/LargeBreasts_By_Stable_Yogi_PD_V1.safetensors": {
+    "activation": "LargeBreasts_By_Stable_Yogi_PD_V1",
+    "preferred_weight": 0.7
+  },
+  "Pony/People Styles/agepony8.safetensors": {
+    "activation": "agepony8",
+    "preferred_weight": 0.7
+  },
+  "Pony/People Styles/body_weight_slider_v1.safetensors": {
+    "activation": "body_weight_slider_v1",
+    "preferred_weight": 0.7
+  },
+  "Pony/People Styles/Full body Tattoos_By_Stable_Yogi_PONY_10_V1.safetensors": {
+    "activation": "Full body Tattoos_By_Stable_Yogi_PONY_10_V1",
+    "preferred_weight": 0.7
+  },
+  "Pony/Textures & Looks/AmateurStyle_v1_PONY_REALISM.safetensors": {
+    "activation": "AmateurStyle_v1_PONY_REALISM",
+    "preferred_weight": 0.7
+  },
+  "Pony/Textures & Looks/CNMTK-R.safetensors": {
+    "activation": "CNMTK-R",
+    "preferred_weight": 0.7
+  },
+  "Pony/Textures & Looks/DRKDL-R.safetensors": {
+    "activation": "DRKDL-R",
+    "preferred_weight": 0.7
+  },
+  "Pony/Textures & Looks/golden_hour_slider_v1.1.safetensors": {
+    "activation": "golden_hour_slider_v1.1",
+    "preferred_weight": 0.7
+  },
+  "Pony/Textures & Looks/Iridescent.safetensors": {
+    "activation": "Iridescent",
+    "preferred_weight": 0.7
+  },
+  "Pony/Textures & Looks/PLRD.safetensors": {
+    "activation": "PLRD",
+    "preferred_weight": 0.7
+  },
+  "Pony/Textures & Looks/Realism_Lora_By_Stable_Yogi_Pony_V1..safetensors": {
+    "activation": "Realism_Lora_By_Stable_Yogi_Pony_V1.",
+    "preferred_weight": 0.7
+  },
+  "Pony/Textures & Looks/zy_Realism_Enhancer_v1.safetensors": {
+    "activation": "zy_Realism_Enhancer_v1",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Artist Styles/ArsMJStyle_-_AnimeASDXL.safetensors": {
+    "activation": "ArsMJStyle_-_AnimeASDXL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Artist Styles/chuangyi_wm9.safetensors": {
+    "activation": "chuangyi_wm9",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Artist Styles/Dmshiji-wwm.safetensors": {
+    "activation": "Dmshiji-wwm",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Artist Styles/EnvyAnimeOilXL01.safetensors": {
+    "activation": "EnvyAnimeOilXL01",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Artist Styles/Fantasy_art_XL_V1.safetensors": {
+    "activation": "Fantasy_art_XL_V1",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Artist Styles/Fine Line v1.0.safetensors": {
+    "activation": "Fine Line v1.0",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Artist Styles/fr4z3tt4.safetensors": {
+    "activation": "fr4z3tt4",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Artist Styles/FrankFrazetta_Vpred.safetensors": {
+    "activation": "FrankFrazetta_Vpred",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Artist Styles/Gerald_Brom_XL_-_Dark_Fantasy_Art.safetensors": {
+    "activation": "Gerald_Brom_XL_-_Dark_Fantasy_Art",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Artist Styles/gopXL.safetensors": {
+    "activation": "gopXL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Artist Styles/John Berkey Style.safetensors": {
+    "activation": "John Berkey Style",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Artist Styles/marcXL.safetensors": {
+    "activation": "marcXL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Artist Styles/norman_rockwell_style_pony_v6.safetensors": {
+    "activation": "norman_rockwell_style_pony_v6",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Artist Styles/ptm0.safetensors": {
+    "activation": "ptm0",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Artist Styles/sdxl_lora_beksinski-000018.safetensors": {
+    "activation": "sdxl_lora_beksinski-000018",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Artist Styles/tbh233-sdxl.safetensors": {
+    "activation": "tbh233-sdxl",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Artist Styles/tbh33-sdxl.safetensors": {
+    "activation": "tbh33-sdxl",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Artist Styles/USNR STYLE_XL_lokr.safetensors": {
+    "activation": "USNR STYLE_XL_lokr",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Characters/ana_lora_sdxl_v1-64_cumul_fp16.safetensors": {
+    "activation": "ana_lora_sdxl_v1-64_cumul_fp16",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Characters/angelawhite-xl.safetensors": {
+    "activation": "angelawhite-xl",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Characters/daddario_dh128_lora_v2c.safetensors": {
+    "activation": "daddario_dh128_lora_v2c",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Characters/eliolsen_2012_juggerX_xl_1_wocap-elxolsn-000120.safetensors": {
+    "activation": "eliolsen_2012_juggerX_xl_1_wocap-elxolsn-000120",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Characters/jenconnelly1990s_juggerX_xl_1_wocap_merger_71_110_150_03_04_03-jenxcnnlly.safetensors": {
+    "activation": "jenconnelly1990s_juggerX_xl_1_wocap_merger_71_110_150_03_04_03-jenxcnnlly",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Characters/jeschastain_xl_1_standard_wo_cap_merger_23_42_88_02_05_03.safetensors": {
+    "activation": "jeschastain_xl_1_standard_wo_cap_merger_23_42_88_02_05_03",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Characters/Jessica Hamby.safetensors": {
+    "activation": "Jessica Hamby",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Characters/kateupton_dh128_sdxxxl_v1.safetensors": {
+    "activation": "kateupton_dh128_sdxxxl_v1",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Characters/KatsCrows.safetensors": {
+    "activation": "KatsCrows",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Characters/lawrence_dh128_v1-step00012000.safetensors": {
+    "activation": "lawrence_dh128_v1-step00012000",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Characters/margot_lora_sdxl_v1-000006.safetensors": {
+    "activation": "margot_lora_sdxl_v1-000006",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Characters/megan_lora_sdxl_v1-000008.safetensors": {
+    "activation": "megan_lora_sdxl_v1-000008",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Characters/MeridaBraveXLP_Character-10.safetensors": {
+    "activation": "MeridaBraveXLP_Character-10",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Characters/MorenaBaccarinXL.safetensors": {
+    "activation": "MorenaBaccarinXL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Characters/natportman_smaller_xl_1_standard_wo_cap-merger_8_40_035_065-natxportman.safetensors": {
+    "activation": "natportman_smaller_xl_1_standard_wo_cap-merger_8_40_035_065-natxportman",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Characters/ortega_dh128_v1-step00009000.safetensors": {
+    "activation": "ortega_dh128_v1-step00009000",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Characters/princess_xl_v2.safetensors": {
+    "activation": "princess_xl_v2",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Characters/scarlet_lora_sdxl_v3-000008.safetensors": {
+    "activation": "scarlet_lora_sdxl_v3-000008",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Characters/Yasmin Bleeth_v1_SDXLBase.safetensors": {
+    "activation": "Yasmin Bleeth_v1_SDXLBase",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Detailers/add-detail-xl.safetensors": {
+    "activation": "add-detail-xl",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Detailers/aidma-Image Upgrader-v0.1.safetensors": {
+    "activation": "aidma-Image Upgrader-v0.1",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Detailers/aidmaImageUpgraderSDXL-v0.3.safetensors": {
+    "activation": "aidmaImageUpgraderSDXL-v0.3",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Detailers/cfg_scale_boost.safetensors": {
+    "activation": "cfg_scale_boost",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Detailers/detailed_notrigger.safetensors": {
+    "activation": "detailed_notrigger",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Detailers/EnvyZoomSliderXL01.safetensors": {
+    "activation": "EnvyZoomSliderXL01",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Detailers/MJ52.safetensors": {
+    "activation": "MJ52",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Detailers/MJ52_v2.0.safetensors": {
+    "activation": "MJ52_v2.0",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Detailers/sdxl_enhance.safetensors": {
+    "activation": "sdxl_enhance",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Detailers/skin texture style v4.safetensors": {
+    "activation": "skin texture style v4",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Detailers/Super_Eye_Detailer_By_Stable_Yogi_SDPD0 (1).safetensors": {
+    "activation": "Super_Eye_Detailer_By_Stable_Yogi_SDPD0 (1)",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Detailers/xl_more_art-full_v1.safetensors": {
+    "activation": "xl_more_art-full_v1",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/1990sAnalogStyle.safetensors": {
+    "activation": "1990sAnalogStyle",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/2020s_Sci-Fi_Movie.safetensors": {
+    "activation": "2020s_Sci-Fi_Movie",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/80sFantasyMovieSDXL2.safetensors": {
+    "activation": "80sFantasyMovieSDXL2",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/abysues.safetensors": {
+    "activation": "abysues",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/aesthetic_anime_v1s.safetensors": {
+    "activation": "aesthetic_anime_v1s",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/ClassipeintXL2.1.safetensors": {
+    "activation": "ClassipeintXL2.1",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/Concrete_Style-000010.safetensors": {
+    "activation": "Concrete_Style-000010",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/DnD_Darkest_Fantasy_Party.safetensors": {
+    "activation": "DnD_Darkest_Fantasy_Party",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/DnD_Grainyboyz V2 SDXL Lora.safetensors": {
+    "activation": "DnD_Grainyboyz V2 SDXL Lora",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/DreamARTSDXL.safetensors": {
+    "activation": "DreamARTSDXL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/EpicF4nta5yXL.safetensors": {
+    "activation": "EpicF4nta5yXL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/epicNewPhoto.safetensors": {
+    "activation": "epicNewPhoto",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/Fantasy World XL.safetensors": {
+    "activation": "Fantasy World XL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/GothicDarkFantasyMovieSDXL.safetensors": {
+    "activation": "GothicDarkFantasyMovieSDXL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/hkstyleV5.safetensors": {
+    "activation": "hkstyleV5",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/Illustration_Insanity.safetensors": {
+    "activation": "Illustration_Insanity",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/Invincible (TV series).safetensors": {
+    "activation": "Invincible (TV series)",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/model_SDXL.safetensors": {
+    "activation": "model_SDXL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/Old_Photo_Style.safetensors": {
+    "activation": "Old_Photo_Style",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/ral-3dwvz-sdxl.safetensors": {
+    "activation": "ral-3dwvz-sdxl",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/Realism_Lora_By_Stable_yogi_SDXL8.1.safetensors": {
+    "activation": "Realism_Lora_By_Stable_yogi_SDXL8.1",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/Retro_Art_XL.safetensors": {
+    "activation": "Retro_Art_XL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/RMSDXL_Creative.safetensors": {
+    "activation": "RMSDXL_Creative",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/starcitizen.safetensors": {
+    "activation": "starcitizen",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/subtle-fantasy-xl1.safetensors": {
+    "activation": "subtle-fantasy-xl1",
+    "preferred_weight": 0.7
+  },
+  "SDXL/General Styles/Surreal Harmony.safetensors": {
+    "activation": "Surreal Harmony",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/ArtfulNSFWV2SDXL.safetensors": {
+    "activation": "ArtfulNSFWV2SDXL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/BigBreastsXL.safetensors": {
+    "activation": "BigBreastsXL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/biggunsxl_v11.safetensors": {
+    "activation": "biggunsxl_v11",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/bralessSDXL_v1_00022.safetensors": {
+    "activation": "bralessSDXL_v1_00022",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/Detailed_nipples_xl.safetensors": {
+    "activation": "Detailed_nipples_xl",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/FDXL_BreastFocus.safetensors": {
+    "activation": "FDXL_BreastFocus",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/finenude_v0_2a.safetensors": {
+    "activation": "finenude_v0_2a",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/Full_Body_Tattoo_By_Stable_Yogi_SDXL_10_V1.safetensors": {
+    "activation": "Full_Body_Tattoo_By_Stable_Yogi_SDXL_10_V1",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/GodPussy1 v4.safetensors": {
+    "activation": "GodPussy1 v4",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/MS_Nude_Style_SDXL_V1.safetensors": {
+    "activation": "MS_Nude_Style_SDXL_V1",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/MS_Real_XL_Soapy_Lite.safetensors": {
+    "activation": "MS_Real_XL_Soapy_Lite",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/MS_underboob_Style_SDXL_V2.safetensors": {
+    "activation": "MS_underboob_Style_SDXL_V2",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/nsfw-xl-2.1.safetensors": {
+    "activation": "nsfw-xl-2.1",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/NsfwPovAllInOneLoraSdxl-000009MINI.safetensors": {
+    "activation": "NsfwPovAllInOneLoraSdxl-000009MINI",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/NudeXL.safetensors": {
+    "activation": "NudeXL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/OIL_PORN_relistic_oiled_BEST.safetensors": {
+    "activation": "OIL_PORN_relistic_oiled_BEST",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/sagging-xl-v1.0.safetensors": {
+    "activation": "sagging-xl-v1.0",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/SagTi_r1.safetensors": {
+    "activation": "SagTi_r1",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/SpreadAssSDXL_v04.safetensors": {
+    "activation": "SpreadAssSDXL_v04",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/subtle-candidness2-xl1.safetensors": {
+    "activation": "subtle-candidness2-xl1",
+    "preferred_weight": 0.7
+  },
+  "SDXL/NSFW Styles/Super_Multi_Detailer_By_Stable_Yogi_A1.safetensors": {
+    "activation": "Super_Multi_Detailer_By_Stable_Yogi_A1",
+    "preferred_weight": 0.7
+  },
+  "SDXL/People Styles/araminta-amazing_people.safetensors": {
+    "activation": "araminta-amazing_people",
+    "preferred_weight": 0.7
+  },
+  "SDXL/People Styles/artialien-000008.safetensors": {
+    "activation": "artialien-000008",
+    "preferred_weight": 0.7
+  },
+  "SDXL/People Styles/bsfwxl.safetensors": {
+    "activation": "bsfwxl",
+    "preferred_weight": 0.7
+  },
+  "SDXL/People Styles/Cosine_freck.safetensors": {
+    "activation": "Cosine_freck",
+    "preferred_weight": 0.7
+  },
+  "SDXL/People Styles/Echoes_sdxl.safetensors": {
+    "activation": "Echoes_sdxl",
+    "preferred_weight": 0.7
+  },
+  "SDXL/People Styles/ES_HELLGATE_KNIGHT.safetensors": {
+    "activation": "ES_HELLGATE_KNIGHT",
+    "preferred_weight": 0.7
+  },
+  "SDXL/People Styles/goth-XL.safetensors": {
+    "activation": "goth-XL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/People Styles/Goth_girl_XL-v2.safetensors": {
+    "activation": "Goth_girl_XL-v2",
+    "preferred_weight": 0.7
+  },
+  "SDXL/People Styles/Jessica Rabbit.safetensors": {
+    "activation": "Jessica Rabbit",
+    "preferred_weight": 0.7
+  },
+  "SDXL/People Styles/Pale_Skin_SDXL_v1.0.safetensors": {
+    "activation": "Pale_Skin_SDXL_v1.0",
+    "preferred_weight": 0.7
+  },
+  "SDXL/People Styles/PerfectEyesXL.safetensors": {
+    "activation": "PerfectEyesXL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/People Styles/Sairento Hiru style.safetensors": {
+    "activation": "Sairento Hiru style",
+    "preferred_weight": 0.7
+  },
+  "SDXL/People Styles/skinXL.safetensors": {
+    "activation": "skinXL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/People Styles/tattoogirls-XL.safetensors": {
+    "activation": "tattoogirls-XL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/People Styles/XL_Weapon_Orbstaff_-_By_HailoKnight.safetensors": {
+    "activation": "XL_Weapon_Orbstaff_-_By_HailoKnight",
+    "preferred_weight": 0.7
+  },
+  "SDXL/People Styles/Yoga style xl v1.safetensors": {
+    "activation": "Yoga style xl v1",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/1r1d3sc3nc3XL.safetensors": {
+    "activation": "1r1d3sc3nc3XL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/43stl1ght1ngXLP2.safetensors": {
+    "activation": "43stl1ght1ngXLP2",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/60s_Psychedelic_Movie.safetensors": {
+    "activation": "60s_Psychedelic_Movie",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/70sHorrorMovie2SDXL.safetensors": {
+    "activation": "70sHorrorMovie2SDXL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/AnalogRedmondV2-Analog-AnalogRedmAF.safetensors": {
+    "activation": "AnalogRedmondV2-Analog-AnalogRedmAF",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/Art_Deco_XL.safetensors": {
+    "activation": "Art_Deco_XL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/belomo_kodak_gold.safetensors": {
+    "activation": "belomo_kodak_gold",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/bw-grig.safetensors": {
+    "activation": "bw-grig",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/casting shadow style v3.safetensors": {
+    "activation": "casting shadow style v3",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/Cinematic Film Stock Footage Style.safetensors": {
+    "activation": "Cinematic Film Stock Footage Style",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/CinematicPortraitXL_v3.safetensors": {
+    "activation": "CinematicPortraitXL_v3",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/CinematicStyle_v1.safetensors": {
+    "activation": "CinematicStyle_v1",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/DoubleExposure-000007.safetensors": {
+    "activation": "DoubleExposure-000007",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/EnvyVaporwaveColorSchemeXL01.safetensors": {
+    "activation": "EnvyVaporwaveColorSchemeXL01",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/F8HAUSPRISM.safetensors": {
+    "activation": "F8HAUSPRISM",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/Film Grain style.safetensors": {
+    "activation": "Film Grain style",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/FP100C_frameless.safetensors": {
+    "activation": "FP100C_frameless",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/GeekyXL_Liquid_Marble.safetensors": {
+    "activation": "GeekyXL_Liquid_Marble",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/JuggerCineXL2.safetensors": {
+    "activation": "JuggerCineXL2",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/kb_winenol.safetensors": {
+    "activation": "kb_winenol",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/lith_argenta_BH1W-000004.safetensors": {
+    "activation": "lith_argenta_BH1W-000004",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/lith_mimosa_kiel_grw134_SDXL.safetensors": {
+    "activation": "lith_mimosa_kiel_grw134_SDXL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/Low-key lighting Style.safetensors": {
+    "activation": "Low-key lighting Style",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/Mystic_Vogue_80s__Occult_Pop (1).safetensors": {
+    "activation": "Mystic_Vogue_80s__Occult_Pop (1)",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/SDXL - vanta-black_contrast_V3.0.safetensors": {
+    "activation": "SDXL - vanta-black_contrast_V3.0",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/SDXL_FILM_PHOTOGRAPHY_STYLE_V1.safetensors": {
+    "activation": "SDXL_FILM_PHOTOGRAPHY_STYLE_V1",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/sinfully_stylish_SDXL.safetensors": {
+    "activation": "sinfully_stylish_SDXL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/Split Lighting style v2.safetensors": {
+    "activation": "Split Lighting style v2",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/sss-000009.safetensors": {
+    "activation": "sss-000009",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/subtle-retro-xl1.safetensors": {
+    "activation": "subtle-retro-xl1",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/Vaporwave_SDXL.safetensors": {
+    "activation": "Vaporwave_SDXL",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/wegg.safetensors": {
+    "activation": "wegg",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/Year_3000_Movie_Stills.safetensors": {
+    "activation": "Year_3000_Movie_Stills",
+    "preferred_weight": 0.7
+  },
+  "SDXL/Textures & Looks/zavy-cntrst-sdxl.safetensors": {
+    "activation": "zavy-cntrst-sdxl",
+    "preferred_weight": 0.7
+  }
+}

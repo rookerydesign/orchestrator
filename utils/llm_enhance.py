@@ -1,3 +1,9 @@
+# This file enhances prompts using a local LLM server.
+# It takes a raw prompt and genre, and returns an enhanced version. 
+# The enhancement is done by sending a request to the LLM server with a specific prompt format.
+# The script is designed to be used in a Streamlit application, and is intended for use in a local environment where the LLM server is running.
+# The script also includes a function to randomly load flair addons from a text file.
+
 import re
 import json
 import requests
@@ -8,13 +14,13 @@ import random
 
 
 
-def load_flair_addons(path="wildcards/common/flair_addons.txt"):
-    with open(path, "r", encoding="utf-8") as f:
-        return [line.strip() for line in f if line.strip()]
+# def load_flair_addons(path="wildcards/common/flair_addons.txt"):
+#     with open(path, "r", encoding="utf-8") as f:
+#         return [line.strip() for line in f if line.strip()]
 
 
 
-flair = random.choice(load_flair_addons())
+# flair = random.choice(load_flair_addons())
 
 def enhance_prompt_with_llm(prompt, genre="", retries=3, base_delay=1.5):
     style_guide = {
@@ -31,7 +37,8 @@ def enhance_prompt_with_llm(prompt, genre="", retries=3, base_delay=1.5):
     f"Use evocative, cinematic, and symbolic language to bring out mood, atmosphere, and material detail.\n"
     f"Do NOT write a backstory or inner thoughts. Focus only on visual elements.\n"
     f"Keep the original subject central. Do not list items — describe the full visual composition.\n"
-    f"Do not include any headers like 'Enhanced Prompt', 'Output', or 'Result'. Output only the rewritten text — nothing else.\n\n"
+    f"Do not include any headers like 'Enhanced Prompt', 'Output', or 'Result'. Output only the rewritten text — nothing else.\n"
+    f"Limit the output to 175 words or fewer. Focus on clarity, composition, and visual impact.\n\n"
     f"Original Prompt:\n{prompt}\n\n"
 )
 

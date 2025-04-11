@@ -1,3 +1,8 @@
+# The script processes a database of LORA activations and their usage in images, 
+# comparing them against a list of available LORAs on disk. 
+# It categorizes the LORAs by model family and category, and identifies which ones are unused.
+# The script also includes functions to extract keywords from prompts and to load LORA configurations from a YAML file.
+#  
 import os
 import sys
 import glob

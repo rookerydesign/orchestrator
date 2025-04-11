@@ -1,3 +1,8 @@
+# Orchestrator for SD Forge
+# This script is designed to work with the SD Forge API and provides a user interface for generating images using various models and LORAs.
+# It allows users to select models, LORAs, and other parameters, and then generates images based on the selected configurations.
+# The script uses Streamlit for the user interface and includes various utility functions for managing models, LORAs, and prompts.
+
 import streamlit as st
 import os
 import yaml
@@ -18,6 +23,7 @@ from utils.wildcard_prompts import get_prompt_template
 from utils.wildcard_cleaner import smart_clean_wildcards
 from generator.favorite_combo_selector import load_favorite_combos, pick_random_favorite_combo
 from generator.lora_selector import extract_keywords
+from generator.update_lora_wildcards import main as update_wildcards_main
 
 
 # Load config
@@ -157,7 +163,7 @@ if st.sidebar.button("🔁 Refresh with LLM", use_container_width=True):
         st.warning("Please enter your Claude API key.")
     else:
         wildcard_dir = "wildcards"
-        refresh_genre = genre.lower().strip()
+
         added, err = refresh_wildcards_claude(claude_api_key, refresh_genre, refresh_category, wildcard_dir)
         if err:
             st.error(err)
@@ -168,6 +174,15 @@ if st.sidebar.button("🔁 Refresh with LLM", use_container_width=True):
         else:
             st.info("No new entries added — Claude returned all known items.")
 
+st.sidebar.markdown("### 🔄 LORA Wildcard Sync")
+if st.sidebar.button("🔄 Update LORA Wildcards", use_container_width=True):
+    try:
+        added, removed = update_wildcards_main()
+        st.success(f"✅ Wildcards updated — {added} added, {removed} removed.")
+    except Exception as e:
+        st.error(f"❌ Failed to update wildcards: {e}")
+
+    
 st.sidebar.markdown("---")
 
 # --- Wildcard Cleaner ---
@@ -350,30 +365,18 @@ if reroll_prompt or "initial_lora_pick" not in st.session_state:
         )
 
     elif use_discovery:
+        from generator.discovery_selector import select_discovery_loras
         from utils.lora_audit import get_unused_loras_grouped_by_model_and_category
 
         unused_by_model_cat = get_unused_loras_grouped_by_model_and_category()
-        underused = unused_by_model_cat.get("Flux", {})  # 👈 update this if model is dynamic
+        underused = unused_by_model_cat.get(model_base.capitalize(), {})
 
-        selected_loras = []
-        lora_debug_log = []
 
-        for category, loras in underused.items():
-            if not loras:
-                continue
-            lora_path = random.choice(loras)
-            lora_name = os.path.basename(lora_path)
-            selected_loras.append({
-                "name": lora_name,
-                "weight": 0.6,
-                "activation": lora_name
-            })
-            lora_debug_log.append({
-                "name": lora_name,
-                "weight": 0.6,
-                "category": category,
-                "reasons": ["🧪 Discovery mode - underused LORA"]
-            })
+        print(f"[🧪 APP] Discovery mode: model_base='{model_base}' → found categories: {list(underused.keys())}")
+
+        # This assumes you're passing in the underused LORAs grouped by (base_model, category)
+        selected_loras, lora_debug_log = select_discovery_loras(model_base, unused_by_model_cat)
+
 
     else:
         selected_loras, lora_debug_log = st.session_state.get("initial_lora_pick", ([], []))
@@ -398,6 +401,9 @@ for lora in selected_loras:
         lora_injections.append(f"{act} {activation}")
     else:
         lora_injections.append(act)
+
+    # # Add debug print here
+    # print(f"LORA Debug: full_name='{full_name}', filename='{filename}', activation='{activation}', act='{act}'")
 
 lora_block = ", ".join(lora_injections)
 final_with_loras = f"{resolved_prompt}, {lora_block}".strip(", ")
@@ -539,14 +545,16 @@ with col1:
 
                 for lora in loras_this_round:
                     # ✅ Always prefer the 'name' field for prompt injection
-                    filename = lora.get("name") or os.path.splitext(os.path.basename(lora["file"]))[0]
+                    full_name = lora.get("name", "unknown")  # Prefer 'name' key
+                    filename = os.path.basename(full_name)
                     weight = float(lora.get("weight", 0.6)) or 0.6
+                    activation = lora.get("activation") or filename
 
-                    if lora.get("activation"):
-                        lora_injections.append(f"<lora:{filename}:{weight}> {lora['activation']}")
+                    act = f"<lora:{filename}:{weight}>"
+                    if activation and activation != filename:
+                        lora_injections.append(f"{act} {activation}")
                     else:
-                        lora_injections.append(f"<lora:{filename}:{weight}>")
-
+                        lora_injections.append(act)
                 lora_block = ", ".join(lora_injections)
                 final_prompt = f"{resolved}, {lora_block}".strip(", ")
 

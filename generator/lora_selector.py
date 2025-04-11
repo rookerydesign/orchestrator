@@ -1,9 +1,14 @@
+# This snippet is part of a larger codebase that deals with selecting and categorizing LORA (Low-Rank Adaptation) 
+# models for image generation. The script includes functions to categorize LORAs, extract keywords from prompts, 
+# score LORA relevance based on tags, and select LORAs based on various criteria. 
+# It also includes functions to load configurations and tag data from JSON files, and to handle LORA selection
+# based on user preferences and model types.
 import os
 import random
 import re
 from collections import defaultdict
 import json
-
+import yaml
 
 # Load tag data
 TAGS_PATH = os.path.join(os.path.dirname(__file__), "lora_tags.json")
@@ -107,14 +112,8 @@ def score_lora_relevance(lora, keywords):
 
 
 def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None, use_smart_matching=False, genre=None):
-    DEFAULT_WEIGHTS = {
-        "detailer": 0.9,
-        "artist": 0.8,
-        "general": 0.7,
-        "fx": 0.5,
-        "people": 0.7,
-        "characters": 0.9
-    }
+    DEFAULT_WEIGHTS = CONFIG.get("default_lora_weights", {})
+    fuzz = CONFIG.get("weight_fuzz_range", 0.05)
 
     prompt_keywords = extract_keywords(resolved_prompt) if use_smart_matching and resolved_prompt else set()
     selection_log = []
@@ -132,8 +131,8 @@ def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None,
     detailers = categorized_loras.get((base_model, "detailer"), [])
     if detailers:
         chosen = random.choice(detailers)
-        base_weight = DEFAULT_WEIGHTS.get("Detailers", 0.9)
-        chosen["weight"] = round(random.uniform(base_weight - 0.05, base_weight + 0.1), 2)
+        base_weight = DEFAULT_WEIGHTS.get("detailer", 0.9)
+        chosen["weight"] = round(random.uniform(base_weight - fuzz, base_weight + (fuzz * 2)), 2)
         selected.append(chosen)
 
         selection_log.append({

@@ -22,7 +22,8 @@
     "general": 80,
     "people": 20,
     "fx": 40,
-    "characters": 20
+    "characters": 20,
+    "nsfw": 10
   },
   "categories": {
     "Detailers": "detailer",
@@ -30,6 +31,17 @@
     "Artist Styles": "artist",
     "General Styles": "general",
     "Textures & Looks": "fx",
-    "Characters": "characters"
-  }
+    "Characters": "characters",
+    "NSFW": "nsfw"
+  },
+  "default_lora_weights": {
+    "detailer": 0.9,
+    "artist": 0.8,
+    "general": 0.75,
+    "fx": 0.5,
+    "people": 0.5,
+    "characters": 0.9,  
+    "nsfw": 0.6
+  },  
+  "weight_fuzz_range": 0.05
 }
