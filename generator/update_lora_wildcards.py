@@ -35,6 +35,21 @@ def save_lora_tags(tags):
     with open(LORA_TAGS_PATH, "w", encoding="utf-8") as f:
         json.dump(tags, f, indent=2)
 
+def normalize_tag_keys(tags):
+    """Move any flat entries like preferred_weight into their correct nested keys."""
+    normalized = {}
+    for key, value in tags.items():
+        if not isinstance(value, dict):
+            continue  # skip malformed
+
+        new_key = key.replace("/", "\\\\")  # for normalize_tag_keys()
+
+        # Merge if another tag exists with a similar basename
+        if new_key not in normalized:
+            normalized[new_key] = value
+        else:
+            normalized[new_key].update(value)
+    return normalized
 
 def build_lora_index():
     index = {}
@@ -49,7 +64,7 @@ def build_lora_index():
                 continue  # Skip anything not model/category/lora
             base_model = parts[0]
             category = parts[1]
-            key = rel_path.replace("\\", "/")
+            key = rel_path.replace("/", "\\\\").replace(".safetensors", "")  # for build_lora_index()
             index[key] = {
                 "file": full_path,
                 "name": os.path.splitext(f)[0],
@@ -82,7 +97,7 @@ def write_wildcards(lora_index, tags):
         category = meta["category"].lower().replace(" ", "_")
         activation = tags[rel_path]["activation"]
         weight = tags[rel_path].get("preferred_weight", DEFAULT_WEIGHT)
-        entry = f"<lora:{activation}:{weight}>"
+        entry = activation  # Store just the name, weight will be added dynamically later
         key = (model, category)
         groups.setdefault(key, []).append(entry)
 
@@ -116,6 +131,7 @@ def write_wildcards(lora_index, tags):
 
 def main():
     tags = load_lora_tags()
+    tags = normalize_tag_keys(tags)
     lora_index = build_lora_index()
 
     if update_tags_with_defaults(lora_index, tags):

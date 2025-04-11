@@ -26,6 +26,7 @@ from generator.lora_selector import extract_keywords
 from generator.update_lora_wildcards import main as update_wildcards_main
 
 
+
 # Load config
 with open("config.yaml", "r") as f:
     config = yaml.safe_load(f)
@@ -133,7 +134,7 @@ st.sidebar.markdown("---")
 
 selection_mode = st.sidebar.radio(
     "🎛️ Selection Mode",
-    ["✨ Favourites", "✍️ Keyword Selection", "🧪 Discovery"],
+    ["✨ Favourites", "✍️ Keyword Selection", "🧪 Discovery", "🧾 Prompt LORAs"],
     index=1,  # default to Keyword
     horizontal=True,
 )
@@ -147,6 +148,7 @@ st.sidebar.caption("""
 use_favs = selection_mode == "✨ Favourites"
 use_smart_matching = selection_mode == "✍️ Keyword Selection"
 use_discovery = selection_mode == "🧪 Discovery"
+use_prompt_loras = selection_mode == "🧾 Prompt LORAs"
 
 st.sidebar.markdown("---")
 # --- Wildcard Refresher ---
@@ -267,7 +269,7 @@ if reroll_prompt and prompt_file:
         base_prompt = f.read()
     base_prompt = base_prompt.replace("{genre}", genre)
 
-    raw_prompt = resolve_prompt(base_prompt, genre)
+    raw_prompt = resolve_prompt(base_prompt, genre, resolve_loras=use_prompt_loras)
 
     if use_gpt:
         enhanced_prompt = enhance_prompt_with_llm(raw_prompt, genre)
@@ -278,8 +280,11 @@ if reroll_prompt and prompt_file:
     resolved_prompt = enhanced_prompt
 
 elif "enhanced_prompt" in st.session_state:
-    resolved_prompt = st.session_state["enhanced_prompt"]
-
+    if use_prompt_loras:
+        # Re-resolve to apply LORA tags
+        resolved_prompt = resolve_prompt(st.session_state["enhanced_prompt"], genre)
+    else:
+        resolved_prompt = st.session_state["enhanced_prompt"]
 
     # Pull from session cache if not rerolling
     enhanced_prompt = st.session_state.get("enhanced_prompt", "")
@@ -341,7 +346,11 @@ with colB:
 
 # Select LORAs + capture debug log
 if reroll_prompt or "initial_lora_pick" not in st.session_state:
-    if use_favs:
+    if use_prompt_loras:
+        selected_loras = []
+        lora_debug_log = [{"name": "Prompt-defined LORAs", "weight": "-", "category": "manual", "reasons": ["🧾 Embedded via prompt using {{lora::...}}"]}]
+    
+    elif use_favs:
         favorite_combos = load_favorite_combos()
         picked = pick_random_favorite_combo(
             favorite_combos,
@@ -371,43 +380,42 @@ if reroll_prompt or "initial_lora_pick" not in st.session_state:
         unused_by_model_cat = get_unused_loras_grouped_by_model_and_category()
         underused = unused_by_model_cat.get(model_base.capitalize(), {})
 
-
         print(f"[🧪 APP] Discovery mode: model_base='{model_base}' → found categories: {list(underused.keys())}")
 
-        # This assumes you're passing in the underused LORAs grouped by (base_model, category)
         selected_loras, lora_debug_log = select_discovery_loras(model_base, unused_by_model_cat)
-
 
     else:
         selected_loras, lora_debug_log = st.session_state.get("initial_lora_pick", ([], []))
 
-    st.session_state["initial_lora_pick"] = (selected_loras, lora_debug_log)
+
 else:
     selected_loras, lora_debug_log = st.session_state["initial_lora_pick"]
 
+if use_prompt_loras:
+    # Just resolve prompt including inline LORA blocks
+    resolved_prompt = resolve_prompt(base_prompt, genre, resolve_loras=True)
+    final_with_loras = resolved_prompt
 
-# 🧩 Build inline LORA activations
-lora_injections = []
+else:
+    # 🧩 Build inline LORA activations as normal
+    lora_injections = []
 
-for lora in selected_loras:
-    # ✅ Use explicit 'name' if it's there — this prevents file-based overrides
-    full_name = lora.get("name", "unknown")
-    filename = os.path.basename(full_name)
-    weight = float(lora.get("weight", 0.6)) or 0.6
-    activation = lora.get("activation") or filename
+    for lora in selected_loras:
+        full_name = lora.get("name", "unknown")
+        filename = os.path.basename(full_name)
+        weight = float(lora.get("weight", 0.6)) or 0.6
+        activation = lora.get("activation") or filename
 
-    act = f"<lora:{filename}:{weight}>"
-    if activation and activation != filename:
-        lora_injections.append(f"{act} {activation}")
-    else:
-        lora_injections.append(act)
+        act = f"<lora:{filename}:{weight}>"
+        if activation and activation != filename:
+            lora_injections.append(f"{act} {activation}")
+        else:
+            lora_injections.append(act)
 
-    # # Add debug print here
-    # print(f"LORA Debug: full_name='{full_name}', filename='{filename}', activation='{activation}', act='{act}'")
+    lora_block = ", ".join(lora_injections)
+    final_with_loras = f"{resolved_prompt}, {lora_block}".strip(", ")
 
-lora_block = ", ".join(lora_injections)
-final_with_loras = f"{resolved_prompt}, {lora_block}".strip(", ")
-
+# 👇 This applies regardless of LORA method
 if reroll_prompt and resolved_prompt:
     st.markdown("### 🧠 Prompt Preview")
     final_prompt = st.text_area("Resolved Prompt", value=final_with_loras, height=150)
@@ -523,29 +531,26 @@ with col1:
 
         base_prompt = base_prompt.replace("{genre}", genre)
 
-        # Resolve new prompt
+        
         with st.spinner(f"🧠 Enhancing {batch_size} prompts..."):
             for i in range(batch_size):
                 if i == 0 and last_prompt:
                     enhanced_prompt = last_prompt
                 else:
-                    raw_prompt = resolve_prompt(base_prompt, genre)
+                    raw_prompt = resolve_prompt(base_prompt, genre, resolve_loras=use_prompt_loras)
                     enhanced_prompt = enhance_prompt_with_llm(raw_prompt, genre) if use_gpt else raw_prompt
 
                 resolved = enhanced_prompt
-    
+
                 # Get new LORAs
                 loras_this_round, _ = lora_selector.select_loras_for_prompt(
                     categorized_loras, model_base, resolved, use_smart_matching, genre=genre
                 )
 
                 # Build LORA string
-                # Build LORA string
                 lora_injections = []
-
                 for lora in loras_this_round:
-                    # ✅ Always prefer the 'name' field for prompt injection
-                    full_name = lora.get("name", "unknown")  # Prefer 'name' key
+                    full_name = lora.get("name", "unknown")
                     filename = os.path.basename(full_name)
                     weight = float(lora.get("weight", 0.6)) or 0.6
                     activation = lora.get("activation") or filename
@@ -555,9 +560,17 @@ with col1:
                         lora_injections.append(f"{act} {activation}")
                     else:
                         lora_injections.append(act)
-                lora_block = ", ".join(lora_injections)
-                final_prompt = f"{resolved}, {lora_block}".strip(", ")
 
+                lora_block = ", ".join(lora_injections)
+
+                # ✅ NEW: Avoid injecting if LORA tags already in prompt
+                if any(tag in resolved for tag in ["<lora:", "{lora::", "{{lora::"]):
+                    print(f"[🔁 Skipping LORA injection on prompt {i+1}]")
+                    final_prompt = resolved
+                else:
+                    final_prompt = f"{resolved}, {lora_block}".strip(", ")
+
+                # Build UI config for each job
                 ui_config = {
                     "model": model_choice,
                     "steps": steps,
