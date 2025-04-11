@@ -1,1 +1,0 @@
-A {genre} ^^common/image_type^^ of ^^{genre}/humanoids^^ who is a ^^{genre}/classes^^, dressed in ^^{genre}/garb^^, who appears to be ^^common/poses^^ in a ^^{genre}/setting^^ scene. The colour theme of the {2$$^^common/shot-type-modifier^^} image is mostly ^^common/other_color_duo^^. 
