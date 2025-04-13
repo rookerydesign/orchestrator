@@ -10,7 +10,7 @@ import json
 from datetime import datetime
 import requests
 import glob
-import random
+import re
 from generator import model_loader, lora_selector
 from generator.wildcard_loader import resolve_prompt
 from generator.model_loader import normalize_model_name
@@ -64,7 +64,7 @@ st.sidebar.header("Prompt Settings")
 st.sidebar.markdown("")
 col1, col2 = st.sidebar.columns(2)
 with col1:
-    use_gpt = st.checkbox("Use GPT Enhancement", value=True, key="use_gpt_logic")
+    use_gpt = st.checkbox("Use GPT Enhancement - You must have LM Studio running", value=False, key="use_gpt_logic")
 with col2:
     # # --- [Moved up] Auto-detect toggle ---
     # use_smart_matching = st.checkbox(
@@ -81,7 +81,7 @@ st.sidebar.markdown("")  # blank space
 # Second row of toggles or controls
 col3, col4 = st.sidebar.columns(2)
 with col3:
-    genre = st.selectbox("🎨 Genre to Prompt for", ["fantasy", "sci-fi", "realism", "horror"])
+    genre = st.selectbox("🎨 Genre to Prompt for", ["fantasy", "sci-fi", "realism", "horror", "characters", "nsfw"])
     
     # --- [Moved up] Super Prompt Template ---
     WILDCARD_BASE = os.path.join(os.path.dirname(__file__), "wildcards")
@@ -156,7 +156,7 @@ st.sidebar.markdown("### 🧠 Wildcard Refresher")
 
 col1, col2 = st.sidebar.columns(2)
 with col1:
-    refresh_genre = st.selectbox("Genre", ["fantasy", "sci-fi", "horror", "realism"], key="refresh_genre")
+    refresh_genre = st.selectbox("Genre", ["fantasy", "sci-fi", "horror", "realism", "characters", "nsfw"], key="refresh_genre")
 with col2:
     refresh_category = st.selectbox("Category", ["classes", "garb", "holding", "humanoids", "setting"], key="refresh_category")
 
@@ -194,7 +194,7 @@ st.sidebar.markdown("### 🧼 Wildcard Cleaner")
 
 col1, col2 = st.sidebar.columns(2)
 with col1:
-    clean_genre = st.selectbox("Genre", ["fantasy", "sci-fi", "horror", "realism"], key="clean_genre")
+    clean_genre = st.selectbox("Genre", ["fantasy", "sci-fi", "horror", "realism", "characters", "nsfw"], key="clean_genre")
 with col2:
     clean_category = st.selectbox(
         "Category", ["classes", "garb", "holding", "humanoids", "setting"], key="clean_category"
@@ -262,36 +262,6 @@ base_prompt = ""
 resolved_prompt = ""
 enhanced_prompt = ""
 
-# Only handle prompt logic if user clicked button
-if reroll_prompt and prompt_file:
-    prompt_path = os.path.join(WILDCARD_BASE, "super_prompts", prompt_file)
-    with open(prompt_path, "r", encoding="utf-8") as f:
-        base_prompt = f.read()
-    base_prompt = base_prompt.replace("{genre}", genre)
-
-    raw_prompt = resolve_prompt(base_prompt, genre, resolve_loras=use_prompt_loras)
-
-    if use_gpt:
-        enhanced_prompt = enhance_prompt_with_llm(raw_prompt, genre)
-    else:
-        enhanced_prompt = raw_prompt
-
-    st.session_state["enhanced_prompt"] = enhanced_prompt
-    resolved_prompt = enhanced_prompt
-
-elif "enhanced_prompt" in st.session_state:
-    if use_prompt_loras:
-        # Re-resolve to apply LORA tags
-        resolved_prompt = resolve_prompt(st.session_state["enhanced_prompt"], genre)
-    else:
-        resolved_prompt = st.session_state["enhanced_prompt"]
-
-    # Pull from session cache if not rerolling
-    enhanced_prompt = st.session_state.get("enhanced_prompt", "")
-    resolved_prompt = enhanced_prompt
-
-categorized_loras = lora_selector.categorize_loras(loras)
-
 
 # Model configuration
 st.markdown("### ⚙️ Model Configuration")
@@ -344,12 +314,78 @@ with colB:
     hires_steps = st.slider("Hi-res Steps", 0, 50, model_defaults.get("hires_steps", 4), 
                         help="0 means use same as base steps")
 
+
+# Only handle prompt logic if user clicked button
+if reroll_prompt and prompt_file:
+    prompt_path = os.path.join(WILDCARD_BASE, "super_prompts", prompt_file)
+    with open(prompt_path, "r", encoding="utf-8") as f:
+        base_prompt = f.read()
+    base_prompt = base_prompt.replace("{genre}", genre)
+    base_prompt = base_prompt.replace("{model_base}", model_base)
+
+    raw_prompt = resolve_prompt(base_prompt, genre, resolve_loras=use_prompt_loras)
+
+    if use_gpt:
+        enhanced_prompt = enhance_prompt_with_llm(raw_prompt, genre)
+    else:
+        enhanced_prompt = raw_prompt
+
+    st.session_state["enhanced_prompt"] = enhanced_prompt
+    resolved_prompt = enhanced_prompt
+
+elif "enhanced_prompt" in st.session_state:
+    if use_prompt_loras:
+        # Re-resolve to apply LORA tags
+        resolved_prompt = resolve_prompt(st.session_state["enhanced_prompt"], genre)
+    else:
+        resolved_prompt = st.session_state["enhanced_prompt"]
+
+    # Pull from session cache if not rerolling
+    enhanced_prompt = st.session_state.get("enhanced_prompt", "")
+    resolved_prompt = enhanced_prompt
+
+categorized_loras = lora_selector.categorize_loras(loras)
+
 # Select LORAs + capture debug log
 if reroll_prompt or "initial_lora_pick" not in st.session_state:
     if use_prompt_loras:
+        from generator.update_lora_wildcards import load_lora_tags
+
+        # Step 1: Resolve the full prompt including LORA tags
+        resolved_prompt = resolve_prompt(base_prompt, genre, resolve_loras=True)
+
+        # Step 2: Parse any <lora:name:weight> tags
+        lora_matches = re.findall(r"<lora:([^:>]+):([\d.]+)>", resolved_prompt)
+
+        # Step 3: Load metadata + categorize LORAs by model + category
+        lora_tags = load_lora_tags()
+        categorized = lora_selector.categorize_loras(loras)
+
+        # Step 4: Filter only LORAs for this model base (e.g., SDXL)
+        all_model_loras = []
+        for (base, _), items in categorized.items():
+            if base == model_base:
+                all_model_loras.extend(items)
+
+        # Step 5: Match prompt LORAs against available ones
         selected_loras = []
-        lora_debug_log = [{"name": "Prompt-defined LORAs", "weight": "-", "category": "manual", "reasons": ["🧾 Embedded via prompt using {{lora::...}}"]}]
-    
+        lora_debug_log = []
+
+        for name, weight_str in lora_matches:
+            for l in all_model_loras:
+                filename = os.path.basename(l["name"])
+                if filename == name:
+                    l["weight"] = float(weight_str)
+                    selected_loras.append(l)
+
+                    lora_debug_log.append({
+                        "name": l["name"],
+                        "weight": weight_str,
+                        "category": "Prompt",
+                        "reasons": ["🧾 Extracted from prompt string"]
+                    })
+                    break
+        
     elif use_favs:
         favorite_combos = load_favorite_combos()
         picked = pick_random_favorite_combo(
@@ -485,7 +521,7 @@ with st.sidebar.expander("📚 LORA List", expanded=False):
 # 👇 Prepare the generation payload
 generation_payload = {
     "prompt": final_prompt,
-    "model": model_choice,
+    "model": model_choice.split("/")[-1],
     "base_model": model_base,
     "loras": [
         {
@@ -509,6 +545,7 @@ generation_payload = {
     "upscaler": "4x-AnimeSharp",
     "batch_size": batch_size,
     "genre": genre,
+    "negative_prompt": config["defaults"].get("negative_prompt", ""),
     "template": prompt_file,
     "use_gpt": use_gpt,
     "smart_matching": use_smart_matching
@@ -530,6 +567,7 @@ with col1:
             base_prompt = f.read()
 
         base_prompt = base_prompt.replace("{genre}", genre)
+        base_prompt = base_prompt.replace("{model_base}", model_base)
 
         
         with st.spinner(f"🧠 Enhancing {batch_size} prompts..."):
@@ -572,7 +610,7 @@ with col1:
 
                 # Build UI config for each job
                 ui_config = {
-                    "model": model_choice,
+                    "model": model_choice.split("/")[-1],
                     "steps": steps,
                     "hires_steps": hires_steps,
                     "cfg_scale": cfg_scale,
@@ -585,6 +623,7 @@ with col1:
                     "upscaler": "4x-AnimeSharp",
                     "width": width,
                     "height": height,
+                    "negative_prompt": config["defaults"].get("negative_prompt", ""),
                     "controlnet": {},
                     "controlnet_extra_1": {},
                     "controlnet_extra_2": {}
@@ -647,6 +686,10 @@ with col2:
             f.write(batch_filename + "\n")
 
     # Button 1: Start Latest
+    st.markdown("---")  # Divider line
+    st.markdown("#### 📂 Send Batches")
+    st.caption(" Forge must be running")
+    
     if st.button("▶️ Start Latest Batch"):
         saved_dir = "saved_batches"
         batch_files = sorted(glob.glob(os.path.join(saved_dir, "batch_*.json")), reverse=True)

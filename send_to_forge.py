@@ -19,7 +19,7 @@ def build_forge_payload(prompt, config):
             # 0–16
             "",  # 0: task ID (set dynamically if needed)
             prompt,  # 1
-            "",  # 2: negative prompt
+            config.get("negative_prompt", ""),  # 2: negative prompt
             [],  # 3: styles
             1,  # 4: batch size
             1,  # 5: n_iter
@@ -36,7 +36,7 @@ def build_forge_payload(prompt, config):
             0,  # 16
 
             # 17–26
-            "Use same checkpoint",  # 17
+            config.get("model", "Use same checkpoint"),  # 17
             ["Use same choices"],  # 18
             "Use same sampler",  # 19 (hires sampler)
             "Use same scheduler",  # 20 (hires scheduler)
@@ -104,7 +104,7 @@ def send_jobs(jobs, output_dir, ui_config, on_job_progress=None, on_batch_progre
 
         prompt = job.get("prompt", "")
         # Clean config: merge only allowed fields
-        allowed_fields = ["sampler", "scheduler", "width", "height", "hires_fix", "denoising_strength", "hr_scale", "upscaler", "sampler", "cfg_scale", "hr_cfg_scale", "steps", "hires_steps"]
+        allowed_fields = ["sampler", "scheduler", "width", "height", "hires_fix", "denoising_strength", "hr_scale", "upscaler", "sampler", "cfg_scale", "hr_cfg_scale", "steps", "hires_steps", "model"]
         config = {key: ui_config.get(key) for key in allowed_fields}
 
         payload = job.get("payload")
