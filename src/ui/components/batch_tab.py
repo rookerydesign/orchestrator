@@ -17,6 +17,8 @@ WILDCARD_BASE = Path(config["paths"]["wildcard_folder"])
 BATCH_DIR = Path("saved_batches")
 BATCH_DIR.mkdir(parents=True, exist_ok=True)
 
+
+
 def simulate_lora_injection(prompt: str) -> str:
     # TODO: Replace with actual LORA selection + tag injection
     return prompt + ", <lora:faux_style:0.65>"
@@ -25,9 +27,9 @@ def build_ui_config():
     return {
         "model": config["defaults"]["model"],
         "steps": config["defaults"]["steps"],
-        "hires_steps": config["defaults"]["hires_steps"],
+        "hires_steps": config["defaults"].get("hires_steps", 4),
         "cfg_scale": config["defaults"]["cfg_scale"],
-        "hr_cfg_scale": config["defaults"]["cfg_scale"],
+        "hr_cfg_scale": config["defaults"].get("hr_cfg_scale", config["defaults"]["cfg_scale"]),
         "sampler": config["defaults"]["sampler"],
         "scheduler": config["defaults"]["scheduler"],
         "hires_fix": config["defaults"]["hires_fix"],
@@ -64,16 +66,39 @@ def save_batch_to_json(jobs):
     return str(out_path)
 
 def render_batch_tab(shared_prompt_state=None):
+    print(f"[DEBUG] Batch tab loaded. shared_prompt_state exists: {shared_prompt_state is not None}")
+    if shared_prompt_state is not None:
+        print(f"[DEBUG] Initial prompt state value in batch_tab: {shared_prompt_state.value}")
+    
     genre = gr.Dropdown(choices=["fantasy", "sci-fi", "realism", "horror", "characters", "nsfw"], label="Genre", value="fantasy")
     batch_size = gr.Slider(1, 50, value=5, step=1, label="Jobs to Generate")
     use_llm = gr.Checkbox(label="✨ Enhance with LLM", value=True)
 
-    base_prompt_display = gr.Textbox(label="📥 Base Prompt", lines=4, interactive=True)
+    base_prompt_display = gr.Textbox(
+        label="📥 Base Prompt",
+        lines=4,
+        interactive=True
+    )
+
+
+    # Keep the existing state change handler for completeness
+    def populate_prompt_state(prompt):
+        print(f"[BATCH TAB] Auto-populating with: {prompt}")
+        return prompt
+
+    if shared_prompt_state:
+        shared_prompt_state.change(
+            fn=populate_prompt_state,
+            inputs=[shared_prompt_state],
+            outputs=[base_prompt_display]
+        )
+
+        # Add a manual check button for debugging
+        check_state_btn = gr.Button("Check State", visible=False)  # Hidden in UI
+        
+
     preview = gr.Textbox(label="🧾 Preview First Job Prompt", lines=6)
     saved_path = gr.Textbox(label="📦 Saved Batch Path")
-    if shared_prompt_state is not None:
-        base_prompt_display.render(shared_prompt_state.value or "")
-
     generate_button = gr.Button("🛠️ Generate & Save Batch")
 
     def generate_and_save(genre, batch_size, use_llm, base_prompt):
@@ -87,9 +112,5 @@ def render_batch_tab(shared_prompt_state=None):
         inputs=[genre, batch_size, use_llm, base_prompt_display],
         outputs=[preview, saved_path]
     )
-
-    # Update display if shared state exists
-    if shared_prompt_state is not None:
-        base_prompt_display.value = shared_prompt_state.value
 
     return [genre, batch_size, use_llm, base_prompt_display]
