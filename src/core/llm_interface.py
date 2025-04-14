@@ -29,8 +29,22 @@ def enhance_prompt_with_llm(prompt, genre="", retries=3, base_delay=1.5):
     )
 
     def strip_llm_headers(text: str) -> str:
-        return re.sub(r"^(Enhanced Prompt|Extended Prompt|Output|Rewritten Prompt)\\s*:\\s*", "", text.strip(), flags=re.IGNORECASE)
+        """
+        Remove unwanted headers or prefixes that local LLMs may prepend
+        to an enhanced prompt, like 'Output:', 'Enhanced Prompt:', etc.
+        """
+        # Trim whitespace and split into lines
+        lines = text.strip().splitlines()
 
+        # Remove any line that looks like a header (first line)
+        if lines and re.match(r"^\s*(Enhanced|Rewritten|Output|Result|Prompt)\s*[:\-]*", lines[0], re.IGNORECASE):
+            lines = lines[1:]
+
+        # Re-join the cleaned lines
+        cleaned = "\n".join(line.strip() for line in lines if line.strip())
+
+        return cleaned
+    
     for attempt in range(1, retries + 1):
         try:
             response = requests.post(

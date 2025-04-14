@@ -1,46 +1,96 @@
-# Orchestrator for SD Forge - LORA Selection Tab
-# This module defines the LORA Lab tab in the Gradio interface.
-# It provides a UI for selecting LORAs based on different strategies (e.g., favorites, keyword match, discovery).
-# This version uses placeholder logic and a shared prompt input to demonstrate data flow between tabs.
+# Orchestrator for SD Forge - LORA Selection Tab (Stable Refactor)
+# Adds robust prompt-sharing, LORA mode logic, and safe debugging.
 
 import gradio as gr
+from src.core.lora_selector import categorize_loras, select_loras_for_prompt
+from src.utils.config_loader import load_config
 
-# This shared state object allows data (e.g., prompt text) to be passed between Gradio tabs.
-shared_prompt = gr.State("")
+# Load config once
+cfg = load_config()
+DEFAULT_GENRE = "fantasy"
+BASE_MODEL = "Flux1DevHyperNF4"
 
-# Main rendering function for the LORA tab.
-# Called from layout.py to render the contents of the "LORA Lab" tab.
+def render_lora_tab(shared_prompt_state=None, available_loras=None):
+    tab_switch = gr.Textbox(visible=False)  # Hidden field to trigger state refresh
 
-def render_lora_tab(shared_prompt_state=None):
-
-    def simulate_lora_selection(prompt, mode):
-        # This function simulates LORA selection based on a given prompt and selection mode.
-        # In the full app, this will be replaced with actual logic from lora_selector.py.
-        return f"Selected LORAs for mode '{mode}' and prompt: {prompt[:60]}..."
-
-    # Input fields
     with gr.Row():
         prompt_input = gr.Textbox(
             label="📥 Prompt (from previous tab)",
             lines=3,
             interactive=True,
-            info="Paste a prompt here or wait for shared state to update."
+            placeholder="Prompt will auto-load when you open this tab."
         )
-        if shared_prompt_state is not None:
-            prompt_input.change(fn=lambda x: x, inputs=[shared_prompt_state], outputs=[prompt_input])
+
         mode = gr.Radio(
-            choices=["✨ Favorites", "✍️ Keyword", "🧪 Discovery"],
+            choices=["\u2728 Favorites", "✍️ Keyword", "🧪 Discovery", "📜 Prompt LORAs"],
             value="✍️ Keyword",
             label="LORA Selection Mode"
         )
 
-    # Trigger button and result display
     with gr.Row():
-        simulate_btn = gr.Button("🔍 Simulate LORA Selection")
-        result = gr.Textbox(label="LORA Output", lines=4)
+        run_selector_btn = gr.Button("🔍 Run LORA Selector")
+        output_lora_preview = gr.Textbox(label="Selected LORAs (Log)", lines=10)
 
-    # Bind the button click to the simulated function
-    simulate_btn.click(fn=simulate_lora_selection, inputs=[prompt_input, mode], outputs=result)
+    # --- Shared State Sync (called on tab switch) ---
+    def populate_prompt_on_tab_change(_tab_trigger, shared_prompt):
+        print(f"[LORA TAB] Loaded prompt from shared state: {shared_prompt}")
+        return shared_prompt or ""
 
-    # Return references to inputs or states if needed by layout
-    return [prompt_input, shared_prompt]
+    # --- Real Logic for Smart Matching ---
+    def simulate_lora_selection(prompt, mode, available_loras):
+        if not prompt.strip():
+            return "⚠️ No prompt provided."
+
+        if mode == "✍️ Keyword":
+            all_loras = available_loras if available_loras else []
+
+            if not all_loras:
+                return "⚠️ No LORAs loaded (available_loras is empty or missing)."
+
+            try:
+                categorized = categorize_loras(all_loras)
+            except Exception as e:
+                return f"[ERROR] Failed to categorize LORAs: {str(e)}"
+
+            
+            selected, log = select_loras_for_prompt(
+                categorized_loras=categorized,
+                base_model=BASE_MODEL,
+                resolved_prompt=prompt,
+                use_smart_matching=True,
+                genre=DEFAULT_GENRE
+            )
+            lines = []
+            for lora in log:
+                lines.append(f"• {lora['name']} @ {lora['weight']} ({lora['category']})")
+                if "reasons" in lora:
+                    for reason in lora["reasons"]:
+                        lines.append(f"   ↳ {reason}")
+            return "\n".join(lines) or "❌ No matches found."
+
+        elif mode == "📜 Prompt LORAs":
+            return "[Prompt LORA mode] Extracts embedded tags from prompt — coming soon."
+
+        elif mode == "✨ Favorites":
+            return "[Favorites mode] Uses preset combos — not wired up yet."
+
+        elif mode == "🧪 Discovery":
+            return "[Discovery mode] Underused LORA boost — coming soon."
+
+        return f"⚠️ Mode '{mode}' not implemented."
+
+    # Hook up trigger and actions
+    run_selector_btn.click(
+        fn=simulate_lora_selection,
+        inputs=[prompt_input, mode, available_loras],
+        outputs=[output_lora_preview]
+    )
+
+
+    tab_switch.change(
+        fn=populate_prompt_on_tab_change,
+        inputs=[tab_switch, shared_prompt_state],
+        outputs=[prompt_input]
+    )
+
+    return [tab_switch, prompt_input, mode, output_lora_preview]

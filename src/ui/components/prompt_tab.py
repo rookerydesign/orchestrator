@@ -23,7 +23,7 @@ def render_prompt_tab(shared_prompt_state=None):
         else:
             print("[DEBUG] WARNING: shared_prompt_state is None, cannot update!")
             
-        return final_prompt, final_prompt
+        return final_prompt
     
     template = gr.Textbox(
         label="Prompt Template",

@@ -4,11 +4,25 @@ from src.ui.components.lora_tab import render_lora_tab
 from src.ui.components.batch_tab import render_batch_tab
 from src.ui.components.dispatch_tab import render_dispatch_tab
 from src.ui.components.tools_tab import render_tools_tab
+from src.utils.raw_loader import load_models_and_loras
+from src.utils.config_loader import load_config
+
+
 
 def build_ui():
+    
+    cfg = load_config()
+    models_loaded, _, loras_loaded = load_models_and_loras(
+        cfg["paths"]["model_folder"],
+        cfg["paths"]["lora_folder"]
+    )
+    
     with gr.Blocks(title="Orchestrator Gradio UI") as app:
         prompt_state = gr.State("")
         print("[DEBUG] Initializing shared prompt state in layout.py")
+        
+        # Create state to share LORAs if needed later
+        available_loras_state = gr.State(loras_loaded)
         
         # Create a numeric state to track active tab index
         active_tab = gr.State(value=0)
@@ -18,14 +32,15 @@ def build_ui():
                 prompt_tab_components = render_prompt_tab(shared_prompt_state=prompt_state)
                 
             with gr.TabItem("🎨 LORA Lab"):
-                lora_components = render_lora_tab(prompt_state)
+                lora_components = render_lora_tab(shared_prompt_state=prompt_state, available_loras=available_loras_state)
                 
             with gr.TabItem("📦 Batch Builder"):
                 batch_components = render_batch_tab(shared_prompt_state=prompt_state)
                 batch_prompt_display = batch_components[3]  # The base_prompt_display component
                 
             with gr.TabItem("🚀 Dispatch Center"):
-                render_dispatch_tab()
+                lora_tab_trigger = lora_components[0]  # This is the hidden tab_switch input
+                lora_prompt_display = lora_components[1]  # This is the visible prompt textbox
                 
             with gr.TabItem("🛠️ Tools"):
                 render_tools_tab()
@@ -45,18 +60,29 @@ def build_ui():
         # Add an event that fires when the active tab changes
         def sync_to_batch_tab(index):
             print(f"[DEBUG] Tab index changed to: {index}")
-            # If we're switching to the Batch Builder tab (index 2)
-            if index == 2:
+            updates = []
+
+            if index == 1:  # 🎨 LORA Lab
+                print(f"[DEBUG] Syncing prompt to LORA tab: {prompt_state.value}")
+                updates.append(prompt_state.value)
+            else:
+                updates.append(gr.skip())
+
+            if index == 2:  # 📦 Batch Builder
                 print(f"[DEBUG] Syncing prompt to batch tab: {prompt_state.value}")
-                return prompt_state.value
-            return gr.skip()
+                updates.append(prompt_state.value)
+            else:
+                updates.append(gr.skip())
+
+            return updates
             
         active_tab.change(
             fn=sync_to_batch_tab,
             inputs=[active_tab],
-            outputs=[batch_prompt_display]
+            outputs=[lora_tab_trigger, batch_prompt_display]
         )
-        
+    print(f"[DEBUG] Available LORAs loaded into state: {len(loras_loaded)} found.")
+  
     return app
 
 if __name__ == "__main__":
