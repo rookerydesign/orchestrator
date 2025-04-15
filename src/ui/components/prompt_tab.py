@@ -109,8 +109,8 @@ def render_prompt_tab(shared_prompt_state=None, selected_model_state=None, avail
     )
     use_llm = gr.Checkbox(label="Enhance Prompt with LLM", value=False)
     lora_mode = gr.Radio(
-        choices=["Favorites", "Keyword", "Discovery", "Prompt LORAs"],
-        value="Keyword",
+        choices=["✨ Favorites", "✍️ Keyword", "🧪 Discovery", "📜 Prompt LORAs"],
+        value="✍️ Keyword",
         label="LORA Selection Mode"
     )
 

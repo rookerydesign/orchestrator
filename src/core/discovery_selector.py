@@ -6,14 +6,20 @@ import random
 from collections import defaultdict
 import json
 import os
+from src.utils.config_loader import load_config
+
 
 # Load tag data
-TAGS_PATH = os.path.join(os.path.dirname(__file__), "lora_tags.json")
+config = load_config()
+TAGS_PATH = config["paths"]["lora_tags"]
+
 with open(TAGS_PATH, "r") as f:
     TAGS = json.load(f)
 
 # Load config
-CONFIG_PATH = os.path.join(os.path.dirname(__file__), "lora_config.json")
+config = load_config()
+CONFIG_PATH = config["paths"]["lora_selector_config"]
+
 with open(CONFIG_PATH, "r") as f:
     CONFIG = json.load(f)
 
@@ -21,14 +27,28 @@ DEFAULT_WEIGHTS = CONFIG.get("default_lora_weights", {})
 FUZZ = CONFIG.get("weight_fuzz_range", 0.05)
 
 
+# def select_discovery_loras(model_base, categorized_loras):
+#     print("Discovery stub reached")
+#     return [], []
+
 def select_discovery_loras(model_base, categorized_loras):
+    print(f"[DISCOVERY] Entered Discovery mode selector.")
+    print(f"[DISCOVERY] model_base: {model_base}")
+    print(f"[DISCOVERY] categorized_loras keys: {list(categorized_loras.keys())}")
     selected = []
     debug_log = []
     category_usage_count = defaultdict(int)
 
     
-    model_key = model_base.capitalize()  # Match the capitalization from get_unused_loras_grouped_by_model_and_category
+    model_key = model_base.lower().strip()
+ # Match the capitalization from get_unused_loras_grouped_by_model_and_category
+    # 🔍 Log what's about to be used
+    print(f"[DISCOVERY] Using model key: '{model_key}'")
+    print(f"[DISCOVERY] Available models in unused pool: {list(categorized_loras.keys())}")
+
     underused = categorized_loras.get(model_key, {})
+    print(f"[DISCOVERY] Found {sum(len(v) for v in underused.values())} unused LORAs across {len(underused)} categories.")
+    print(f"[DISCOVERY] Categories under model '{model_key}': {list(underused.keys())}")
 
     if not underused:
         print(f"[DISCOVERY] No unused LORAs found for model '{model_key}', available models: {list(categorized_loras.keys())}")
@@ -46,6 +66,9 @@ def select_discovery_loras(model_base, categorized_loras):
         chosen_path = random.choice(detailers)
         filename = os.path.basename(chosen_path)
         base_weight = DEFAULT_WEIGHTS.get("detailer", 0.9)
+        if DEFAULT_WEIGHTS.get("detailer") is None:
+            print("[WARNING] 'detailer' weight missing in lora_config.json — using fallback")
+            DEFAULT_WEIGHTS["detailer"] = 0.9
         chosen_weight = round(random.uniform(base_weight - FUZZ, base_weight + FUZZ * 2), 2)
         selected.append({
             "name": filename,

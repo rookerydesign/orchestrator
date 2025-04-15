@@ -80,14 +80,18 @@ def get_unused_loras_grouped_by_model_and_category():
             return ""
         # Remove common prefixes/suffixes, standardize separators
         name = name.lower().strip()
-        name = re.sub(r'[_\-\s]+', '_', name)  # Standardize separators
-        name = re.sub(r'_+flux.*?(_lora.*?)?$', '', name)  # Remove model suffixes
-        return name
+        name = re.sub(r'[^\w]+', '_', name)  # unify all separators
+        name = name.replace('_lora', '')
+        name = re.sub(r'flux.*$', '', name)  # strip suffixes like 'flux_v1'
+        return name.strip('_')
     
     # Normalize all used IDs
     normalized_used_ids = {normalize_for_matching(id) for id in used_ids}
     
-    all_loras = load_models_and_loras(LORA_DIR)
+
+    # Change this line to unpack the tuple
+    _, _, all_loras = load_models_and_loras(model_dir="unused", lora_dir=LORA_DIR)
+    print(f"[DEBUG] Sample entry in all_loras: {all_loras[0] if all_loras else 'EMPTY'}")
     grouped = {}
 
     for lora in all_loras:
@@ -101,11 +105,16 @@ def get_unused_loras_grouped_by_model_and_category():
         category = config["categories"].get(folder_category, "unknown")
 
         # Get potential match identifiers
-        activation = (lora.get("activation") or "").lower()
+        if not isinstance(lora, dict):
+            print(f"[ERROR] Invalid LORA object: type={type(lora)}, value={lora}")
+            continue
         filename = os.path.basename(lora_path)
+        activation = (lora.get("activation") or "").lower()
+        
         
         # Normalize for better matching
         norm_filename = normalize_for_matching(filename)
+        # print(f"[DEBUG] Checking LORA: '{filename}' | Norm: '{norm_filename}' | Activation: '{activation}'")
         norm_activation = normalize_for_matching(activation)
         
         # Also try with common variations
@@ -124,8 +133,9 @@ def get_unused_loras_grouped_by_model_and_category():
             continue  # It's been used
             
         # Only add to unused group if we reach here
-        grouped.setdefault(model_family, {}).setdefault(category, []).append(lora_path)
+        grouped.setdefault(model_family.lower(), {}).setdefault(category.lower(), []).append(lora_path)
 
+    print(f"[AUDIT] Returning type: {type(grouped)} | Sample keys: {list(grouped.keys())[:5]}")
     return grouped
 
 def get_used_lora_activations():

@@ -106,7 +106,7 @@ def score_lora_relevance(lora, keywords):
 
 
 def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None, use_smart_matching=False, genre=None):
-    print(f"[DEBUG] select_loras_for_prompt started — LORAs: {sum(len(v) for v in categorized_loras.values())}, Prompt: {resolved_prompt[:80]}...")
+    # print(f"[DEBUG] select_loras_for_prompt started — LORAs: {sum(len(v) for v in categorized_loras.values())}, Prompt: {resolved_prompt[:80]}...")
     print(f"[DEBUG] Smart matching: {use_smart_matching}, Genre: {genre}")
 
     default_strengths = CONFIG.get("default_lora_weights", {})
@@ -123,9 +123,9 @@ def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None,
             "reasons": ["Missing or mismatched count/weight config"]
         }]
 
-    print(f"[DEBUG] Raw CONFIG keys: {list(CONFIG.keys())}")
-    print(f"[DEBUG] Count choices: {count_choices} (len={len(count_choices)})")
-    print(f"[DEBUG] Count weights: {count_weights} (len={len(count_weights)})")
+    # print(f"[DEBUG] Raw CONFIG keys: {list(CONFIG.keys())}")
+    # print(f"[DEBUG] Count choices: {count_choices} (len={len(count_choices)})")
+    # print(f"[DEBUG] Count weights: {count_weights} (len={len(count_weights)})")
 
     try:
         total_loras = random.choices(count_choices, weights=count_weights)[0]
@@ -177,7 +177,7 @@ def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None,
 
     while remaining > 0 and attempts < max_attempts:
         attempts += 1
-        print(f"[DEBUG] Remaining: {remaining} — picking next category (attempt {attempts})")
+        # print(f"[DEBUG] Remaining: {remaining} — picking next category (attempt {attempts})")
         category = weighted_choice(weighted_categories)
         print(f"[DEBUG] Picked category: {category}")
 
