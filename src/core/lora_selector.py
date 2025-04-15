@@ -1,8 +1,4 @@
-# This snippet is part of a larger codebase that deals with selecting and categorizing LORA (Low-Rank Adaptation) 
-# models for image generation. The script includes functions to categorize LORAs, extract keywords from prompts, 
-# score LORA relevance based on tags, and select LORAs based on various criteria. 
-# It also includes functions to load configurations and tag data from JSON files, and to handle LORA selection
-# based on user preferences and model types.
+# LORA Selector with Cleaned Logic and Debugs
 import os
 import random
 import re
@@ -12,7 +8,6 @@ import time
 import yaml
 from src.utils.config_loader import load_config
 from pathlib import Path
-import json
 
 cfg = load_config()
 TAGS_PATH = Path(cfg["paths"]["lora_tags"])
@@ -36,7 +31,6 @@ def categorize_loras(lora_list):
         categorized[(base_model, category)].append(lora)
     return categorized
 
-
 def weighted_choice(choices):
     total = sum(weight for _, weight in choices)
     r = random.uniform(0, total)
@@ -46,7 +40,7 @@ def weighted_choice(choices):
             return choice
         upto += weight
     return choices[-1][0]  # fallback
- 
+
 TAG_STOP_WORDS = set([
         "sfw", "perform", "tail", "style", "drawing", "character", "pose", 
         "art", "design", "form", "sketch", "painting", "digital", "details"
@@ -93,8 +87,6 @@ def extract_keywords(text):
     keywords = {word for word in words if word and word not in stop_words}
     return keywords
 
-
-
 def score_lora_relevance(lora, keywords):
     name = lora["name"].replace("/", "\\")  # tag keys use backslashes
     tag_entry = TAGS.get(name)
@@ -113,38 +105,53 @@ def score_lora_relevance(lora, keywords):
     return len(matched), matched
 
 
-
 def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None, use_smart_matching=False, genre=None):
-    DEFAULT_WEIGHTS = CONFIG.get("default_lora_weights", {})
+    print(f"[DEBUG] select_loras_for_prompt started — LORAs: {sum(len(v) for v in categorized_loras.values())}, Prompt: {resolved_prompt[:80]}...")
+    print(f"[DEBUG] Smart matching: {use_smart_matching}, Genre: {genre}")
+
+    default_strengths = CONFIG.get("default_lora_weights", {})
     fuzz = CONFIG.get("weight_fuzz_range", 0.05)
+    count_choices = CONFIG.get("preferred_lora_count", [2, 3, 4])
+    count_weights = CONFIG.get("preferred_lora_weights", [1, 1, 1])
+
+    if not count_choices or not count_weights or len(count_choices) != len(count_weights):
+        print("[ERROR] Invalid preferred_lora_count or preferred_lora_weights in config")
+        return [], [{
+            "name": "[Config Error]",
+            "weight": "-",
+            "category": "config",
+            "reasons": ["Missing or mismatched count/weight config"]
+        }]
+
+    print(f"[DEBUG] Raw CONFIG keys: {list(CONFIG.keys())}")
+    print(f"[DEBUG] Count choices: {count_choices} (len={len(count_choices)})")
+    print(f"[DEBUG] Count weights: {count_weights} (len={len(count_weights)})")
+
+    try:
+        total_loras = random.choices(count_choices, weights=count_weights)[0]
+        print(f"[DEBUG] Will select {total_loras} LORAs total")
+    except Exception as e:
+        print(f"[ERROR] Failed during random.choices: {e}")
+        total_loras = 3
 
     prompt_keywords = extract_keywords(resolved_prompt) if use_smart_matching and resolved_prompt else set()
     selection_log = []
-
     category_usage_count = defaultdict(int)
-
-    # Decide total number of LORAs
-    counts = CONFIG["preferred_lora_count"]
-    weights = CONFIG["preferred_lora_weights"]
-    total_loras = random.choices(counts, weights=weights)[0]
-
     selected = []
 
-    # ✅ Always include one detailer
+    # Always include one detailer
     detailers = categorized_loras.get((base_model, "detailer"), [])
     if detailers:
         chosen = random.choice(detailers)
-        base_weight = DEFAULT_WEIGHTS.get("detailer", 0.9)
-        chosen["weight"] = round(random.uniform(base_weight - fuzz, base_weight + (fuzz * 2)), 2)
+        base_weight = default_strengths.get("detailer", 0.9)
+        chosen["weight"] = round(random.uniform(base_weight - fuzz, base_weight + fuzz), 2)
         selected.append(chosen)
-
         selection_log.append({
             "name": chosen["name"],
             "weight": chosen["weight"],
             "category": "Detailers",
             "reasons": ["Always included"]
         })
-
         remaining = total_loras - 1
     else:
         remaining = total_loras
@@ -152,32 +159,35 @@ def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None,
     if remaining <= 0:
         return selected, selection_log
 
+    # Build weighted category list
+    category_biases = CONFIG.get("weights", {})
     weighted_categories = []
-
-    for cat, wt in CONFIG["weights"].items():
-        if cat.lower() == "detailer":
-            continue  # already handled
-
-        # Bias artist/general when NOT realism
+    for cat, wt in category_biases.items():
+        if cat == "detailer":
+            continue
         if genre != "realism" and cat in ("artist", "general"):
-            wt *= 1.4  # or whatever bias feels right
-
-        # Bias characters/fx when realism
+            wt *= 1.4
         elif genre == "realism" and cat in ("characters", "fx"):
             wt *= 1.3
-
         weighted_categories.append((cat, wt))
 
     recent_character_used = False
+    attempts = 0
+    max_attempts = 100
 
-    while remaining > 0:
+    while remaining > 0 and attempts < max_attempts:
+        attempts += 1
+        print(f"[DEBUG] Remaining: {remaining} — picking next category (attempt {attempts})")
         category = weighted_choice(weighted_categories)
+        print(f"[DEBUG] Picked category: {category}")
 
-        if category.lower() == "characters" and recent_character_used:
+        if category == "characters" and recent_character_used:
+            print("[DEBUG] Skipping characters due to recent use")
             continue
 
         lora_pool = categorized_loras.get((base_model, category), [])
         if not lora_pool:
+            print(f"[DEBUG] No LORAs found for category: {category}")
             continue
 
         reasons = []
@@ -186,57 +196,35 @@ def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None,
         if prompt_keywords and use_smart_matching:
             print(f"[DEBUG] Matching against {len(lora_pool)} LORAs in category: {category}")
             start_time = time.time()
-
-            # TEMP: limit number of loras to avoid long loops during dev
-            test_pool = lora_pool[:50]  # Just first 50 to test performance
-            scored = [(l, *score_lora_relevance(l, prompt_keywords)) for l in test_pool]
-
+            scored = [(l, *score_lora_relevance(l, prompt_keywords)) for l in lora_pool]
             print(f"[DEBUG] Scoring took: {time.time() - start_time:.2f}s")
-
             scored.sort(key=lambda x: -x[1])
-            
             top_scored = [l for l, score, _ in scored if score > 0]
 
             if top_scored:
                 candidate = random.choice(top_scored[:5])
                 _, _, matched_keywords = next((x for x in scored if x[0] == candidate), (None, 0, []))
-                reasons.append(f"Matched tags: {', '.join(matched_keywords)}" if matched_keywords else "Matched tags: None")
-
-        # 🔍 Boost cinematic-style LORAs for realism
-        if genre == "realism" and candidate:
-            cinematic_keywords = {
-                "cinematic", "film", "movie", "lighting", "bokeh", "natural light", "photographic", "lens", "vintage", 
-                "cinema", "realistic", "photo", "photorealistic", "realism", "documentary", "cinematography",
-                "analog", "film grain", "depth of field", "analogue", "grainy", "filmic", "shadows"
-                }
-            name_key = candidate["name"].replace("/", "\\")
-            tag_entry = TAGS.get(name_key)
-            if tag_entry:
-                tag_values = []
-                for group in ("style", "tone"):
-                    tag_values.extend(tag_entry.get(group, []))
-                tag_set = set(t.lower() for t in tag_values)
-                if tag_set & cinematic_keywords:
-                    reasons.append("🎥 Boosted for realism (cinematic tag match)")
+                reasons.append(f"Matched tags: {', '.join(matched_keywords)}")
 
         if not candidate:
             candidate = random.choice(lora_pool)
             reasons.append("Random fallback (no match or smart matching disabled)")
 
         if candidate in selected:
+            print("[DEBUG] Duplicate candidate — retrying")
             continue
 
-        base_weight = DEFAULT_WEIGHTS.get(category, 0.6)
+        base_weight = default_strengths.get(category, 0.6)
         usage_count = category_usage_count[category]
-
-        # Reduce influence if reused category
         if usage_count > 0:
-            base_weight = max(base_weight - (0.1 * usage_count), 0.3)  # Don’t drop too low
+            base_weight = max(base_weight - (0.1 * usage_count), 0.3)
 
-        weight = round(random.uniform(base_weight - 0.05, base_weight + 0.05), 2)
+        weight = round(random.uniform(base_weight - fuzz, base_weight + fuzz), 2)
         candidate["weight"] = weight
         selected.append(candidate)
         category_usage_count[category] += 1
+        remaining -= 1
+
         selection_log.append({
             "name": candidate["name"],
             "weight": weight,
@@ -244,8 +232,10 @@ def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None,
             "reasons": reasons
         })
 
-        remaining -= 1
-        if category.lower() == "characters":
+        if category == "characters":
             recent_character_used = True
+
+    if attempts >= max_attempts:
+        print("[WARNING] Exited LORA selection loop after max attempts")
 
     return selected, selection_log

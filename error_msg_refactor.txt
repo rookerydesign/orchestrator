@@ -1,0 +1,444 @@
+C:\Users\soma5\anaconda3\Lib\site-packages\gradio\utils.py:1024: UserWarning: Expected 3 arguments for function <function render_lora_tab.<locals>.simulate_lora_selection at 0x0000027CDA01CA40>, received 2.
+  warnings.warn(
+C:\Users\soma5\anaconda3\Lib\site-packages\gradio\utils.py:1028: UserWarning: Expected at least 3 arguments for function <function render_lora_tab.<locals>.simulate_lora_selection at 0x0000027CDA01CA40>, received 2.
+  warnings.warn(
+[DEBUG] Batch tab loaded. shared_prompt_state exists: True
+[DEBUG] Initial prompt state value in batch_tab:
+[DEBUG] Available LORAs loaded into state: 616 found.
+* Running on local URL:  http://127.0.0.1:7860
+ERROR:    Exception in ASGI application
+UnicodeEncodeError: 'utf-8' codec can't encode characters in position 0-1: surrogates not allowed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\route_utils.py", line 829, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\fastapi\routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\anyio\_backends\_asyncio.py", line 2134, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\anyio\_backends\_asyncio.py", line 851, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 636, in main
+    resp = templates.TemplateResponse(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\templating.py", line 209, in TemplateResponse
+    return _TemplateResponse(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\templating.py", line 40, in __init__
+    content = template.render(context)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\jinja2\environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\jinja2\environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\templates\frontend\index.html", line 86, in top-level template code
+    <script>window.gradio_config = {{ config | toorjson }};</script><script>window.gradio_api_info = {{ gradio_api_info | toorjson }};</script>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 176, in toorjson
+    ORJSONResponse._render_str(value)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 171, in _render_str
+    return ORJSONResponse._render(content).decode("utf-8")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 160, in _render
+    return orjson.dumps(
+           ^^^^^^^^^^^^^
+TypeError: str is not valid UTF-8: surrogates not allowed
+ERROR:    Exception in ASGI application
+UnicodeEncodeError: 'utf-8' codec can't encode characters in position 0-1: surrogates not allowed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\route_utils.py", line 829, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\fastapi\routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\anyio\_backends\_asyncio.py", line 2134, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\anyio\_backends\_asyncio.py", line 851, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 636, in main
+    resp = templates.TemplateResponse(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\templating.py", line 209, in TemplateResponse
+    return _TemplateResponse(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\templating.py", line 40, in __init__
+    content = template.render(context)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\jinja2\environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\jinja2\environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\templates\frontend\index.html", line 86, in top-level template code
+    <script>window.gradio_config = {{ config | toorjson }};</script><script>window.gradio_api_info = {{ gradio_api_info | toorjson }};</script>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 176, in toorjson
+    ORJSONResponse._render_str(value)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 171, in _render_str
+    return ORJSONResponse._render(content).decode("utf-8")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 160, in _render
+    return orjson.dumps(
+           ^^^^^^^^^^^^^
+TypeError: str is not valid UTF-8: surrogates not allowed
+ERROR:    Exception in ASGI application
+UnicodeEncodeError: 'utf-8' codec can't encode characters in position 0-1: surrogates not allowed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\route_utils.py", line 829, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\fastapi\routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\anyio\_backends\_asyncio.py", line 2134, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\anyio\_backends\_asyncio.py", line 851, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 636, in main
+    resp = templates.TemplateResponse(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\templating.py", line 209, in TemplateResponse
+    return _TemplateResponse(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\templating.py", line 40, in __init__
+    content = template.render(context)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\jinja2\environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\jinja2\environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\templates\frontend\index.html", line 86, in top-level template code
+    <script>window.gradio_config = {{ config | toorjson }};</script><script>window.gradio_api_info = {{ gradio_api_info | toorjson }};</script>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 176, in toorjson
+    ORJSONResponse._render_str(value)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 171, in _render_str
+    return ORJSONResponse._render(content).decode("utf-8")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 160, in _render
+    return orjson.dumps(
+           ^^^^^^^^^^^^^
+TypeError: str is not valid UTF-8: surrogates not allowed
+ERROR:    Exception in ASGI application
+UnicodeEncodeError: 'utf-8' codec can't encode characters in position 0-1: surrogates not allowed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\route_utils.py", line 829, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\fastapi\routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\anyio\_backends\_asyncio.py", line 2134, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\anyio\_backends\_asyncio.py", line 851, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 636, in main
+    resp = templates.TemplateResponse(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\templating.py", line 209, in TemplateResponse
+    return _TemplateResponse(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\templating.py", line 40, in __init__
+    content = template.render(context)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\jinja2\environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\jinja2\environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\templates\frontend\index.html", line 86, in top-level template code
+    <script>window.gradio_config = {{ config | toorjson }};</script><script>window.gradio_api_info = {{ gradio_api_info | toorjson }};</script>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 176, in toorjson
+    ORJSONResponse._render_str(value)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 171, in _render_str
+    return ORJSONResponse._render(content).decode("utf-8")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 160, in _render
+    return orjson.dumps(
+           ^^^^^^^^^^^^^
+TypeError: str is not valid UTF-8: surrogates not allowed
+ERROR:    Exception in ASGI application
+UnicodeEncodeError: 'utf-8' codec can't encode characters in position 0-1: surrogates not allowed
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\uvicorn\protocols\http\httptools_impl.py", line 409, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\uvicorn\middleware\proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\fastapi\applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\middleware\errors.py", line 187, in __call__
+    raise exc
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\middleware\errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\route_utils.py", line 829, in __call__
+    await self.app(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\middleware\exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\routing.py", line 73, in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\fastapi\routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\fastapi\routing.py", line 214, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\concurrency.py", line 37, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\anyio\to_thread.py", line 56, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\anyio\_backends\_asyncio.py", line 2134, in run_sync_in_worker_thread
+    return await future
+           ^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\anyio\_backends\_asyncio.py", line 851, in run
+    result = context.run(func, *args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 636, in main
+    resp = templates.TemplateResponse(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\templating.py", line 209, in TemplateResponse
+    return _TemplateResponse(
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\starlette\templating.py", line 40, in __init__
+    content = template.render(context)
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\jinja2\environment.py", line 1304, in render
+    self.environment.handle_exception()
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\jinja2\environment.py", line 939, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\templates\frontend\index.html", line 86, in top-level template code
+    <script>window.gradio_config = {{ config | toorjson }};</script><script>window.gradio_api_info = {{ gradio_api_info | toorjson }};</script>
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 176, in toorjson
+    ORJSONResponse._render_str(value)
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 171, in _render_str
+    return ORJSONResponse._render(content).decode("utf-8")
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\routes.py", line 160, in _render
+    return orjson.dumps(
+           ^^^^^^^^^^^^^
+TypeError: str is not valid UTF-8: surrogates not allowed
+Traceback (most recent call last):
+  File "f:\05_Apps\orchestrator\app.py", line 9, in <module>
+    app.launch()
+  File "C:\Users\soma5\anaconda3\Lib\site-packages\gradio\blocks.py", line 2747, in launch
+    raise ValueError(
+ValueError: When localhost is not accessible, a shareable link must be created. Please set share=True or check your proxy settings to allow access to localhost.
