@@ -6,8 +6,10 @@ from collections import defaultdict
 import json
 import time
 import yaml
+from src.utils.nomalize_loras import normalize_lora_name
 from src.utils.config_loader import load_config
 from pathlib import Path
+
 
 cfg = load_config()
 TAGS_PATH = Path(cfg["paths"]["lora_tags"])
@@ -107,7 +109,7 @@ def score_lora_relevance(lora, keywords):
 
 def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None, use_smart_matching=False, genre=None):
     # print(f"[DEBUG] select_loras_for_prompt started — LORAs: {sum(len(v) for v in categorized_loras.values())}, Prompt: {resolved_prompt[:80]}...")
-    print(f"[DEBUG] Smart matching: {use_smart_matching}, Genre: {genre}")
+    print(f"[DEBUG] Genre: {genre}")
 
     default_strengths = CONFIG.get("default_lora_weights", {})
     fuzz = CONFIG.get("weight_fuzz_range", 0.05)
@@ -147,7 +149,7 @@ def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None,
         chosen["weight"] = round(random.uniform(base_weight - fuzz, base_weight + fuzz), 2)
         selected.append(chosen)
         selection_log.append({
-            "name": chosen["name"],
+            "name": normalize_lora_name(chosen["name"]),
             "weight": chosen["weight"],
             "category": "Detailers",
             "reasons": ["Always included"]
@@ -194,10 +196,8 @@ def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None,
         candidate = None
 
         if prompt_keywords and use_smart_matching:
-            print(f"[DEBUG] Matching against {len(lora_pool)} LORAs in category: {category}")
-            start_time = time.time()
+            # print(f"[DEBUG] Matching against {len(lora_pool)} LORAs in category: {category}")
             scored = [(l, *score_lora_relevance(l, prompt_keywords)) for l in lora_pool]
-            print(f"[DEBUG] Scoring took: {time.time() - start_time:.2f}s")
             scored.sort(key=lambda x: -x[1])
             top_scored = [l for l, score, _ in scored if score > 0]
 
@@ -226,7 +226,7 @@ def select_loras_for_prompt(categorized_loras, base_model, resolved_prompt=None,
         remaining -= 1
 
         selection_log.append({
-            "name": candidate["name"],
+            "name": normalize_lora_name(candidate["name"]),
             "weight": weight,
             "category": category,
             "reasons": reasons

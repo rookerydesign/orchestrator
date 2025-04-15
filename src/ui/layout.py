@@ -21,13 +21,15 @@ def build_ui():
         prompt_state = gr.State("")
         available_loras = loras_loaded
         active_tab = gr.State(value=0)
+        selected_model = gr.State("flux")  # default to something safe
+
 
         with gr.Tabs() as tabs:
             with gr.TabItem("🧠 Prompt Lab"):
-                prompt_tab_components = render_prompt_tab(shared_prompt_state=prompt_state, available_loras=available_loras)
+                prompt_tab_components = render_prompt_tab(shared_prompt_state=prompt_state, selected_model_state=selected_model, available_loras=available_loras)
 
             with gr.TabItem("🎨 Image Gen Settings"):
-                render_image_settings_tab()
+                render_image_settings_tab(selected_model_state=selected_model)
 
             with gr.TabItem("📦 Batch Builder"):
                 batch_components = render_batch_tab(shared_prompt_state=prompt_state)

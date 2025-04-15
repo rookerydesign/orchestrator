@@ -5,6 +5,7 @@ import yaml
 import sys
 import os
 from copy import deepcopy
+from src.utils.nomalize_loras import normalize_lora_name
 
 from src.utils.lora_audit import get_unused_loras_grouped_by_model_and_category
 from src.utils.config_loader import load_config
@@ -16,7 +17,9 @@ FAVORITES_DB = config["paths"]["favorites_db"]
 
 
 def normalize_combo_signature(loras):
-    return tuple(sorted((l["name"], round(l["weight"], 2)) for l in loras))
+    return tuple(
+        sorted((normalize_lora_name(l["name"]), round(l["weight"], 2)) for l in loras)
+    )
 
 def load_favorite_combos():
     conn = sqlite3.connect(FAVORITES_DB)

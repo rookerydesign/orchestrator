@@ -7,7 +7,7 @@ from collections import defaultdict
 import json
 import os
 from src.utils.config_loader import load_config
-
+from src.utils.nomalize_loras import normalize_lora_name
 
 # Load tag data
 config = load_config()
@@ -26,15 +26,10 @@ with open(CONFIG_PATH, "r") as f:
 DEFAULT_WEIGHTS = CONFIG.get("default_lora_weights", {})
 FUZZ = CONFIG.get("weight_fuzz_range", 0.05)
 
-
-# def select_discovery_loras(model_base, categorized_loras):
-#     print("Discovery stub reached")
-#     return [], []
-
 def select_discovery_loras(model_base, categorized_loras):
-    print(f"[DISCOVERY] Entered Discovery mode selector.")
+    # print(f"[DISCOVERY] Entered Discovery mode selector.")
     print(f"[DISCOVERY] model_base: {model_base}")
-    print(f"[DISCOVERY] categorized_loras keys: {list(categorized_loras.keys())}")
+    # print(f"[DISCOVERY] categorized_loras keys: {list(categorized_loras.keys())}")
     selected = []
     debug_log = []
     category_usage_count = defaultdict(int)
@@ -43,6 +38,7 @@ def select_discovery_loras(model_base, categorized_loras):
     model_key = model_base.lower().strip()
  # Match the capitalization from get_unused_loras_grouped_by_model_and_category
     # 🔍 Log what's about to be used
+    
     print(f"[DISCOVERY] Using model key: '{model_key}'")
     print(f"[DISCOVERY] Available models in unused pool: {list(categorized_loras.keys())}")
 
@@ -71,12 +67,13 @@ def select_discovery_loras(model_base, categorized_loras):
             DEFAULT_WEIGHTS["detailer"] = 0.9
         chosen_weight = round(random.uniform(base_weight - FUZZ, base_weight + FUZZ * 2), 2)
         selected.append({
-            "name": filename,
+            "name": normalize_lora_name(filename),
             "weight": chosen_weight,
             "activation": filename
         })
+        
         debug_log.append({
-            "name": filename,
+            "name": normalize_lora_name(filename),
             "weight": chosen_weight,
             "category": "detailer",
             "reasons": ["Discovery mode - always include a detailer"]
@@ -98,21 +95,25 @@ def select_discovery_loras(model_base, categorized_loras):
         candidate_path = random.choice(pool)
         filename = os.path.basename(candidate_path)
 
-        base_weight = DEFAULT_WEIGHTS.get(category, 0.6)
+        category_weights = CONFIG.get("default_lora_weights", {})
+        fuzz = CONFIG.get("weight_fuzz_range", 0.05)
+
+        base_weight = category_weights.get(category, 0.6)
         usage_count = category_usage_count[category]
+
         if usage_count > 0:
             base_weight = max(base_weight - (0.1 * usage_count), 0.3)
 
-        weight = round(random.uniform(base_weight - FUZZ, base_weight + FUZZ), 2)
+        chosen_weight = round(random.uniform(base_weight - fuzz, base_weight + fuzz), 2)
 
         selected.append({
-            "name": filename,
-            "weight": weight,
+            "name": normalize_lora_name(filename),
+            "weight": chosen_weight,
             "activation": filename
         })
         debug_log.append({
-            "name": filename,
-            "weight": weight,
+            "name": normalize_lora_name(filename),
+            "weight": chosen_weight,
             "category": category,
             "reasons": ["Discovery mode - underused LORA"]
         })

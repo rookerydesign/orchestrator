@@ -91,7 +91,7 @@ def get_unused_loras_grouped_by_model_and_category():
 
     # Change this line to unpack the tuple
     _, _, all_loras = load_models_and_loras(model_dir="unused", lora_dir=LORA_DIR)
-    print(f"[DEBUG] Sample entry in all_loras: {all_loras[0] if all_loras else 'EMPTY'}")
+    # print(f"[DEBUG] Sample entry in all_loras: {all_loras[0] if all_loras else 'EMPTY'}")
     grouped = {}
 
     for lora in all_loras:
@@ -129,7 +129,7 @@ def get_unused_loras_grouped_by_model_and_category():
         is_used = any(alias in normalized_used_ids for alias in aliases if alias)
         
         if is_used:
-            print(f"[DEBUG] Skipping '{lora['name']}' — matched via normalized name/alias")
+            # print(f"[DEBUG] Skipping '{lora['name']}' — matched via normalized name/alias")
             continue  # It's been used
             
         # Only add to unused group if we reach here

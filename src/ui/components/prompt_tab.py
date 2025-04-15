@@ -17,33 +17,44 @@ def render_prompt_tab(shared_prompt_state=None, selected_model_state=None, avail
 
     def generate_single_prompt(template, genre, use_llm, lora_mode):
         model_name = normalize_model_name(selected_model_state.value if selected_model_state else "flux")
-        print(f"[DEBUG] Using normalized base_model: {model_name}")
+        # print(f"[DEBUG] Using normalized base_model: {model_name}")
 
-        all_loras = available_loras or []
-        print(f"[DEBUG] LORA count before categorization: {len(all_loras)}")
-        print(f"[DEBUG] Sample LORA data: {all_loras[0] if all_loras else 'None'}")
+        # Handle tuple case (from load_models_and_loras)
+        if isinstance(available_loras, tuple) and len(available_loras) == 3:
+            model_name, _, all_loras = available_loras
+        else:
+            all_loras = available_loras or []
         
+        # print(f"[DEBUG] LORA count before categorization: {len(all_loras)}")
+        
+        # Moved categorized definition outside the loop
         categorized = categorize_loras(all_loras)
-        print(f"[DEBUG] Categories found: {list(categorized.keys())}")
-        for cat_key, loras in categorized.items():
-            print(f"[DEBUG] Category {cat_key}: {len(loras)} LORAs")
+        
+        # print(f"[DEBUG] Categories found: {list(categorized.keys())}")
+        # for cat_key, loras in categorized.items():
+        #     print(f"[DEBUG] Category {cat_key}: {len(loras)} LORAs")
+        
         base_prompt = generate_prompts(template, genre=genre, batch_size=1)[0]
         final_prompt = enhance_prompt_with_llm(base_prompt, genre) if use_llm else base_prompt
+        # print(f"[DEBUG] Generated prompt: {final_prompt[:50]}...")
 
         if shared_prompt_state is not None:
             shared_prompt_state.value = final_prompt
 
         selected_loras = []
         lora_debug_log = []
-        
+        # print(f"[DEBUG] Selecting LORAs with mode: {lora_mode}")
 
-        if lora_mode == "Favorites":
+        if lora_mode == "✨ Favorites":
+            # print("[DEBUG] Entering Favorites mode")
             combos = load_favorite_combos()
+            # print(f"[DEBUG] Loaded {len(combos)} favorite combos")
             picked = pick_random_favorite_combo(
                 combos,
                 genre=genre,
                 prompt_keywords=extract_keywords(final_prompt)
             )
+            # print(f"[DEBUG] Picked combo: {picked}")
             selected_loras = picked["loras"]
             lora_debug_log = [
                 {
@@ -54,8 +65,9 @@ def render_prompt_tab(shared_prompt_state=None, selected_model_state=None, avail
                 } for l in selected_loras
             ]
 
-        elif lora_mode == "Keyword":
-            categorized = categorize_loras(all_loras)
+        elif lora_mode == "✍️ Keyword":
+            print("[DEBUG] Entering Keyword mode")
+            # categorized = categorize_loras(all_loras)
             selected_loras, lora_debug_log = select_loras_for_prompt(
                 categorized_loras=categorized,
                 base_model=model_name,
@@ -65,7 +77,7 @@ def render_prompt_tab(shared_prompt_state=None, selected_model_state=None, avail
             )
             print(f"[DEBUG] Selected {len(selected_loras)} LORAs using smart matching")
 
-        elif lora_mode == "Prompt LORAs":
+        elif lora_mode == "📜 Prompt LORAs":
             lora_debug_log = [{
                 "name": "Prompt-defined LORAs",
                 "weight": "-",
@@ -122,4 +134,82 @@ def render_prompt_tab(shared_prompt_state=None, selected_model_state=None, avail
         inputs=[template, genre, use_llm, lora_mode],
         outputs=[output_box]
     )
+
+    # Regenerate only LORAs when LORA mode is changed
+    def regenerate_loras_only(template, genre, use_llm, lora_mode):
+        # Reuse previously generated prompt
+        final_prompt = shared_prompt_state.value or ""
+        model_name = normalize_model_name(selected_model_state.value if selected_model_state else "flux")
+
+        # Unpack LORAs if needed
+        all_loras = available_loras or []
+        categorized = categorize_loras(all_loras)
+
+        selected_loras = []
+        lora_debug_log = []
+
+        if lora_mode == "✨ Favorites":
+            combos = load_favorite_combos()
+            picked = pick_random_favorite_combo(
+                combos,
+                genre=genre,
+                prompt_keywords=extract_keywords(final_prompt)
+            )
+            selected_loras = picked["loras"]
+            lora_debug_log = [
+                {
+                    "name": l["name"],
+                    "weight": l["weight"],
+                    "category": "from_favorites",
+                    "reasons": ["Picked from favorites DB"]
+                } for l in selected_loras
+            ]
+
+        elif lora_mode == "✍️ Keyword":
+            selected_loras, lora_debug_log = select_loras_for_prompt(
+                categorized_loras=categorized,
+                base_model=model_name,
+                resolved_prompt=final_prompt,
+                use_smart_matching=True,
+                genre=genre
+            )
+
+        elif lora_mode == "📜 Prompt LORAs":
+            lora_debug_log = [{
+                "name": "Prompt-defined LORAs",
+                "weight": "-",
+                "category": "manual",
+                "reasons": ["Embedded via prompt"]
+            }]
+
+        elif lora_mode == "🧪 Discovery":
+            from src.core.discovery_selector import select_discovery_loras
+            from src.utils.lora_audit import get_unused_loras_grouped_by_model_and_category
+            try:
+                categorized_unused = get_unused_loras_grouped_by_model_and_category()
+                selected_loras, lora_debug_log = select_discovery_loras(BASE_MODEL, categorized_unused)
+            except Exception as e:
+                print(f"[ERROR] Discovery mode failed: {e}")
+                selected_loras = []
+                lora_debug_log = [{
+                    "name": "Discovery error",
+                    "weight": "-",
+                    "category": "error",
+                    "reasons": [str(e)]
+                }]
+
+        # Format combined output
+        prompt_preview = f"{final_prompt}\n\n---\nLORAs selected:\n" + "\n".join([
+            f"• {l['name']} @ {l['weight']}" + (f" ({l['category']})" if 'category' in l else '')
+            for l in lora_debug_log
+        ])
+        return prompt_preview
+
+    # Trigger LORA refresh when mode changes (without touching prompt)
+    lora_mode.change(
+        fn=regenerate_loras_only,
+        inputs=[template, genre, use_llm, lora_mode],
+        outputs=[output_box]
+    )
+    
     return [template, genre, output_box]
