@@ -45,6 +45,40 @@ Allow generation to flow through customizable steps, either defined manually or 
 - Eventually allow UI-based pipeline construction
 
 ---
+🌐 Trending Look Injection via CivitAI API
+Leverage CivitAI’s REST API to dynamically fetch trending image generations and extract their associated LORA combinations.
+
+✨ Concept:
+Use real, high-performing image metadata (including LORAs) from the community to inform random prompt/lora combinations. This introduces a new creative mode: “Trend-Driven Generation.”
+
+🔧 Features:
+Query top images via CivitAI API by mostReactions, mostComments, or latest
+
+Parse meta.resources to extract required LORAs and weights
+
+Cross-reference with local .info/.json metadata to check availability
+
+Use valid trending LORA combos as generation input (prompt + LORAs)
+
+Optional: Include original prompts, CFG, resolution, or sampling data
+
+⏭️ Next Steps:
+Build TrendingFetcher module to cache, filter, and validate trending CivitAI combos
+
+Add toggle to generation UI: Use Trending Combo
+
+Auto-download LORAs via direct links if enabled via new toggle
+
+Add toggle to exclude NSFW combos - the LORAs specifically not the images themselves if possible
+
+🧪 Experimental Enhancements:
+Weight selection by community engagement (likes, comments)
+
+Preview multiple trending looks and reroll from a pool
+
+Save favorite combos for reuse or batch runs
+
+-----
 
 ## 🧬 Character & Storyline Profiles
 
@@ -120,6 +154,17 @@ Use CLIP, BLIP, or similar models to evaluate outputs and refine prompt systems.
 - Dynamic prompt conditioning (vision-informed adjustments)
 - API mode for external trigger dispatches (future proofing)
 
+## ✅ Completed Features
+
+### 🔥 CivitAI Trending Combo Mode
+- Fetches trending images from CivitAI API with metadata
+- Filters for images with LORA resources
+- Cross-checks against local LORAs
+- Injects matching combos into the pipeline
+- Shows preview of the original image
+- Includes original prompt and generation parameters
+- Allows rerolling from the trending pool
+
 ---
 
 ## 🌟 Dev Milestones Summary
@@ -131,5 +176,6 @@ Use CLIP, BLIP, or similar models to evaluate outputs and refine prompt systems.
 | Profile System                 | 🟡 Planned   |
 | Vision Feedback Loop           | 🟡 Planned   |
 | ComfyUI / Gallery Integration  | 🟡 Planned   |
+| CivitAI Trending Integration   | ✅ Completed |
 
 ---

@@ -7,7 +7,19 @@ def render_image_settings_tab(selected_model_state=None):
     with gr.Column():
         gr.Markdown("## 🎨 Image Generation Settings")
 
-        model_selector = gr.Dropdown(choices=["flux", "pony", "sdxl"], label="Model")
+        model_selector = gr.Dropdown(
+            choices=["flux", "pony", "sdxl"],
+            value="flux",
+            label="Model"
+        )
+        
+        # Connect model_selector to selected_model_state
+        if selected_model_state is not None:
+            model_selector.change(
+                fn=lambda x: x,
+                inputs=[model_selector],
+                outputs=[selected_model_state]
+            )
         
         sampler = gr.Dropdown(
             choices=["Euler", "DPM++ 2M", "DDIM"],
