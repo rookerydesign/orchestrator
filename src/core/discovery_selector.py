@@ -28,7 +28,7 @@ FUZZ = CONFIG.get("weight_fuzz_range", 0.05)
 
 def select_discovery_loras(model_base, categorized_loras):
     # print(f"[DISCOVERY] Entered Discovery mode selector.")
-    print(f"[DISCOVERY] model_base: {model_base}")
+    # print(f"[DISCOVERY] model_base: {model_base}")
     # print(f"[DISCOVERY] categorized_loras keys: {list(categorized_loras.keys())}")
     selected = []
     debug_log = []
@@ -39,8 +39,8 @@ def select_discovery_loras(model_base, categorized_loras):
  # Match the capitalization from get_unused_loras_grouped_by_model_and_category
     # 🔍 Log what's about to be used
     
-    print(f"[DISCOVERY] Using model key: '{model_key}'")
-    print(f"[DISCOVERY] Available models in unused pool: {list(categorized_loras.keys())}")
+    # print(f"[DISCOVERY] Using model key: '{model_key}'")
+    # print(f"[DISCOVERY] Available models in unused pool: {list(categorized_loras.keys())}")
 
     underused = categorized_loras.get(model_key, {})
     print(f"[DISCOVERY] Found {sum(len(v) for v in underused.values())} unused LORAs across {len(underused)} categories.")

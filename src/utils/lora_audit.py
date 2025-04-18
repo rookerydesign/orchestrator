@@ -135,7 +135,7 @@ def get_unused_loras_grouped_by_model_and_category():
         # Only add to unused group if we reach here
         grouped.setdefault(model_family.lower(), {}).setdefault(category.lower(), []).append(lora_path)
 
-    print(f"[AUDIT] Returning type: {type(grouped)} | Sample keys: {list(grouped.keys())[:5]}")
+    # print(f"[AUDIT] Returning type: {type(grouped)} | Sample keys: {list(grouped.keys())[:5]}")
     return grouped
 
 def get_used_lora_activations():
